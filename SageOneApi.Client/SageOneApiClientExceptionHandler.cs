@@ -13,8 +13,6 @@ namespace SageOneApi.Client
         {
             try
             {
-                Console.WriteLine("Getting entity: " + id);
-
                 return base.Get<T>(id);
             }
             catch (WebException ex)
