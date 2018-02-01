@@ -17,5 +17,6 @@
     </metadata>
     <files>
         <file src="bin\debug\SageOneApi.Client.dll" target="lib\net461\SageOneApi.Client.dll" />
+        <file src="bin\Debug\SageOneApi.Client.pdb" target="lib\net461\SageOneApi.Client.pdb" />
     </files>
 </package>
