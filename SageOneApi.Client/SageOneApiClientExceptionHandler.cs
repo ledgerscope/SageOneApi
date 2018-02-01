@@ -6,7 +6,6 @@ namespace SageOneApi.Client
     public class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
         private readonly ISageOneApiClient _apiClient;
-        private readonly string _dataId;
 
         public SageOneApiClientExceptionHandler(ISageOneApiClient apiClient) : base(apiClient)
         {
