@@ -2,38 +2,44 @@
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Responses;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 
 namespace SageOneApi.Client
 {
-    public interface IApiClient
+    public interface ISageOneApiClient
     {
         T Get<T>(string id) where T : class;
         IEnumerable<T> GetAll<T>() where T : class;
+        GetAllResponse GetAllSummary<T>() where T : class;
         void Insert<T>() where T : class;
         void Update<T>() where T : class;
+        void RenewRefreshAndAccessToken();
     }
 
-    public class SageOneApiClient : IApiClient
+    public class SageOneApiClient : ISageOneApiClient
     {
         private Uri _baseUri;
         private string _accessToken;
         private string _subscriptionId;
         private string _resourceOwnerId;
+        private readonly Func<string> _renewRefreshAndAccessToken;
 
-        public SageOneApiClient(Uri baseUri, string accessToken, string subscriptionId, string resourceOwnerId)
+        public SageOneApiClient(Uri baseUri, string accessToken, string subscriptionId, string resourceOwnerId, Func<string> renewRefreshAndAccessToken)
         {
             _baseUri = baseUri;
             _accessToken = accessToken;
             _subscriptionId = subscriptionId;
             _resourceOwnerId = resourceOwnerId;
+            _renewRefreshAndAccessToken = renewRefreshAndAccessToken;
         }
 
         public T Get<T>(string id) where T : class
         {
-            var webRequest = createWebRequest<T>(id);
+            var webRequest = createWebRequestForSingleEntity<T>(id);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -45,8 +51,8 @@ namespace SageOneApi.Client
         }
 
         public IEnumerable<T> GetAll<T>() where T : class
-        {      
-            var webRequest = createWebRequest<T>();
+        {
+            var webRequest = createWebRequestForAllEntities<T>(page: 1);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -56,12 +62,23 @@ namespace SageOneApi.Client
 
             var entities = new List<T>();
 
-            foreach(var item in response.items)
+            foreach (var item in response.items)
             {
                 entities.Add(Get<T>(item.id));
             }
 
             return entities;
+        }
+
+        public GetAllResponse GetAllSummary<T>() where T : class
+        {
+            var webRequest = createWebRequestForAllEntities<T>(page: 1);
+
+            setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
+
+            var jsonResponse = getRequest(webRequest);
+
+            return JsonConvert.DeserializeObject<GetAllResponse>(jsonResponse);
         }
 
         public void Insert<T>() where T : class
@@ -72,6 +89,11 @@ namespace SageOneApi.Client
         public void Update<T>() where T : class
         {
             throw new NotImplementedException();
+        }
+
+        public void RenewRefreshAndAccessToken()
+        {
+            _accessToken = _renewRefreshAndAccessToken();
         }
 
         private void setHeaders(HttpWebRequest webRequest, string accessToken, string subscriptionId, string resourceOwnerId)
@@ -114,12 +136,14 @@ namespace SageOneApi.Client
                     text = sr.ReadToEnd();
                 }
 
-                throw new Exception(text, webex);
+                throw webex;
 
             }
             catch (Exception ex)
             {
                 string message = ex.Message;
+
+                throw ex;
             }
             finally
             {
@@ -131,20 +155,29 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequest<T>(string entityId = null) where T : class
+        private HttpWebRequest createWebRequestForAllEntities<T>(int page = 1) where T : class
         {
-            return WebRequest.Create(createUri<T>(entityId)) as HttpWebRequest;
+            var uriPath = $"{createBaseUriPath<T>()}?page={page}&items_per_page=100";
+            var uri = new Uri(uriPath);
+
+            return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private Uri createUri<T>(string entityId = null) where T : class
+        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId) where T : class
+        {
+            var uriPath = $"{createBaseUriPath<T>()}/{entityId}";
+            var uri = new Uri(createBaseUriPath<T>());
+
+            return WebRequest.Create(uri) as HttpWebRequest;
+        }
+
+        private string createBaseUriPath<T>() where T : class
         {
             var targetEntity = getTargetEntityPathFrom(typeof(T).Name);
 
             var urlPath = $"{_baseUri}/{targetEntity}";
 
-            urlPath = entityId != null ? $"{urlPath}/{entityId}" : urlPath;
-
-            return new Uri(urlPath);
+            return urlPath;
         }
 
         private string getTargetEntityPathFrom(string typeName)
