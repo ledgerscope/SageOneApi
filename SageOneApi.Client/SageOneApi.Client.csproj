@@ -51,6 +51,7 @@
     <Compile Include="SageOneApiClientBaseHandler.cs" />
     <Compile Include="SageOneApiClientExceptionHandler.cs" />
     <Compile Include="SageOneApiClientPagingHandler.cs" />
+    <Compile Include="SageOneApiUsageRestrictionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

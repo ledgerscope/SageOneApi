@@ -1,22 +1,18 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using SageOneApi.Client.Responses;
 
 namespace SageOneApi.Client
 {
     public class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
-        private readonly ISageOneApiClient _apiClient;
-
-        public SageOneApiClientExceptionHandler(ISageOneApiClient apiClient) : base(apiClient)
-        {
-            _apiClient = apiClient;
-        }
+        public SageOneApiClientExceptionHandler(ISageOneApiClient apiClient) : base(apiClient) { }
 
         public override T Get<T>(string id)
         {
             try
             {
-                return _apiClient.Get<T>(id);
+                return base.Get<T>(id);
             }
             catch (WebException ex)
             {
@@ -26,7 +22,7 @@ namespace SageOneApi.Client
                 {
                     RenewRefreshAndAccessToken();
 
-                    return _apiClient.Get<T>(id);
+                    return base.Get<T>(id);
                 }
 
                 throw ex;
@@ -37,7 +33,7 @@ namespace SageOneApi.Client
         {
             try
             {
-                return _apiClient.GetAllSummary<T>();
+                return base.GetAllSummary<T>();
             }
             catch (WebException ex)
             {
@@ -47,7 +43,7 @@ namespace SageOneApi.Client
                 {
                     RenewRefreshAndAccessToken();
 
-                    return _apiClient.GetAllSummary<T>();
+                    return base.GetAllSummary<T>();
                 }
 
                 throw ex;

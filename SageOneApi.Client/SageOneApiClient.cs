@@ -127,24 +127,6 @@ namespace SageOneApi.Client
                 responseReader = new StreamReader(response.GetResponseStream());
                 responseData = responseReader.ReadToEnd();
             }
-            catch (WebException webex)
-            {
-                string text;
-
-                using (var sr = new StreamReader(webex.Response.GetResponseStream()))
-                {
-                    text = sr.ReadToEnd();
-                }
-
-                throw webex;
-
-            }
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-
-                throw ex;
-            }
             finally
             {
                 webRequest.GetResponse().GetResponseStream().Close();
@@ -184,7 +166,7 @@ namespace SageOneApi.Client
         {
             switch (typeName)
             {
-                case "Contact": return "contact";
+                case "Contact": return "contacts";
                 case "LedgerAccount": return "ledger_accounts";
             }
 
