@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client
 {
-    public abstract class SageOneApiClientBaseHandler : ISageOneApiClient
+    internal abstract class SageOneApiClientBaseHandler : ISageOneApiClientHandler
     {
-        private readonly ISageOneApiClient _apiClient;
+        private readonly ISageOneApiClientHandler _apiClient;
 
-        protected SageOneApiClientBaseHandler(ISageOneApiClient apiClient)
+        protected SageOneApiClientBaseHandler(ISageOneApiClientHandler apiClient)
         {
             _apiClient = apiClient;
         }

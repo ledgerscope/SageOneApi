@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISageOneApiClientHandler.cs" />
     <Compile Include="Models\LedgerAccount.cs" />
     <Compile Include="SageOneApiClient.cs" />
     <Compile Include="SageOneApiClientTransferHandler.cs" />

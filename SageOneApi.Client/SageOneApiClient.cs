@@ -1,18 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SageOneApi.Client
 {
-    public class SageOneApiClient : SageOneApiClientBaseHandler
+    public interface ISageOneApiClient
     {
+        T Get<T>(string id) where T : class;
+        IEnumerable<T> GetAll<T>() where T : class;
+        void Insert<T>() where T : class;
+        void Update<T>() where T : class;
+    }
+
+    public class SageOneApiClient : ISageOneApiClient
+    {
+        private ISageOneApiClientHandler _sageOneApiClientHandler;
+
         public SageOneApiClient(
             Uri baseUri,
             string accessToken,
             string subscriptionId,
             string resourceOwnerId,
-            Func<string> renewRefreshAndAccessToken) : base(
-                new SageOneApiClientPagingHandler(
-                    new SageOneApiClientExceptionHandler(
-                        new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken))))
-        { }
+            Func<string> renewRefreshAndAccessToken)
+        {
+            _sageOneApiClientHandler =
+               new SageOneApiClientPagingHandler(
+                   new SageOneApiClientExceptionHandler(
+                       new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken)));
+        }
+
+        public T Get<T>(string id) where T : class
+        {
+            return _sageOneApiClientHandler.Get<T>(id);
+        }
+
+        public IEnumerable<T> GetAll<T>() where T : class
+        {
+            return _sageOneApiClientHandler.GetAll<T>();
+        }
+
+        public void Insert<T>() where T : class
+        {
+            _sageOneApiClientHandler.Insert<T>();
+        }
+
+        public void Update<T>() where T : class
+        {
+            _sageOneApiClientHandler.Update<T>();
+        }
     }
 }

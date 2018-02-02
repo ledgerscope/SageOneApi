@@ -7,7 +7,7 @@ namespace SageOneApi.Client
 {
     internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
-        public SageOneApiClientExceptionHandler(ISageOneApiClient apiClient) : base(apiClient) { }
+        public SageOneApiClientExceptionHandler(ISageOneApiClientHandler apiClient) : base(apiClient) { }
 
         public override T Get<T>(string id)
         {

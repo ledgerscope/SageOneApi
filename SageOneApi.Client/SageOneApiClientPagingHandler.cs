@@ -4,7 +4,7 @@ namespace SageOneApi.Client
 {
     internal class SageOneApiClientPagingHandler : SageOneApiClientBaseHandler
     {
-        public SageOneApiClientPagingHandler(ISageOneApiClient apiClient) : base(apiClient) { }
+        public SageOneApiClientPagingHandler(ISageOneApiClientHandler apiClient) : base(apiClient) { }
 
         public override IEnumerable<T> GetAll<T>() 
         {

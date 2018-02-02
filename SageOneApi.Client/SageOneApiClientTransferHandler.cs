@@ -10,17 +10,8 @@ using System.Net;
 
 namespace SageOneApi.Client
 {
-    public interface ISageOneApiClient
-    {
-        T Get<T>(string id) where T : class;
-        IEnumerable<T> GetAll<T>() where T : class;
-        GetAllResponse GetAllSummary<T>() where T : class;
-        void Insert<T>() where T : class;
-        void Update<T>() where T : class;
-        void RenewRefreshAndAccessToken();
-    }
 
-    internal class SageOneApiClientTransferHandler : ISageOneApiClient
+    internal class SageOneApiClientTransferHandler : ISageOneApiClientHandler
     {
         private Uri _baseUri;
         private string _accessToken;
