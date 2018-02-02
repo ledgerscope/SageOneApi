@@ -5,7 +5,7 @@ using SageOneApi.Client.Responses;
 
 namespace SageOneApi.Client
 {
-    public class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
+    internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
         public SageOneApiClientExceptionHandler(ISageOneApiClient apiClient) : base(apiClient) { }
 

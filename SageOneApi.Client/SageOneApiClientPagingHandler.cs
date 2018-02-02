@@ -2,7 +2,7 @@
 
 namespace SageOneApi.Client
 {
-    public class SageOneApiClientPagingHandler : SageOneApiClientBaseHandler
+    internal class SageOneApiClientPagingHandler : SageOneApiClientBaseHandler
     {
         public SageOneApiClientPagingHandler(ISageOneApiClient apiClient) : base(apiClient) { }
 

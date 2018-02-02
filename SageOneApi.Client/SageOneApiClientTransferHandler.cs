@@ -20,7 +20,7 @@ namespace SageOneApi.Client
         void RenewRefreshAndAccessToken();
     }
 
-    public class SageOneApiClientTransferHandler : ISageOneApiClient
+    internal class SageOneApiClientTransferHandler : ISageOneApiClient
     {
         private Uri _baseUri;
         private string _accessToken;
