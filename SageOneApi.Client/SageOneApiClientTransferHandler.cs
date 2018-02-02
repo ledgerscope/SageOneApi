@@ -168,6 +168,9 @@ namespace SageOneApi.Client
             {
                 case "Contact": return "contacts";
                 case "LedgerAccount": return "ledger_accounts";
+                case "SalesInvoice": return "sales_invoices";
+                case "SalesCredit": return "sales_credits";
+                case "ContactPayment": return "contact_payments";
             }
 
             throw new ArgumentException($"Working with entity '{typeName}' is currently unsupported");

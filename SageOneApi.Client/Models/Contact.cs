@@ -60,14 +60,6 @@ namespace SageOneApi.Client.Models
         public string path { get; set; }
     }
 
-    public class MainAddress
-    {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
-        [JsonProperty("$path")]
-        public string path { get; set; }
-    }
-
     public class MainContactPerson
     {
         public string id { get; set; }

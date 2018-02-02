@@ -45,7 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISageOneApiClientHandler.cs" />
+    <Compile Include="Models\ContactPayment.cs" />
     <Compile Include="Models\LedgerAccount.cs" />
+    <Compile Include="Models\SalesCredit.cs" />
+    <Compile Include="Models\SalesInvoice.cs" />
     <Compile Include="SageOneApiClient.cs" />
     <Compile Include="SageOneApiClientTransferHandler.cs" />
     <Compile Include="Models\Contact.cs" />
