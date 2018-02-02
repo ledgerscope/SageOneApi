@@ -20,7 +20,7 @@ namespace SageOneApi.Client
         void RenewRefreshAndAccessToken();
     }
 
-    public class SageOneApiClient : ISageOneApiClient
+    public class SageOneApiClientTransferHandler : ISageOneApiClient
     {
         private Uri _baseUri;
         private string _accessToken;
@@ -28,7 +28,12 @@ namespace SageOneApi.Client
         private string _resourceOwnerId;
         private readonly Func<string> _renewRefreshAndAccessToken;
 
-        public SageOneApiClient(Uri baseUri, string accessToken, string subscriptionId, string resourceOwnerId, Func<string> renewRefreshAndAccessToken)
+        public SageOneApiClientTransferHandler(
+            Uri baseUri, 
+            string accessToken, 
+            string subscriptionId, 
+            string resourceOwnerId, 
+            Func<string> renewRefreshAndAccessToken)
         {
             _baseUri = baseUri;
             _accessToken = accessToken;
@@ -98,20 +103,20 @@ namespace SageOneApi.Client
 
         private void setHeaders(HttpWebRequest webRequest, string accessToken, string subscriptionId, string resourceOwnerId)
         {
-            // Set the required header values on the web request
             webRequest.Headers.Add("X-Site", resourceOwnerId);
             webRequest.Headers.Add("Ocp-Apim-Subscription-Key", subscriptionId);
             webRequest.ContentType = "application/json";
-
-            string authorization = $"Bearer {accessToken}";
-            webRequest.Headers.Add("Authorization", authorization);
+            webRequest.Headers.Add("Authorization", $"Bearer {accessToken}");
         }
 
         private string getRequest(HttpWebRequest webRequest)
         {
             string responseData = "";
+
             responseData = getWebResponse(webRequest);
+
             webRequest = null;
+
             return responseData;
         }
 
@@ -119,18 +124,22 @@ namespace SageOneApi.Client
         {
             StreamReader responseReader = null;
             WebResponse response;
-            string responseData = "";
+            var responseData = "";
 
             try
             {
                 response = webRequest.GetResponse();
+
                 responseReader = new StreamReader(response.GetResponseStream());
+
                 responseData = responseReader.ReadToEnd();
             }
             finally
             {
                 webRequest.GetResponse().GetResponseStream().Close();
+
                 responseReader.Close();
+
                 responseReader = null;
             }
 
@@ -148,7 +157,7 @@ namespace SageOneApi.Client
         private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId) where T : class
         {
             var uriPath = $"{createBaseUriPath<T>()}/{entityId}";
-            var uri = new Uri(createBaseUriPath<T>());
+            var uri = new Uri(uriPath);
 
             return WebRequest.Create(uri) as HttpWebRequest;
         }
