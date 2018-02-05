@@ -56,7 +56,7 @@ namespace SageOneApi.Client.Models
         public Status status { get; set; }
         public bool sent { get; set; }
         public object void_reason { get; set; }
-        public List<InvoiceLine> invoice_lines { get; set; }
+        public List<SalesInvoiceLine> invoice_lines { get; set; }
         public List<TaxAnalysi> tax_analysis { get; set; }
         public string last_paid { get; set; }
         public object original_quote_estimate { get; set; }
@@ -218,7 +218,7 @@ namespace SageOneApi.Client.Models
         public string amount { get; set; }
     }
 
-    public class InvoiceLine
+    public class SalesInvoiceLine
     {
         public string id { get; set; }
         public string displayed_as { get; set; }
