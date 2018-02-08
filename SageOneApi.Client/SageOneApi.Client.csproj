@@ -45,16 +45,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISageOneApiClientHandler.cs" />
+    <Compile Include="Models\AllocatedArtefact.cs" />
+    <Compile Include="Models\Artefact.cs" />
+    <Compile Include="Models\BankAccountDetails.cs" />
     <Compile Include="Models\BankTransfer.cs" />
     <Compile Include="Models\ContactAllocation.cs" />
     <Compile Include="Models\ContactPayment.cs" />
+    <Compile Include="Models\ControlTransaction.cs" />
+    <Compile Include="Models\ControlTransactionLine.cs" />
+    <Compile Include="Models\DeliveryAddress.cs" />
     <Compile Include="Models\Journal.cs" />
+    <Compile Include="Models\JournalLine.cs" />
     <Compile Include="Models\LedgerAccount.cs" />
+    <Compile Include="Models\PropertyValue.cs" />
+    <Compile Include="Models\Link.cs" />
+    <Compile Include="Models\MainAddress.cs" />
     <Compile Include="Models\OtherPayment.cs" />
+    <Compile Include="Models\PaymentLine.cs" />
+    <Compile Include="Models\PropertyValueWithPath.cs" />
     <Compile Include="Models\PurchaseCreditNote.cs" />
     <Compile Include="Models\PurchaseInvoice.cs" />
+    <Compile Include="Models\PurchaseTransaction.cs" />
     <Compile Include="Models\SalesCreditNote.cs" />
     <Compile Include="Models\SalesInvoice.cs" />
+    <Compile Include="Models\SalesTransaction.cs" />
+    <Compile Include="Models\SalesTransactionLine.cs" />
+    <Compile Include="Models\Tax.cs" />
+    <Compile Include="Models\TaxAnalysis.cs" />
+    <Compile Include="Models\TaxTreatment.cs" />
     <Compile Include="SageOneApiClient.cs" />
     <Compile Include="SageOneApiClientTransferHandler.cs" />
     <Compile Include="Models\Contact.cs" />

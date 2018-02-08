@@ -10,8 +10,8 @@ namespace SageOneApi.Client.Models
         public string displayed_as { get; set; }
         [JsonProperty("$path")]
         public string path { get; set; }
-        public Transaction transaction { get; set; }
-        public TransactionType transaction_type { get; set; }
+        public PropertyValueWithPath transaction { get; set; }
+        public PropertyValueWithPath transaction_type { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public List<Link> links { get; set; }
