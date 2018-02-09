@@ -177,6 +177,7 @@ namespace SageOneApi.Client
                 case "BankTransfer": return "bank_transfers";
                 case "Journal": return "journals";
                 case "ContactAllocation": return "contact_allocations";
+                case "TaxRate": return "tax_rates";
             }
 
             throw new ArgumentException($"Working with entity '{typeName}' is currently unsupported");

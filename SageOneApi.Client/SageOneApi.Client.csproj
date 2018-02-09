@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\LedgerAccountType.cs" />
     <Compile Include="ISageOneApiClientHandler.cs" />
     <Compile Include="Models\AllocatedArtefact.cs" />
     <Compile Include="Models\Artefact.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Models\SalesTransactionLine.cs" />
     <Compile Include="Models\Tax.cs" />
     <Compile Include="Models\TaxAnalysis.cs" />
+    <Compile Include="Models\TaxRate.cs" />
     <Compile Include="Models\TaxTreatment.cs" />
     <Compile Include="SageOneApiClient.cs" />
     <Compile Include="SageOneApiClientTransferHandler.cs" />
