@@ -2,11 +2,11 @@
 {
     public static class TaxRateType
     {
-        public static string Standard = "STANDARD";
-        public static string Lower = "LOWER";
-        public static string Zero = "ZERO";
-        public static string Exempt = "EXEMPT";
-        public static string NoTax = "NO_TAX";
+        public const string Standard = "STANDARD";
+        public const string Lower = "LOWER";
+        public const string Zero = "ZERO";
+        public const string Exempt = "EXEMPT";
+        public const string NoTax = "NO_TAX";
     }
 }
 
