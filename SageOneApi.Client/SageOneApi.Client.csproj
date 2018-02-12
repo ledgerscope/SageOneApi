@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\LedgerAccountType.cs" />
+    <Compile Include="Constants\LedgerAccountType.cs" />
+    <Compile Include="Constants\TaxRateType.cs" />
     <Compile Include="ISageOneApiClientHandler.cs" />
     <Compile Include="Models\AllocatedArtefact.cs" />
     <Compile Include="Models\Artefact.cs" />

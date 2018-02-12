@@ -1,4 +1,4 @@
-﻿namespace SageOneApi.Client.Enums
+﻿namespace SageOneApi.Client.Constants
 {
     public static class LedgerAccountType
     {
