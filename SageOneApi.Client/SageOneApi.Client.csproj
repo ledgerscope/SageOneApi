@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Constants\LedgerAccountType.cs" />
     <Compile Include="Constants\TaxRateType.cs" />
+    <Compile Include="Constants\TransactionType.cs" />
     <Compile Include="ISageOneApiClientHandler.cs" />
     <Compile Include="Models\AllocatedArtefact.cs" />
     <Compile Include="Models\Artefact.cs" />
