@@ -10,5 +10,7 @@
         public const string CustomerRefund = "CUSTOMER_REFUND";
         public const string VendorPayment = "VENDOR_PAYMENT";
         public const string VendorRefund = "VENDOR_REFUND";
+        public const string OtherReceipt = "OTHER_RECEIPT";
+        public const string OtherPayment = "OTHER_PAYMENT";
     }
 }
