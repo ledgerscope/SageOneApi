@@ -64,6 +64,7 @@
     <Compile Include="Models\JournalLine.cs" />
     <Compile Include="Models\LedgerAccount.cs" />
     <Compile Include="Models\MainContactPerson.cs" />
+    <Compile Include="Models\PaymentOnAccount.cs" />
     <Compile Include="Models\PropertyValue.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\MainAddress.cs" />
