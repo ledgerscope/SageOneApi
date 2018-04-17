@@ -15,7 +15,7 @@ namespace SageOneApi.Client
         {
             entities = entities ?? new List<T>();
 
-            var summaryResponse = GetAllSummary<T>();
+            var summaryResponse = GetAllSummary<T>(pageNumber);
 
             foreach (var item in summaryResponse.items)
             {

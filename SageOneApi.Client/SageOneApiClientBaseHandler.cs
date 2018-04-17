@@ -22,9 +22,9 @@ namespace SageOneApi.Client
             return _apiClient.GetAll<T>();
         }
 
-        public virtual GetAllResponse GetAllSummary<T>() where T : class
+        public virtual GetAllResponse GetAllSummary<T>(int pageNumber) where T : class
         {
-            return _apiClient.GetAllSummary<T>();
+            return _apiClient.GetAllSummary<T>(pageNumber);
         }
 
         public virtual void Insert<T>() where T : class

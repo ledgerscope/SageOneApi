@@ -48,7 +48,7 @@ namespace SageOneApi.Client
 
         public IEnumerable<T> GetAll<T>() where T : class
         {
-            var webRequest = createWebRequestForAllEntities<T>(page: 1);
+            var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -66,9 +66,9 @@ namespace SageOneApi.Client
             return entities;
         }
 
-        public GetAllResponse GetAllSummary<T>() where T : class
+        public GetAllResponse GetAllSummary<T>(int pageNumber) where T : class
         {
-            var webRequest = createWebRequestForAllEntities<T>(page: 1);
+            var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -137,9 +137,9 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequestForAllEntities<T>(int page = 1) where T : class
+        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1) where T : class
         {
-            var uriPath = $"{createBaseUriPath<T>()}?page={page}&items_per_page=100";
+            var uriPath = $"{createBaseUriPath<T>()}?page={pageNumber}&items_per_page=100";
             var uri = new Uri(uriPath);
 
             return WebRequest.Create(uri) as HttpWebRequest;

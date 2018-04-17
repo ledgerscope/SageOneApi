@@ -21,15 +21,15 @@ namespace SageOneApi.Client
             }
         }
 
-        public override GetAllResponse GetAllSummary<T>()
+        public override GetAllResponse GetAllSummary<T>(int pageNumber)
         {
             try
             {
-                return base.GetAllSummary<T>();
+                return base.GetAllSummary<T>(pageNumber);
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, base.GetAllSummary<T>);
+                return handleKnownExceptions(ex, () => GetAllSummary<T>(pageNumber));
             }
         }
 
