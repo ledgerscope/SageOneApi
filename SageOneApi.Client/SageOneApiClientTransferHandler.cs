@@ -169,9 +169,11 @@ namespace SageOneApi.Client
                 case "Contact": return "contacts";
                 case "LedgerAccount": return "ledger_accounts";
                 case "SalesInvoice": return "sales_invoices";
+                case "SalesQuickEntry": return "sales_quick_entries";
                 case "SalesCreditNote": return "sales_credit_notes";
                 case "ContactPayment": return "contact_payments";
                 case "PurchaseInvoice": return "purchase_invoices";
+                case "PurchaseQuickEntry": return "purchase_quick_entries";
                 case "PurchaseCreditNote": return "purchase_credit_notes";
                 case "OtherPayment": return "other_payments";
                 case "BankTransfer": return "bank_transfers";

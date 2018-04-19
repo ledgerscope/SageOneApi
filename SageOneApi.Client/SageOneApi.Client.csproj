@@ -73,10 +73,13 @@
     <Compile Include="Models\PropertyValueWithPath.cs" />
     <Compile Include="Models\PurchaseCreditNote.cs" />
     <Compile Include="Models\PurchaseInvoice.cs" />
+    <Compile Include="Models\PurchaseQuickEntry.cs" />
     <Compile Include="Models\PurchaseTransaction.cs" />
     <Compile Include="Models\PurchaseTransactionLine.cs" />
+    <Compile Include="Models\QuickEntry.cs" />
     <Compile Include="Models\SalesCreditNote.cs" />
     <Compile Include="Models\SalesInvoice.cs" />
+    <Compile Include="Models\SalesQuickEntry.cs" />
     <Compile Include="Models\SalesTransaction.cs" />
     <Compile Include="Models\SalesTransactionLine.cs" />
     <Compile Include="Models\Tax.cs" />
