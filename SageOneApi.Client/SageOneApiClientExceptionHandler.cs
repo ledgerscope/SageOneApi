@@ -29,7 +29,7 @@ namespace SageOneApi.Client
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => GetAllSummary<T>(pageNumber));
+                return handleKnownExceptions(ex, () => base.GetAllSummary<T>(pageNumber));
             }
         }
 
