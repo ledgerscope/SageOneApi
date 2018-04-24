@@ -20,10 +20,10 @@ namespace SageOneApi.Client
         private readonly Func<string> _renewRefreshAndAccessToken;
 
         public SageOneApiClientTransferHandler(
-            Uri baseUri, 
-            string accessToken, 
-            string subscriptionId, 
-            string resourceOwnerId, 
+            Uri baseUri,
+            string accessToken,
+            string subscriptionId,
+            string resourceOwnerId,
             Func<string> renewRefreshAndAccessToken)
         {
             _baseUri = baseUri;
@@ -113,25 +113,12 @@ namespace SageOneApi.Client
 
         private string getWebResponse(HttpWebRequest webRequest)
         {
-            StreamReader responseReader = null;
-            WebResponse response;
-            var responseData = "";
+            string responseData;
 
-            try
+            using (var response = webRequest.GetResponse())
+            using (var responseReader = new StreamReader(response.GetResponseStream()))
             {
-                response = webRequest.GetResponse();
-
-                responseReader = new StreamReader(response.GetResponseStream());
-
                 responseData = responseReader.ReadToEnd();
-            }
-            finally
-            {
-                webRequest.GetResponse().GetResponseStream().Close();
-
-                responseReader.Close();
-
-                responseReader = null;
             }
 
             return responseData;
