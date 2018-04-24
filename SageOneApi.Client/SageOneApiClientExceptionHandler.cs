@@ -48,8 +48,9 @@ namespace SageOneApi.Client
             if (webResponse.StatusCode.ToString() == "429")
             {
                 var secondsUntilNextRetry = webResponse.Headers["Retry-After"];
+                int seconds = int.Parse(secondsUntilNextRetry) + 1;
 
-                Thread.Sleep((Convert.ToInt32(secondsUntilNextRetry) * 1000));
+                Thread.Sleep(TimeSpan.FromSeconds(seconds));
 
                 return retry();
             }
