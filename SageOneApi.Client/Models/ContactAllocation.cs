@@ -15,7 +15,7 @@ namespace SageOneApi.Client.Models
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public List<Link> links { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public Contact contact { get; set; }
         public List<AllocatedArtefact> allocated_artefacts { get; set; }
     }

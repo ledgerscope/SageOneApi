@@ -2,10 +2,10 @@
 {
     public class BankAccountDetails
     {
-        public object account_name { get; set; }
-        public object account_number { get; set; }
-        public object sort_code { get; set; }
-        public object bic { get; set; }
-        public object iban { get; set; }
+        public string account_name { get; set; }
+        public string account_number { get; set; }
+        public string sort_code { get; set; }
+        public string bic { get; set; }
+        public string iban { get; set; }
     }
 }

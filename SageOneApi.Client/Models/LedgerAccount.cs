@@ -17,8 +17,8 @@ namespace SageOneApi.Client.Models
         public bool included_in_chart { get; set; }
         public int nominal_code { get; set; }
         public PropertyValueWithPath ledger_account_type { get; set; }
-        public object ledger_account_classification { get; set; }
-        public object tax_rate { get; set; }
+        public string ledger_account_classification { get; set; }
+        public TaxRate tax_rate { get; set; }
         public bool fixed_tax_rate { get; set; }
         public bool visible_in_banking { get; set; }
         public bool visible_in_expenses { get; set; }
@@ -28,6 +28,6 @@ namespace SageOneApi.Client.Models
         public bool visible_in_reporting { get; set; }
         public bool visible_in_sales { get; set; }
         public bool is_control_account { get; set; }
-        public object control_name { get; set; }
+        public string control_name { get; set; }
     }
 }

@@ -4,7 +4,7 @@
     {
         public string id { get; set; }
         public Artefact artefact { get; set; }
-        public string amount { get; set; }
-        public string discount { get; set; }
+        public decimal amount { get; set; }
+        public decimal discount { get; set; }
     }
 }

@@ -2,11 +2,11 @@
 {
     public class TaxAnalysis
     {
-        public PropertyValueWithPath tax_rate { get; set; }
-        public string net_amount { get; set; }
-        public string tax_amount { get; set; }
-        public string total_amount { get; set; }
-        public string goods_amount { get; set; }
-        public string service_amount { get; set; }
+        public TaxRate tax_rate { get; set; }
+        public decimal net_amount { get; set; }
+        public decimal tax_amount { get; set; }
+        public decimal total_amount { get; set; }
+        public decimal goods_amount { get; set; }
+        public decimal service_amount { get; set; }
     }
 }

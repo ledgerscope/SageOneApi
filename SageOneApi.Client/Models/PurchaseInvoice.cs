@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
     public class PurchaseInvoice : PurchaseTransaction
     {
-        public string due_date { get; set; }
+        public DateTime due_date { get; set; }
         public List<PurchaseTransactionLine> invoice_lines { get; set; }
-        public object withholding_tax_rate { get; set; }
-        public object withholding_tax_amount { get; set; }
-        public object base_currency_withholding_tax_amount { get; set; }
+        public TaxRate withholding_tax_rate { get; set; }
+        public decimal? withholding_tax_amount { get; set; }
+        public decimal? base_currency_withholding_tax_amount { get; set; }
     }
 }

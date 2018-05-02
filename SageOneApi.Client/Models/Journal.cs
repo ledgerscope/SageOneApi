@@ -14,11 +14,11 @@ namespace SageOneApi.Client.Models
         public PropertyValueWithPath transaction_type { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string reference { get; set; }
         public string description { get; set; }
-        public string total { get; set; }
-        public object journal_code { get; set; }
+        public decimal total { get; set; }
+        public string journal_code { get; set; }
         public List<JournalLine> journal_lines { get; set; }
     }
 }

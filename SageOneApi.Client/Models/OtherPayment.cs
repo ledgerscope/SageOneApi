@@ -16,17 +16,17 @@ namespace SageOneApi.Client.Models
         public DateTime updated_at { get; set; }
         public PropertyValueWithPath payment_method { get; set; }
         public Contact contact { get; set; }
-        public PropertyValueWithPath bank_account { get; set; }
-        public object tax_address_region { get; set; }
-        public string date { get; set; }
-        public string net_amount { get; set; }
-        public string tax_amount { get; set; }
-        public string total_amount { get; set; }
+        public BankAccount bank_account { get; set; }
+        public string tax_address_region { get; set; }
+        public DateTime date { get; set; }
+        public decimal net_amount { get; set; }
+        public decimal tax_amount { get; set; }
+        public decimal total_amount { get; set; }
         public string reference { get; set; }
         public List<PaymentLine> payment_lines { get; set; }
         public bool editable { get; set; }
         public bool deletable { get; set; }
-        public object withholding_tax_rate { get; set; }
-        public object withholding_tax_amount { get; set; }
+        public TaxRate withholding_tax_rate { get; set; }
+        public decimal withholding_tax_amount { get; set; }
     }
 }
