@@ -21,13 +21,13 @@ namespace SageOneApi.Client.Models
         public DateTime date { get; set; }
         public string reference { get; set; }
         public string notes { get; set; }
-        public double total_quantity { get; set; }
+        public double? total_quantity { get; set; }
         public decimal net_amount { get; set; }
         public decimal tax_amount { get; set; }
         public decimal total_amount { get; set; }
-        public decimal payments_allocations_total_amount { get; set; }
-        public decimal payments_allocations_total_discount { get; set; }
-        public decimal total_paid { get; set; }
+        public decimal? payments_allocations_total_amount { get; set; }
+        public decimal? payments_allocations_total_discount { get; set; }
+        public decimal? total_paid { get; set; }
         public decimal outstanding_amount { get; set; }
         public PropertyValueWithPath currency { get; set; }
         public decimal exchange_rate { get; set; }

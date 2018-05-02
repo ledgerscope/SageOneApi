@@ -27,6 +27,6 @@ namespace SageOneApi.Client.Models
         public bool editable { get; set; }
         public bool deletable { get; set; }
         public TaxRate withholding_tax_rate { get; set; }
-        public decimal withholding_tax_amount { get; set; }
+        public decimal? withholding_tax_amount { get; set; }
     }
 }

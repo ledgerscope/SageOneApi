@@ -15,7 +15,7 @@ namespace SageOneApi.Client.Models
         public string name { get; set; }
         public string display_name { get; set; }
         public bool included_in_chart { get; set; }
-        public int nominal_code { get; set; }
+        public string nominal_code { get; set; }
         public PropertyValueWithPath ledger_account_type { get; set; }
         public string ledger_account_classification { get; set; }
         public TaxRate tax_rate { get; set; }

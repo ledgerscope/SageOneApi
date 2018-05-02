@@ -22,6 +22,6 @@ namespace SageOneApi.Client.Models
         public decimal base_currency_tax_amount { get; set; }
         public List<Tax> base_currency_tax_breakdown { get; set; }
         public decimal base_currency_total_amount { get; set; }
-        public string eu_goods_services_type { get; set; }
+        public PropertyValueWithPath eu_goods_services_type { get; set; }
     }
 }
