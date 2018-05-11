@@ -1,34 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SageOneApi.Client
 {
     internal class SageOneApiClientPagingHandler : SageOneApiClientBaseHandler
     {
-        public SageOneApiClientPagingHandler(ISageOneApiClientHandler apiClient) : base(apiClient) { }
+        private Action<string> _logMessage;
+
+        public SageOneApiClientPagingHandler(Action<string> logMessage, ISageOneApiClientHandler apiClient) : base(apiClient)
+        {
+            _logMessage = logMessage;
+        }
 
         public override IEnumerable<T> GetAll<T>() 
         {
-            return getPagedEntities<T>();
-        }
+            var entities = new List<T>();
+            var pageNumber = 1;
+            var itemsDownloaded = 0;
+            var isDownloadRequired = true; 
 
-        private IEnumerable<T> getPagedEntities<T>(List<T> entities = null, int pageNumber = 1) where T : class
-        {
-            entities = entities ?? new List<T>();
-
-            var summaryResponse = GetAllSummary<T>(pageNumber);
-
-            foreach (var item in summaryResponse.items)
+            while (isDownloadRequired)
             {
-                var entity = Get<T>(item.id);
+                var summaryResponse = GetAllSummary<T>(pageNumber++);
 
-                entities.Add(entity);
-            }
+                foreach (var item in summaryResponse.items)
+                {
+                    var entity = Get<T>(item.id);
 
-            if (summaryResponse.next != null)
-            {
-                pageNumber += 1;
+                    entities.Add(entity);
+                }
 
-                getPagedEntities(entities, pageNumber);
+                itemsDownloaded += summaryResponse.items.Length;
+
+                _logMessage($"Downloaded {itemsDownloaded}/{summaryResponse.total} {typeof(T).Name}s");
+
+                isDownloadRequired = summaryResponse.next != null;
             }
 
             return entities;

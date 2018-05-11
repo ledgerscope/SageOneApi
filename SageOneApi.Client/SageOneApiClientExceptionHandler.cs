@@ -7,7 +7,12 @@ namespace SageOneApi.Client
 {
     internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
-        public SageOneApiClientExceptionHandler(ISageOneApiClientHandler apiClient) : base(apiClient) { }
+        private readonly Action<string> _logMessage;
+
+        public SageOneApiClientExceptionHandler(Action<string> logMessage, ISageOneApiClientHandler apiClient) : base(apiClient)
+        {
+            _logMessage = logMessage;
+        }
 
         public override T Get<T>(string id)
         {
@@ -39,6 +44,8 @@ namespace SageOneApi.Client
 
             if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
+                _logMessage("Renewing Auth Tokens");
+
                 RenewRefreshAndAccessToken();
 
                 return retry();

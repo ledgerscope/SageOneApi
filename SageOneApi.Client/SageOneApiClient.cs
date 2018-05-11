@@ -14,17 +14,21 @@ namespace SageOneApi.Client
     public class SageOneApiClient : ISageOneApiClient
     {
         private ISageOneApiClientHandler _sageOneApiClientHandler;
+        private Action<string> nullLogMessage = (a) => { };
 
         public SageOneApiClient(
             Uri baseUri,
             string accessToken,
             string subscriptionId,
             string resourceOwnerId,
-            Func<string> renewRefreshAndAccessToken)
+            Func<string> renewRefreshAndAccessToken, 
+            Action<string> logMessage = null)
         {
+            logMessage = logMessage ?? nullLogMessage;
+
             _sageOneApiClientHandler =
-               new SageOneApiClientPagingHandler(
-                   new SageOneApiClientExceptionHandler(
+               new SageOneApiClientPagingHandler(logMessage,
+                   new SageOneApiClientExceptionHandler(logMessage,
                        new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken)));
         }
 
