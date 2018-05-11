@@ -14,7 +14,6 @@ namespace SageOneApi.Client
     public class SageOneApiClient : ISageOneApiClient
     {
         private ISageOneApiClientHandler _sageOneApiClientHandler;
-        private Action<string> nullLogMessage = (a) => { };
 
         public SageOneApiClient(
             Uri baseUri,
@@ -24,7 +23,7 @@ namespace SageOneApi.Client
             Func<string> renewRefreshAndAccessToken, 
             Action<string> logMessage = null)
         {
-            logMessage = logMessage ?? nullLogMessage;
+            logMessage = logMessage ?? (x => { }); // nullLogMessage
 
             _sageOneApiClientHandler =
                new SageOneApiClientPagingHandler(logMessage,
