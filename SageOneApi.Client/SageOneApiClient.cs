@@ -23,7 +23,7 @@ namespace SageOneApi.Client
             Func<string> renewRefreshAndAccessToken, 
             Action<string> logMessage = null)
         {
-            logMessage = logMessage ?? (x => { }); // nullLogMessage
+            logMessage = logMessage ?? (_ => { }); // nullLogMessage 
 
             _sageOneApiClientHandler =
                new SageOneApiClientPagingHandler(logMessage,
