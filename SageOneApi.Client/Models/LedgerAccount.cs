@@ -29,6 +29,6 @@ namespace SageOneApi.Client.Models
         public bool visible_in_sales { get; set; }
         public bool is_control_account { get; set; }
         public string control_name { get; set; }
-        public object balance_details { get; set; }
+        public BalanceDetails balance_details { get; set; }
     }
 }

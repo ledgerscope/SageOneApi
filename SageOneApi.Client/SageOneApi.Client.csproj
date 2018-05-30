@@ -50,6 +50,7 @@
     <Compile Include="ISageOneApiClientHandler.cs" />
     <Compile Include="Models\AllocatedArtefact.cs" />
     <Compile Include="Models\Artefact.cs" />
+    <Compile Include="Models\BalanceDetails.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\BankAccountDetails.cs" />
     <Compile Include="Models\BankAccountType.cs" />
