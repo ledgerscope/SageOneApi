@@ -25,7 +25,7 @@ namespace SageOneApi.Client
 
                 foreach (var item in summaryResponse.items)
                 {
-                    var entity = Get<T>(item.id);
+                    var entity = Get<T>(item.id, queryParameters);
 
                     entities.Add(entity);
                 }

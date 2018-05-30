@@ -33,9 +33,9 @@ namespace SageOneApi.Client
             _renewRefreshAndAccessToken = renewRefreshAndAccessToken;
         }
 
-        public T Get<T>(string id) where T : class
+        public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : class
         {
-            var webRequest = createWebRequestForSingleEntity<T>(id);
+            var webRequest = createWebRequestForSingleEntity<T>(id, queryParameters);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -60,7 +60,7 @@ namespace SageOneApi.Client
 
             foreach (var item in response.items)
             {
-                entities.Add(Get<T>(item.id));
+                entities.Add(Get<T>(item.id, queryParameters));
             }
 
             return entities;
@@ -142,15 +142,29 @@ namespace SageOneApi.Client
             }
 
             var uriPath = sb.ToString();
-
             var uri = new Uri(uriPath);
 
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId) where T : class
+        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId, Dictionary<string, string> queryParameters) where T : class
         {
-            var uriPath = $"{createBaseUriPath<T>()}/{entityId}";
+            var sb = new StringBuilder()
+                .Append(createBaseUriPath<T>())
+                .Append("/")
+                .Append(entityId);
+
+            if (queryParameters != null && queryParameters.Any())
+            {
+                sb.Append("?");
+
+                foreach (var item in queryParameters)
+                {
+                    sb.Append(item.Key).Append("=").Append(item.Value).Append("&");
+                }
+            }
+
+            var uriPath = sb.ToString();
             var uri = new Uri(uriPath);
 
             return WebRequest.Create(uri) as HttpWebRequest;

@@ -12,9 +12,9 @@ namespace SageOneApi.Client
             _apiClient = apiClient;
         }
 
-        public virtual T Get<T>(string id) where T : class
+        public virtual T Get<T>(string id, Dictionary<string, string> queryParameters) where T : class
         {
-            return _apiClient.Get<T>(id);
+            return _apiClient.Get<T>(id, queryParameters);
         }
 
         public virtual IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : class

@@ -15,15 +15,15 @@ namespace SageOneApi.Client
             _logMessage = logMessage;
         }
 
-        public override T Get<T>(string id)
+        public override T Get<T>(string id, Dictionary<string, string> queryParameters)
         {
             try
             {
-                return base.Get<T>(id);
+                return base.Get<T>(id, queryParameters);
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => base.Get<T>(id));
+                return handleKnownExceptions(ex, () => base.Get<T>(id, queryParameters));
             }
         }
 
