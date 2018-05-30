@@ -10,7 +10,6 @@ using System.Net;
 
 namespace SageOneApi.Client
 {
-
     internal class SageOneApiClientTransferHandler : ISageOneApiClientHandler
     {
         private Uri _baseUri;
@@ -124,9 +123,9 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1) where T : class
+        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100) where T : class
         {
-            var uriPath = $"{createBaseUriPath<T>()}?page={pageNumber}&items_per_page=100";
+            var uriPath = $"{createBaseUriPath<T>()}?page={pageNumber}&items_per_page={pageSize}";
             var uri = new Uri(uriPath);
 
             return WebRequest.Create(uri) as HttpWebRequest;
