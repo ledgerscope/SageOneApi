@@ -12,7 +12,7 @@ namespace SageOneApi.Client
             _logMessage = logMessage;
         }
 
-        public override IEnumerable<T> GetAll<T>() 
+        public override IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) 
         {
             var entities = new List<T>();
             var pageNumber = 1;
@@ -21,7 +21,7 @@ namespace SageOneApi.Client
 
             while (isDownloadRequired)
             {
-                var summaryResponse = GetAllSummary<T>(pageNumber++);
+                var summaryResponse = GetAllSummary<T>(pageNumber++, queryParameters);
 
                 foreach (var item in summaryResponse.items)
                 {

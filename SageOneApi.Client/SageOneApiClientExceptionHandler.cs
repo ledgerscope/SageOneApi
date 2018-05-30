@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using SageOneApi.Client.Responses;
@@ -26,15 +27,15 @@ namespace SageOneApi.Client
             }
         }
 
-        public override GetAllResponse GetAllSummary<T>(int pageNumber)
+        public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
         {
             try
             {
-                return base.GetAllSummary<T>(pageNumber);
+                return base.GetAllSummary<T>(pageNumber, queryParameters);
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => base.GetAllSummary<T>(pageNumber));
+                return handleKnownExceptions(ex, () => base.GetAllSummary<T>(pageNumber, queryParameters));
             }
         }
 

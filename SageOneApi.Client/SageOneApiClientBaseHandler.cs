@@ -17,14 +17,14 @@ namespace SageOneApi.Client
             return _apiClient.Get<T>(id);
         }
 
-        public virtual IEnumerable<T> GetAll<T>() where T : class
+        public virtual IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : class
         {
-            return _apiClient.GetAll<T>();
+            return _apiClient.GetAll<T>(queryParameters);
         }
 
-        public virtual GetAllResponse GetAllSummary<T>(int pageNumber) where T : class
+        public virtual GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : class
         {
-            return _apiClient.GetAllSummary<T>(pageNumber);
+            return _apiClient.GetAllSummary<T>(pageNumber, queryParameters);
         }
 
         public virtual void Insert<T>() where T : class

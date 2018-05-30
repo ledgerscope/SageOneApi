@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 
 namespace SageOneApi.Client
 {
@@ -45,9 +46,9 @@ namespace SageOneApi.Client
             return response;
         }
 
-        public IEnumerable<T> GetAll<T>() where T : class
+        public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : class
         {
-            var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1);
+            var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -65,9 +66,9 @@ namespace SageOneApi.Client
             return entities;
         }
 
-        public GetAllResponse GetAllSummary<T>(int pageNumber) where T : class
+        public GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : class
         {
-            var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber);
+            var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -123,9 +124,25 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100) where T : class
+        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, Dictionary<string, string> queryParameters = null) where T : class
         {
-            var uriPath = $"{createBaseUriPath<T>()}?page={pageNumber}&items_per_page={pageSize}";
+            var sb = new StringBuilder()
+                .Append(createBaseUriPath<T>())
+                .Append("?page=")
+                .Append(pageNumber)
+                .Append("&items_per_page=")
+                .Append(pageSize);
+
+            if (queryParameters != null && queryParameters.Any())
+            {
+                foreach (var item in queryParameters)
+                {
+                    sb.Append("&").Append(item.Key).Append("=").Append(item.Value);
+                }
+            }
+
+            var uriPath = sb.ToString();
+
             var uri = new Uri(uriPath);
 
             return WebRequest.Create(uri) as HttpWebRequest;
