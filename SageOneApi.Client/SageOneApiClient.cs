@@ -6,6 +6,7 @@ namespace SageOneApi.Client
     public interface ISageOneApiClient
     {
         T Get<T>(string id, Dictionary<string, string> queryParameters = null) where T : class;
+        T GetSingle<T>(Dictionary<string, string> queryParameters = null) where T : class;
         IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters = null) where T : class;
         void Insert<T>() where T : class;
         void Update<T>() where T : class;
@@ -34,6 +35,11 @@ namespace SageOneApi.Client
         public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : class
         {
             return _sageOneApiClientHandler.Get<T>(id, queryParameters);
+        }
+
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : class
+        {
+            return _sageOneApiClientHandler.GetSingle<T>(queryParameters);
         }
 
         public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : class

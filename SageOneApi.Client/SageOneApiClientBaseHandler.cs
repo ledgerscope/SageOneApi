@@ -27,6 +27,11 @@ namespace SageOneApi.Client
             return _apiClient.GetAllSummary<T>(pageNumber, queryParameters);
         }
 
+        public virtual T GetSingle<T>(Dictionary<string, string> queryParameters) where T : class
+        {
+            return _apiClient.GetSingle<T>(queryParameters);
+        }
+
         public virtual void Insert<T>() where T : class
         {
             _apiClient.Insert<T>();

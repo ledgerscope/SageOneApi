@@ -46,6 +46,19 @@ namespace SageOneApi.Client
             return response;
         }
 
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : class
+        {
+            var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
+
+            setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
+
+            var jsonResponse = getRequest(webRequest);
+
+            var response = JsonConvert.DeserializeObject<T>(jsonResponse);
+
+            return response;
+        }
+
         public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : class
         {
             var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
@@ -147,7 +160,7 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId, Dictionary<string, string> queryParameters) where T : class
+        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : class
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())

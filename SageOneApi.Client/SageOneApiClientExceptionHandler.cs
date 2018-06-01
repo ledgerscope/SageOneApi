@@ -27,6 +27,18 @@ namespace SageOneApi.Client
             }
         }
 
+        public override T GetSingle<T>(Dictionary<string, string> queryParameters)
+        {
+            try
+            {
+                return base.GetSingle<T>(queryParameters);
+            }
+            catch (WebException ex)
+            {
+                return handleKnownExceptions(ex, () => base.GetSingle<T>(queryParameters));
+            }
+        }
+
         public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
         {
             try
