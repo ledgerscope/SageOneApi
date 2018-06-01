@@ -172,35 +172,39 @@ namespace SageOneApi.Client
 
         private string createBaseUriPath<T>() where T : class
         {
-            var targetEntity = getTargetEntityPathFrom(typeof(T).Name);
+            var targetEntity = getTargetEntityPathFrom(typeof(T));
 
             var urlPath = $"{_baseUri}/{targetEntity}";
 
             return urlPath;
         }
 
-        private string getTargetEntityPathFrom(string typeName)
+        private string getTargetEntityPathFrom(Type type)
         {
-            switch (typeName)
-            {
-                case "Contact": return "contacts";
-                case "LedgerAccount": return "ledger_accounts";
-                case "SalesInvoice": return "sales_invoices";
-                case "SalesQuickEntry": return "sales_quick_entries";
-                case "SalesCreditNote": return "sales_credit_notes";
-                case "ContactPayment": return "contact_payments";
-                case "PurchaseInvoice": return "purchase_invoices";
-                case "PurchaseQuickEntry": return "purchase_quick_entries";
-                case "PurchaseCreditNote": return "purchase_credit_notes";
-                case "OtherPayment": return "other_payments";
-                case "BankTransfer": return "bank_transfers";
-                case "Journal": return "journals";
-                case "ContactAllocation": return "contact_allocations";
-                case "TaxRate": return "tax_rates";
-                case "BankAccount": return "bank_accounts";
-            }
+            if (targetEntityPathByType.TryGetValue(type, out var retVal))
+                return retVal;
 
-            throw new ArgumentException($"Working with entity '{typeName}' is currently unsupported");
+            throw new ArgumentException($"Working with entity '{type.Name}' is currently unsupported");
         }
+
+        static readonly Dictionary<Type, string> targetEntityPathByType = new Dictionary<Type, string>()
+        {
+            { typeof(Contact), "contacts" },
+            { typeof(LedgerAccount), "ledger_accounts"},
+            { typeof(SalesInvoice) , "sales_invoices"},
+            { typeof(SalesQuickEntry) , "sales_quick_entries"},
+            { typeof(SalesCreditNote) , "sales_credit_notes"},
+            { typeof(ContactPayment) , "contact_payments"},
+            { typeof(PurchaseInvoice) , "purchase_invoices"},
+            { typeof(PurchaseQuickEntry) , "purchase_quick_entries"},
+            { typeof(PurchaseCreditNote) , "purchase_credit_notes"},
+            { typeof(OtherPayment) , "other_payments"},
+            { typeof(BankTransfer) , "bank_transfers"},
+            { typeof(Journal) , "journals"},
+            { typeof(ContactAllocation) , "contact_allocations"},
+            { typeof(TaxRate) , "tax_rates"},
+            { typeof(BankAccount) , "bank_accounts"},
+            { typeof(BusinessSettings) , "business_settings"},
+        };
     }
 }
