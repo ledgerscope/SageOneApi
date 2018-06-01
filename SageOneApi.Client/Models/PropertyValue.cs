@@ -4,5 +4,14 @@
     {
         public string id { get; set; }
         public string displayed_as { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is PropertyValue pv)
+            {
+                return pv.id == id && pv.displayed_as == displayed_as;
+            }
+            return base.Equals(obj);
+        }
     }
 }
