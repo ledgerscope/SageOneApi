@@ -56,10 +56,12 @@
     <Compile Include="Models\BankAccountDetails.cs" />
     <Compile Include="Models\BankAccountType.cs" />
     <Compile Include="Models\BankTransfer.cs" />
+    <Compile Include="Models\BusinessSettings.cs" />
     <Compile Include="Models\ContactAllocation.cs" />
     <Compile Include="Models\ContactPayment.cs" />
     <Compile Include="Models\ControlTransaction.cs" />
     <Compile Include="Models\ControlTransactionLine.cs" />
+    <Compile Include="Models\DefaultLedgerAccounts.cs" />
     <Compile Include="Models\DefaultPaymentMethod.cs" />
     <Compile Include="Models\DeliveryAddress.cs" />
     <Compile Include="Models\Journal.cs" />
