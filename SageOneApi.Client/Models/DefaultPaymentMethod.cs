@@ -2,11 +2,7 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class DefaultPaymentMethod
+    public class DefaultPaymentMethod : PropertyValueWithPath
     {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
-        [JsonProperty("$path")]
-        public string path { get; set; }
     }
 }

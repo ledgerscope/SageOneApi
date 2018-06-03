@@ -3,12 +3,8 @@ using System;
 
 namespace SageOneApi.Client.Models
 {
-    public class BankAccount
+    public class BankAccount : PropertyValueWithPath
     {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
-        [JsonProperty("$path")]
-        public string path { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public BankAccountDetails bank_account_details { get; set; }

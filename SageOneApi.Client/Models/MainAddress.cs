@@ -2,12 +2,8 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class MainAddress
+    public class MainAddress : PropertyValueWithPath
     {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
-        [JsonProperty("$path")]
-        public string path { get; set; }
         public PropertyValueWithPath address_type { get; set; }
         public string address_line_1 { get; set; }
         public string address_line_2 { get; set; }

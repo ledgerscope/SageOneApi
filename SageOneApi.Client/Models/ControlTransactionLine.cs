@@ -2,10 +2,8 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class ControlTransactionLine
+    public class ControlTransactionLine : PropertyValue
     {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
         public string description { get; set; }
         public object product { get; set; }
         public object service { get; set; }

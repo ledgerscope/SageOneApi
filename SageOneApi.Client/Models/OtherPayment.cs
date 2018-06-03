@@ -4,12 +4,8 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class OtherPayment
+    public class OtherPayment : PropertyValueWithPath
     {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
-        [JsonProperty("$path")]
-        public string path { get; set; }
         public PropertyValueWithPath transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }
         public DateTime created_at { get; set; }
