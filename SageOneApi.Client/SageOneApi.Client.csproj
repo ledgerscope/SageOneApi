@@ -90,6 +90,7 @@
     <Compile Include="Models\TaxAnalysis.cs" />
     <Compile Include="Models\TaxRate.cs" />
     <Compile Include="Models\TaxTreatment.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="SageOneApiClient.cs" />
     <Compile Include="SageOneApiClientTransferHandler.cs" />
     <Compile Include="Models\Contact.cs" />

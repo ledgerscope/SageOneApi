@@ -218,6 +218,7 @@ namespace SageOneApi.Client
             { typeof(TaxRate) , "tax_rates"},
             { typeof(BankAccount) , "bank_accounts"},
             { typeof(BusinessSettings) , "business_settings"},
+            { typeof(Transaction) , "transactions"},
         };
     }
 }
