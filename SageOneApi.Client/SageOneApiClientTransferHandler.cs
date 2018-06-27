@@ -204,6 +204,7 @@ namespace SageOneApi.Client
         {
             { typeof(Contact), "contacts" },
             { typeof(LedgerAccount), "ledger_accounts"},
+            { typeof(LedgerEntry), "ledger_entries"},
             { typeof(SalesInvoice) , "sales_invoices"},
             { typeof(SalesQuickEntry) , "sales_quick_entries"},
             { typeof(SalesCreditNote) , "sales_credit_notes"},
