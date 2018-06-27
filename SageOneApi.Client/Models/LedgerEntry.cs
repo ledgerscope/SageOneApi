@@ -11,7 +11,7 @@ namespace SageOneApi.Client.Models
         public Transaction transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }
         public DateTime? created_at { get; set; }
-        public DateTime updated_at { get; set; }
+        public DateTime? updated_at { get; set; }
         public DateTime date { get; set; }
         public string description { get; set; }
         public decimal debit { get; set; }
