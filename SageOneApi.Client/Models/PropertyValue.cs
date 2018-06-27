@@ -13,5 +13,10 @@
             }
             return base.Equals(obj);
         }
+
+        public override int GetHashCode()
+        {
+            return (id ?? string.Empty).GetHashCode();
+        }
     }
 }

@@ -15,5 +15,10 @@ namespace SageOneApi.Client.Models
             }
             return base.Equals(obj);
         }
+
+        public override int GetHashCode()
+        {
+            return (path ?? string.Empty).GetHashCode();
+        }
     }
 }
