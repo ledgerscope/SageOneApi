@@ -23,7 +23,7 @@ namespace SageOneApi.Client
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => base.Get<T>(id, queryParameters));
+                return handleKnownExceptions(ex, () => Get<T>(id, queryParameters));
             }
         }
 
@@ -35,7 +35,7 @@ namespace SageOneApi.Client
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => base.GetSingle<T>(queryParameters));
+                return handleKnownExceptions(ex, () => GetSingle<T>(queryParameters));
             }
         }
 
@@ -47,7 +47,7 @@ namespace SageOneApi.Client
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => base.GetAllSummary<T>(pageNumber, queryParameters));
+                return handleKnownExceptions(ex, () => GetAllSummary<T>(pageNumber, queryParameters));
             }
         }
 
