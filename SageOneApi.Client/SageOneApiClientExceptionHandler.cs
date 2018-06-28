@@ -74,30 +74,31 @@ namespace SageOneApi.Client
         {
             if (retryNumber < retryLimit)
             {
-                var webResponse = (HttpWebResponse)ex.Response;
-
-                if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
+                if (ex.Response is HttpWebResponse webResponse)
                 {
-                    _logMessage("Renewing Auth Tokens");
+                    if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        _logMessage("Renewing Auth Tokens");
 
-                    RenewRefreshAndAccessToken();
+                        RenewRefreshAndAccessToken();
 
-                    return retry();
-                }
+                        return retry();
+                    }
 
-                // too many requests or too much data
-                else if (webResponse.StatusCode.ToString() == "429")
-                {
-                    var secondsUntilNextRetry = webResponse.Headers["Retry-After"];
-                    int seconds = int.Parse(secondsUntilNextRetry) + 1;
+                    // too many requests or too much data
+                    else if (webResponse.StatusCode.ToString() == "429")
+                    {
+                        var secondsUntilNextRetry = webResponse.Headers["Retry-After"];
+                        int seconds = int.Parse(secondsUntilNextRetry) + 1;
 
-                    Thread.Sleep(TimeSpan.FromSeconds(seconds));
+                        Thread.Sleep(TimeSpan.FromSeconds(seconds));
 
-                    return retry();
-                }
-                else if (webResponse.StatusCode == HttpStatusCode.GatewayTimeout || webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(10));
+                        return retry();
+                    }
+                    else if (webResponse.StatusCode == HttpStatusCode.GatewayTimeout || webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+                    {
+                        Thread.Sleep(TimeSpan.FromSeconds(10));
+                    }
                 }
             }
 
