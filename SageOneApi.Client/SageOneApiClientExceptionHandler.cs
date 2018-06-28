@@ -9,6 +9,7 @@ namespace SageOneApi.Client
     internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
         private readonly Action<string> _logMessage;
+        private const int retryLimit = 3;
 
         public SageOneApiClientExceptionHandler(Action<string> logMessage, ISageOneApiClientHandler apiClient) : base(apiClient)
         {
@@ -17,17 +18,28 @@ namespace SageOneApi.Client
 
         public override T Get<T>(string id, Dictionary<string, string> queryParameters)
         {
+            return getImpl<T>(id, queryParameters);
+        }
+
+        T getImpl<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
+        {
             try
             {
                 return base.Get<T>(id, queryParameters);
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => Get<T>(id, queryParameters));
+                retryNumber++;
+                return handleKnownExceptions(ex, () => getImpl<T>(id, queryParameters, retryNumber), retryNumber);
             }
         }
 
         public override T GetSingle<T>(Dictionary<string, string> queryParameters)
+        {
+            return getSingleImpl<T>(queryParameters);
+        }
+
+        T getSingleImpl<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
         {
             try
             {
@@ -35,11 +47,17 @@ namespace SageOneApi.Client
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => GetSingle<T>(queryParameters));
+                retryNumber++;
+                return handleKnownExceptions(ex, () => getSingleImpl<T>(queryParameters, retryNumber), retryNumber);
             }
         }
 
         public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
+        {
+            return getAllSummaryImpl<T>(pageNumber, queryParameters);
+        }
+
+        GetAllResponse getAllSummaryImpl<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
         {
             try
             {
@@ -47,32 +65,40 @@ namespace SageOneApi.Client
             }
             catch (WebException ex)
             {
-                return handleKnownExceptions(ex, () => GetAllSummary<T>(pageNumber, queryParameters));
+                retryNumber++;
+                return handleKnownExceptions(ex, () => getAllSummaryImpl<T>(pageNumber, queryParameters, retryNumber), retryNumber);
             }
         }
 
-        private T handleKnownExceptions<T>(WebException ex, Func<T> retry) where T : class
+        private T handleKnownExceptions<T>(WebException ex, Func<T> retry, int retryNumber) where T : class
         {
-            var webResponse = (HttpWebResponse)ex.Response;
-
-            if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
+            if (retryNumber < retryLimit)
             {
-                _logMessage("Renewing Auth Tokens");
+                var webResponse = (HttpWebResponse)ex.Response;
 
-                RenewRefreshAndAccessToken();
+                if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    _logMessage("Renewing Auth Tokens");
 
-                return retry();
-            }
+                    RenewRefreshAndAccessToken();
 
-            // too many requests or too much data
-            if (webResponse.StatusCode.ToString() == "429")
-            {
-                var secondsUntilNextRetry = webResponse.Headers["Retry-After"];
-                int seconds = int.Parse(secondsUntilNextRetry) + 1;
+                    return retry();
+                }
 
-                Thread.Sleep(TimeSpan.FromSeconds(seconds));
+                // too many requests or too much data
+                else if (webResponse.StatusCode.ToString() == "429")
+                {
+                    var secondsUntilNextRetry = webResponse.Headers["Retry-After"];
+                    int seconds = int.Parse(secondsUntilNextRetry) + 1;
 
-                return retry();
+                    Thread.Sleep(TimeSpan.FromSeconds(seconds));
+
+                    return retry();
+                }
+                else if (webResponse.StatusCode == HttpStatusCode.GatewayTimeout || webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(10));
+                }
             }
 
             throw ex;

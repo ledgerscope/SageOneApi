@@ -32,7 +32,7 @@ namespace SageOneApi.Client
 
                 itemsDownloaded += summaryResponse.items.Length;
 
-                _logMessage($"Downloaded {itemsDownloaded}/{summaryResponse.total} {typeof(T).Name}s");
+                _logMessage($"Downloaded {itemsDownloaded}/{summaryResponse.total} {typeof(T).Name} records");
 
                 isDownloadRequired = summaryResponse.next != null;
             }
