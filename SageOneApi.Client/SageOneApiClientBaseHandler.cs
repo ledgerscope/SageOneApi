@@ -37,7 +37,7 @@ namespace SageOneApi.Client
             _apiClient.Insert<T>();
         }
 
-        public void RenewRefreshAndAccessToken()
+        public virtual void RenewRefreshAndAccessToken()
         {
             _apiClient.RenewRefreshAndAccessToken();
         }

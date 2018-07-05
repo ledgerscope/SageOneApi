@@ -70,7 +70,27 @@ namespace SageOneApi.Client
             }
         }
 
-        private T handleKnownExceptions<T>(WebException ex, Func<T> retry, int retryNumber) where T : class
+        public override void RenewRefreshAndAccessToken()
+        {
+            renewRefreshAndAccessTokenImpl();
+        }
+
+        bool renewRefreshAndAccessTokenImpl(int retryNumber = 0)
+        {
+            try
+            {
+                base.RenewRefreshAndAccessToken();
+                return true;
+            }
+
+            catch (WebException ex)
+            {
+                retryNumber++;
+                return handleKnownExceptions(ex, () => renewRefreshAndAccessTokenImpl(retryNumber), retryNumber);
+            }
+        }
+
+        private T handleKnownExceptions<T>(WebException ex, Func<T> retry, int retryNumber)
         {
             if (retryNumber < retryLimit)
             {
