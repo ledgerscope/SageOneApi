@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SageOneApi.Client.Models
 {
-    public class BusinessSettings
+    public class BusinessSettings : SageOneEntity
     {
         [JsonProperty("$path")]
         public string path { get; set; }
