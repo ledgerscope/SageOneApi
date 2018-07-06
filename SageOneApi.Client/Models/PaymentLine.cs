@@ -2,8 +2,10 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class PaymentLine : PropertyValue
+    public class PaymentLine
     {
+        public string id { get; set; }
+        public string displayed_as { get; set; }
         public LedgerAccount ledger_account { get; set; }
         public string details { get; set; }
         public TaxRate tax_rate { get; set; }

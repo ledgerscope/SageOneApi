@@ -9,7 +9,7 @@ namespace SageOneApi.Client
     internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
         private readonly Action<string> _logMessage;
-        private const int retryLimit = 3;
+        private const int _retryLimit = 3;
 
         public SageOneApiClientExceptionHandler(Action<string> logMessage, ISageOneApiClientHandler apiClient) : base(apiClient)
         {
@@ -18,10 +18,20 @@ namespace SageOneApi.Client
 
         public override T Get<T>(string id, Dictionary<string, string> queryParameters)
         {
-            return getImpl<T>(id, queryParameters);
+            return get<T>(id, queryParameters);
         }
 
-        T getImpl<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
+        public override T GetSingle<T>(Dictionary<string, string> queryParameters)
+        {
+            return getSingle<T>(queryParameters);
+        }
+
+        public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
+        {
+            return getAllSummary<T>(pageNumber, queryParameters);
+        }
+
+        private T get<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
         {
             try
             {
@@ -30,16 +40,12 @@ namespace SageOneApi.Client
             catch (WebException ex)
             {
                 retryNumber++;
-                return handleKnownExceptions(ex, () => getImpl<T>(id, queryParameters, retryNumber), retryNumber);
+
+                return handleKnownExceptions(ex, () => get<T>(id, queryParameters, retryNumber), retryNumber);
             }
         }
 
-        public override T GetSingle<T>(Dictionary<string, string> queryParameters)
-        {
-            return getSingleImpl<T>(queryParameters);
-        }
-
-        T getSingleImpl<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
+        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
         {
             try
             {
@@ -48,16 +54,12 @@ namespace SageOneApi.Client
             catch (WebException ex)
             {
                 retryNumber++;
-                return handleKnownExceptions(ex, () => getSingleImpl<T>(queryParameters, retryNumber), retryNumber);
+
+                return handleKnownExceptions(ex, () => getSingle<T>(queryParameters, retryNumber), retryNumber);
             }
         }
 
-        public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
-        {
-            return getAllSummaryImpl<T>(pageNumber, queryParameters);
-        }
-
-        GetAllResponse getAllSummaryImpl<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
+        private GetAllResponse getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
         {
             try
             {
@@ -66,60 +68,59 @@ namespace SageOneApi.Client
             catch (WebException ex)
             {
                 retryNumber++;
-                return handleKnownExceptions(ex, () => getAllSummaryImpl<T>(pageNumber, queryParameters, retryNumber), retryNumber);
+
+                return handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, retryNumber), retryNumber);
             }
         }
 
-        public override void RenewRefreshAndAccessToken()
-        {
-            renewRefreshAndAccessTokenImpl();
-        }
-
-        bool renewRefreshAndAccessTokenImpl(int retryNumber = 0)
+        private bool renewRefreshAndAccessToken(int retryNumber = 0)
         {
             try
             {
                 base.RenewRefreshAndAccessToken();
+
                 return true;
             }
 
             catch (WebException ex)
             {
                 retryNumber++;
-                return handleKnownExceptions(ex, () => renewRefreshAndAccessTokenImpl(retryNumber), retryNumber);
+
+                return handleKnownExceptions(ex, () => renewRefreshAndAccessToken(retryNumber), retryNumber);
             }
         }
 
         private T handleKnownExceptions<T>(WebException ex, Func<T> retry, int retryNumber)
         {
-            if (retryNumber < retryLimit)
+            if (retryNumber >= _retryLimit || ex.Response == null) throw ex;
+
+            var httpWebResponse = (HttpWebResponse)ex.Response;
+
+            if (httpWebResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
-                if (ex.Response is HttpWebResponse webResponse)
-                {
-                    if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        _logMessage("Renewing Auth Tokens");
+                _logMessage("Renewing Auth Tokens");
 
-                        RenewRefreshAndAccessToken();
+                renewRefreshAndAccessToken();
 
-                        return retry();
-                    }
+                return retry();
+            }
 
-                    // too many requests or too much data
-                    else if (webResponse.StatusCode.ToString() == "429")
-                    {
-                        var secondsUntilNextRetry = webResponse.Headers["Retry-After"];
-                        int seconds = int.Parse(secondsUntilNextRetry) + 1;
+            // too many requests or too much data
+            if (httpWebResponse.StatusCode.ToString() == "429")
+            {
+                var secondsUntilNextRetry = httpWebResponse.Headers["Retry-After"];
+                int seconds = int.Parse(secondsUntilNextRetry) + 1;
 
-                        Thread.Sleep(TimeSpan.FromSeconds(seconds));
+                Thread.Sleep(TimeSpan.FromSeconds(seconds));
 
-                        return retry();
-                    }
-                    else if (webResponse.StatusCode == HttpStatusCode.GatewayTimeout || webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
-                    {
-                        Thread.Sleep(TimeSpan.FromSeconds(10));
-                    }
-                }
+                return retry();
+            }
+
+            if (httpWebResponse.StatusCode == HttpStatusCode.GatewayTimeout || httpWebResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(10));
+
+                return retry();
             }
 
             throw ex;

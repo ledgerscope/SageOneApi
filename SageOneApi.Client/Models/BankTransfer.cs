@@ -3,12 +3,10 @@ using System;
 
 namespace SageOneApi.Client.Models
 {
-    public class BankTransfer : PropertyValueWithPath
+    public class BankTransfer : SageOneEntity
     {
         public PropertyValueWithPath transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
         public BankAccount from_bank_account { get; set; }
         public BankAccount to_bank_account { get; set; }
         public DateTime date { get; set; }

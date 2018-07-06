@@ -54,7 +54,6 @@
     <Compile Include="Models\BalanceDetails.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\BankAccountDetails.cs" />
-    <Compile Include="Models\BankAccountType.cs" />
     <Compile Include="Models\BankTransfer.cs" />
     <Compile Include="Models\BusinessSettings.cs" />
     <Compile Include="Models\ContactAllocation.cs" />
@@ -62,14 +61,13 @@
     <Compile Include="Models\ControlTransaction.cs" />
     <Compile Include="Models\ControlTransactionLine.cs" />
     <Compile Include="Models\DefaultLedgerAccounts.cs" />
-    <Compile Include="Models\DefaultPaymentMethod.cs" />
     <Compile Include="Models\DeliveryAddress.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\JournalLine.cs" />
     <Compile Include="Models\LedgerAccount.cs" />
     <Compile Include="Models\LedgerEntry.cs" />
-    <Compile Include="Models\MainContactPerson.cs" />
     <Compile Include="Models\PaymentOnAccount.cs" />
+    <Compile Include="Models\TaxPercentage.cs" />
     <Compile Include="Models\PropertyValue.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\MainAddress.cs" />
@@ -82,6 +80,7 @@
     <Compile Include="Models\PurchaseTransaction.cs" />
     <Compile Include="Models\PurchaseTransactionLine.cs" />
     <Compile Include="Models\QuickEntry.cs" />
+    <Compile Include="Models\SageOneEntity.cs" />
     <Compile Include="Models\SalesCreditNote.cs" />
     <Compile Include="Models\SalesInvoice.cs" />
     <Compile Include="Models\SalesQuickEntry.cs" />

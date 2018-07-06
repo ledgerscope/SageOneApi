@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-
-namespace SageOneApi.Client.Models
+﻿namespace SageOneApi.Client.Models
 {
-    public class LedgerAccount : PropertyValueWithPath
+    public class LedgerAccount : SageOneEntity
     {
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
         public PropertyValue ledger_account_group { get; set; }
         public string name { get; set; }
         public string display_name { get; set; }

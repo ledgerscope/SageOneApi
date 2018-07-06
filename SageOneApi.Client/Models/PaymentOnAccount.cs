@@ -3,10 +3,11 @@ using System;
 
 namespace SageOneApi.Client.Models
 {
-    public class PaymentOnAccount : PropertyValueWithPath
+    public class PaymentOnAccount
     {
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
+        public string id { get; set; }
+        public string displayed_as { get; set; }
+        public string path { get; set; }
         public string contact_name { get; set; }
         public string contact_reference { get; set; }
         public Contact contact { get; set; }

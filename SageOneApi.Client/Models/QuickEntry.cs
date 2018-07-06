@@ -2,7 +2,7 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class QuickEntry : ControlTransaction
+    public abstract class QuickEntry : ControlTransaction
     {
         public PropertyValueWithPath quick_entry_type { get; set; }
         public LedgerAccount ledger_account { get; set; }

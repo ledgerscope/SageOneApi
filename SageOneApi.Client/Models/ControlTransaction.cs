@@ -4,12 +4,10 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class ControlTransaction : PropertyValueWithPath
+    public abstract class ControlTransaction : SageOneEntity
     {
         public PropertyValueWithPath transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
         public List<Link> links { get; set; }
         public string contact_name { get; set; }
         public string contact_reference { get; set; }
