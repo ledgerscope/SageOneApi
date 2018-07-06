@@ -1,15 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class OtherPayment : PropertyValueWithPath
+    public class OtherPayment : SageOneEntity
     {
         public PropertyValueWithPath transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
         public PropertyValueWithPath payment_method { get; set; }
         public Contact contact { get; set; }
         public BankAccount bank_account { get; set; }
