@@ -12,5 +12,8 @@
         public const string VendorRefund = "VENDOR_REFUND";
         public const string OtherReceipt = "OTHER_RECEIPT";
         public const string OtherPayment = "OTHER_PAYMENT";
+        public const string TaxReturn = "TAX_RETURN";
+        public const string TaxPayment = "TAX_PAYMENT";
+        public const string BankReceipt = "BANK_RECEIPT";
     }
 }
