@@ -1,16 +1,15 @@
-﻿using SageOneApi.Client.Responses;
+﻿using SageOneApi.Client.Models;
+using SageOneApi.Client.Responses;
 using System.Collections.Generic;
 
 namespace SageOneApi.Client
 {
     internal interface ISageOneApiClientHandler
     {
-        T Get<T>(string id, Dictionary<string, string> queryParameters) where T : class;
-        T GetSingle<T>(Dictionary<string, string> queryParameters) where T : class;
-        IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : class;
-        GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : class;
-        void Insert<T>() where T : class;
-        void Update<T>() where T : class;
+        T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneEntity;
+        T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity;
+        IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity;
+        GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneEntity;
         void RenewRefreshAndAccessToken();
     }
 }

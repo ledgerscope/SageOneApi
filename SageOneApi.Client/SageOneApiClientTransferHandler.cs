@@ -33,7 +33,7 @@ namespace SageOneApi.Client
             _renewRefreshAndAccessToken = renewRefreshAndAccessToken;
         }
 
-        public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : class
+        public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneEntity
         {
             var webRequest = createWebRequestForSingleEntity<T>(id, queryParameters);
 
@@ -46,7 +46,7 @@ namespace SageOneApi.Client
             return response;
         }
 
-        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : class
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
         {
             var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
 
@@ -59,7 +59,7 @@ namespace SageOneApi.Client
             return response;
         }
 
-        public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : class
+        public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
         {
             var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
 
@@ -79,7 +79,7 @@ namespace SageOneApi.Client
             return entities;
         }
 
-        public GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : class
+        public GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneEntity
         {
             var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
 
@@ -88,16 +88,6 @@ namespace SageOneApi.Client
             var jsonResponse = getRequest(webRequest);
 
             return JsonConvert.DeserializeObject<GetAllResponse>(jsonResponse);
-        }
-
-        public void Insert<T>() where T : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update<T>() where T : class
-        {
-            throw new NotImplementedException();
         }
 
         public void RenewRefreshAndAccessToken()
@@ -137,7 +127,7 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, Dictionary<string, string> queryParameters = null) where T : class
+        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, Dictionary<string, string> queryParameters = null) where T : SageOneEntity
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -160,7 +150,7 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : class
+        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : SageOneEntity
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -183,13 +173,11 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private string createBaseUriPath<T>() where T : class
+        private string createBaseUriPath<T>() where T : SageOneEntity
         {
             var targetEntity = getTargetEntityPathFrom(typeof(T));
 
-            var urlPath = $"{_baseUri}/{targetEntity}";
-
-            return urlPath;
+            return $"{_baseUri}/{targetEntity}";
         }
 
         private string getTargetEntityPathFrom(Type type)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;
+using SageOneApi.Client.Models;
 using SageOneApi.Client.Responses;
 
 namespace SageOneApi.Client
@@ -31,7 +32,7 @@ namespace SageOneApi.Client
             return getAllSummary<T>(pageNumber, queryParameters);
         }
 
-        private T get<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
+        private T get<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneEntity
         {
             try
             {
@@ -45,7 +46,7 @@ namespace SageOneApi.Client
             }
         }
 
-        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
+        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneEntity
         {
             try
             {
@@ -59,7 +60,7 @@ namespace SageOneApi.Client
             }
         }
 
-        private GetAllResponse getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : class
+        private GetAllResponse getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneEntity
         {
             try
             {
