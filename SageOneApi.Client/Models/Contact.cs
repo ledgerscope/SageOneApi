@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class Contact : SageOneEntity
+    public class Contact : SageOneAccountingEntity
     {
         public List<Link> links { get; set; }
         public List<PropertyValueWithPath> contact_types { get; set; }

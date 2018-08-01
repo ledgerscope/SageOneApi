@@ -1,6 +1,6 @@
 ﻿namespace SageOneApi.Client.Models
 {
-    public class BankAccount : SageOneEntity
+    public class BankAccount : SageOneAccountingEntity
     {
         public BankAccountDetails bank_account_details { get; set; }
         public LedgerAccount ledger_account { get; set; }

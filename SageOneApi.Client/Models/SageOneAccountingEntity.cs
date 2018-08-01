@@ -3,7 +3,7 @@ using System;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class SageOneEntity
+    public abstract class SageOneAccountingEntity
     {
         [JsonProperty("$path")]
         public string path { get; set; }

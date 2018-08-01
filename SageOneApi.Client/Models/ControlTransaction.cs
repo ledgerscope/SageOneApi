@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class ControlTransaction : SageOneEntity
+    public abstract class ControlTransaction : SageOneAccountingEntity
     {
         public PropertyValueWithPath transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }

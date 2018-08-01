@@ -1,6 +1,6 @@
 ﻿namespace SageOneApi.Client.Models
 {
-    public class LedgerAccount : SageOneEntity
+    public class LedgerAccount : SageOneAccountingEntity
     {
         public PropertyValue ledger_account_group { get; set; }
         public string name { get; set; }

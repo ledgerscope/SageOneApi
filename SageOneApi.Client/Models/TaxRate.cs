@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class TaxRate : SageOneEntity
+    public class TaxRate : SageOneAccountingEntity
     {
         public string name { get; set; }
         public string agency { get; set; }

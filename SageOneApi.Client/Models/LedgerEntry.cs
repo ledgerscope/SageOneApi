@@ -2,7 +2,7 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class LedgerEntry : SageOneEntity
+    public class LedgerEntry : SageOneAccountingEntity
     {
         public Transaction transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }

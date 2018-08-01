@@ -3,7 +3,7 @@ using System;
 
 namespace SageOneApi.Client.Models
 {
-    public class BankTransfer : SageOneEntity
+    public class BankTransfer : SageOneAccountingEntity
     {
         public PropertyValueWithPath transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }

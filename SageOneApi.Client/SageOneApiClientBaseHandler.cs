@@ -13,22 +13,22 @@ namespace SageOneApi.Client
             _apiClient = apiClient;
         }
 
-        public virtual T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public virtual T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _apiClient.Get<T>(id, queryParameters);
         }
 
-        public virtual IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public virtual IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _apiClient.GetAll<T>(queryParameters);
         }
 
-        public virtual GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public virtual GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _apiClient.GetAllSummary<T>(pageNumber, queryParameters);
         }
 
-        public virtual T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public virtual T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _apiClient.GetSingle<T>(queryParameters);
         }

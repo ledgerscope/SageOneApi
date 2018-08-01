@@ -32,7 +32,7 @@ namespace SageOneApi.Client
             return getAllSummary<T>(pageNumber, queryParameters);
         }
 
-        private T get<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneEntity
+        private T get<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneAccountingEntity
         {
             try
             {
@@ -46,7 +46,7 @@ namespace SageOneApi.Client
             }
         }
 
-        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneEntity
+        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneAccountingEntity
         {
             try
             {
@@ -60,7 +60,7 @@ namespace SageOneApi.Client
             }
         }
 
-        private GetAllResponse getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneEntity
+        private GetAllResponse getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneAccountingEntity
         {
             try
             {

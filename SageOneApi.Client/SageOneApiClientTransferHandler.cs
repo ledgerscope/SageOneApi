@@ -33,7 +33,7 @@ namespace SageOneApi.Client
             _renewRefreshAndAccessToken = renewRefreshAndAccessToken;
         }
 
-        public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             var webRequest = createWebRequestForSingleEntity<T>(id, queryParameters);
 
@@ -46,7 +46,7 @@ namespace SageOneApi.Client
             return response;
         }
 
-        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
 
@@ -59,7 +59,7 @@ namespace SageOneApi.Client
             return response;
         }
 
-        public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
 
@@ -79,7 +79,7 @@ namespace SageOneApi.Client
             return entities;
         }
 
-        public GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
 
@@ -127,7 +127,7 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, Dictionary<string, string> queryParameters = null) where T : SageOneEntity
+        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -150,7 +150,7 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : SageOneEntity
+        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -173,7 +173,7 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private string createBaseUriPath<T>() where T : SageOneEntity
+        private string createBaseUriPath<T>() where T : SageOneAccountingEntity
         {
             var targetEntity = getTargetEntityPathFrom(typeof(T));
 

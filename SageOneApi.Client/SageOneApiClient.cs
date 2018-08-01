@@ -24,17 +24,17 @@ namespace SageOneApi.Client
                        new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken)));
         }
 
-        public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _sageOneApiClientHandler.Get<T>(id, queryParameters);
         }
 
-        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _sageOneApiClientHandler.GetSingle<T>(queryParameters);
         }
 
-        public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity
+        public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _sageOneApiClientHandler.GetAll<T>(queryParameters);
         }

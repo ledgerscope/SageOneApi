@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class OtherPayment : SageOneEntity
+    public class OtherPayment : SageOneAccountingEntity
     {
         public PropertyValueWithPath transaction { get; set; }
         public PropertyValueWithPath transaction_type { get; set; }

@@ -6,10 +6,10 @@ namespace SageOneApi.Client
 {
     internal interface ISageOneApiClientHandler
     {
-        T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneEntity;
-        T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity;
-        IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneEntity;
-        GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneEntity;
+        T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity;
+        T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity;
+        IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity;
+        GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity;
         void RenewRefreshAndAccessToken();
     }
 }
