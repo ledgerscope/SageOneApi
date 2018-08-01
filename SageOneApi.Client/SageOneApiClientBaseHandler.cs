@@ -28,7 +28,7 @@ namespace SageOneApi.Client
             return _apiClient.GetAllSummary<T>(pageNumber, queryParameters);
         }
 
-        public virtual T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public virtual T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleEntity
         {
             return _apiClient.GetSingle<T>(queryParameters);
         }

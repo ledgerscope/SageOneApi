@@ -63,11 +63,13 @@
     <Compile Include="Models\ControlTransactionLine.cs" />
     <Compile Include="Models\DefaultLedgerAccounts.cs" />
     <Compile Include="Models\DeliveryAddress.cs" />
+    <Compile Include="Models\FinancialSettings.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\JournalLine.cs" />
     <Compile Include="Models\LedgerAccount.cs" />
     <Compile Include="Models\LedgerEntry.cs" />
     <Compile Include="Models\PaymentOnAccount.cs" />
+    <Compile Include="Models\SageOneSingleEntity.cs" />
     <Compile Include="Models\TaxPercentage.cs" />
     <Compile Include="Models\PropertyValue.cs" />
     <Compile Include="Models\Link.cs" />

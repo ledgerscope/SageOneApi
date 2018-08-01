@@ -1,6 +1,6 @@
 ﻿namespace SageOneApi.Client.Models
 {
-    public class BusinessSettings : SageOneAccountingEntity
+    public class BusinessSettings : SageOneSingleEntity
     {
         public PropertyValueWithPath country_of_registration { get; set; }
 

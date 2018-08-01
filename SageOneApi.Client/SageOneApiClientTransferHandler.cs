@@ -2,7 +2,6 @@
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Responses;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,7 +45,7 @@ namespace SageOneApi.Client
             return response;
         }
 
-        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleEntity
         {
             var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
 
@@ -150,7 +149,7 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
+        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : class
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -173,7 +172,7 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private string createBaseUriPath<T>() where T : SageOneAccountingEntity
+        private string createBaseUriPath<T>() where T : class
         {
             var targetEntity = getTargetEntityPathFrom(typeof(T));
 
@@ -207,6 +206,7 @@ namespace SageOneApi.Client
             { typeof(TaxRate) , "tax_rates"},
             { typeof(BankAccount) , "bank_accounts"},
             { typeof(BusinessSettings) , "business_settings"},
+            { typeof(FinancialSettings) , "financial_settings"},
             { typeof(Transaction) , "transactions"},
         };
     }
