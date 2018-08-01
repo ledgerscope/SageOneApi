@@ -81,7 +81,7 @@
     <Compile Include="Models\PurchaseTransaction.cs" />
     <Compile Include="Models\PurchaseTransactionLine.cs" />
     <Compile Include="Models\QuickEntry.cs" />
-    <Compile Include="Models\SageOneEntity.cs" />
+    <Compile Include="Models\SageOneAccountingEntity.cs" />
     <Compile Include="Models\SalesCreditNote.cs" />
     <Compile Include="Models\SalesInvoice.cs" />
     <Compile Include="Models\SalesQuickEntry.cs" />
