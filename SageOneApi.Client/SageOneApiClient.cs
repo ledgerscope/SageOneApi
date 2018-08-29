@@ -1,4 +1,5 @@
 ﻿using SageOneApi.Client.Models;
+using SageOneApi.Client.Models.Core;
 using System;
 using System.Collections.Generic;
 
@@ -32,6 +33,11 @@ namespace SageOneApi.Client
         public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleAccountingEntity
         {
             return _sageOneApiClientHandler.GetSingle<T>(queryParameters);
+        }
+
+        public T GetCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
+        {
+            return _sageOneApiClientHandler.GetCore<T>(queryParameters);
         }
 
         public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
