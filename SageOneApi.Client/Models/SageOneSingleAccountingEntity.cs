@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class SageOneSingleEntity
+    public abstract class SageOneSingleAccountingEntity
     {
     }
 }

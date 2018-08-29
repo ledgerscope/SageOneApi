@@ -29,7 +29,7 @@ namespace SageOneApi.Client
             return _sageOneApiClientHandler.Get<T>(id, queryParameters);
         }
 
-        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleEntity
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleAccountingEntity
         {
             return _sageOneApiClientHandler.GetSingle<T>(queryParameters);
         }

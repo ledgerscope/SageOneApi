@@ -45,7 +45,7 @@ namespace SageOneApi.Client
             return response;
         }
 
-        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleEntity
+        public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleAccountingEntity
         {
             var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
 

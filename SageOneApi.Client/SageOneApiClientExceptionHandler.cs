@@ -46,7 +46,7 @@ namespace SageOneApi.Client
             }
         }
 
-        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneSingleEntity
+        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneSingleAccountingEntity
         {
             try
             {

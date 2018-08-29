@@ -2,7 +2,7 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class FinancialSettings : SageOneSingleEntity
+    public class FinancialSettings : SageOneSingleAccountingEntity
     {
         [JsonProperty("$path")]
         public string path { get; set; }
