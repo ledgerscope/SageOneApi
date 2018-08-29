@@ -1,4 +1,5 @@
 ﻿using SageOneApi.Client.Models;
+using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
 using System.Collections.Generic;
 
@@ -26,6 +27,11 @@ namespace SageOneApi.Client
         public virtual GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             return _apiClient.GetAllSummary<T>(pageNumber, queryParameters);
+        }
+
+        public virtual T GetCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
+        {
+            return _apiClient.GetCore<T>(queryParameters);
         }
 
         public virtual T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleAccountingEntity

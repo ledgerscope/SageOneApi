@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using SageOneApi.Client.Models;
+using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
 
 namespace SageOneApi.Client
@@ -25,6 +26,11 @@ namespace SageOneApi.Client
         public override T GetSingle<T>(Dictionary<string, string> queryParameters)
         {
             return getSingle<T>(queryParameters);
+        }
+
+        public override T GetCore<T>(Dictionary<string, string> queryParameters)
+        {
+            return getCore<T>(queryParameters);
         }
 
         public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
@@ -57,6 +63,20 @@ namespace SageOneApi.Client
                 retryNumber++;
 
                 return handleKnownExceptions(ex, () => getSingle<T>(queryParameters, retryNumber), retryNumber);
+            }
+        }
+
+        private T getCore<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneCoreEntity
+        {
+            try
+            {
+                return base.GetCore<T>(queryParameters);
+            }
+            catch (WebException ex)
+            {
+                retryNumber++;
+
+                return handleKnownExceptions(ex, () => getCore<T>(queryParameters, retryNumber), retryNumber);
             }
         }
 

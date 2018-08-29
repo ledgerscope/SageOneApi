@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SageOneApi.Client.Models;
+using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,19 @@ namespace SageOneApi.Client
         }
 
         public T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleAccountingEntity
+        {
+            var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
+
+            setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
+
+            var jsonResponse = getRequest(webRequest);
+
+            var response = JsonConvert.DeserializeObject<T>(jsonResponse);
+
+            return response;
+        }
+
+        public T GetCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
         {
             var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
 
@@ -178,7 +192,14 @@ namespace SageOneApi.Client
         {
             var targetEntity = getTargetEntityPathFrom(typeof(T));
 
-            return $"{_baseUri}/accounts/v3/{targetEntity}";
+            string section = "accounts";
+
+            if (typeof(T).IsSubclassOf(typeof(SageOneCoreEntity)))
+            {
+                section = "core";
+            }
+
+            return $"{_baseUri}/{section}/v3/{targetEntity}";
         }
 
         private string getTargetEntityPathFrom(Type type)
@@ -210,6 +231,8 @@ namespace SageOneApi.Client
             { typeof(BusinessSettings) , "business_settings"},
             { typeof(FinancialSettings) , "financial_settings"},
             { typeof(Transaction) , "transactions"},
+
+            { typeof(Business), "business" },
         };
     }
 }
