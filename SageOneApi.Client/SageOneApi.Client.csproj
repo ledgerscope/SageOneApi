@@ -56,6 +56,7 @@
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\BankAccountDetails.cs" />
     <Compile Include="Models\BankTransfer.cs" />
+    <Compile Include="Models\Core\Business.cs" />
     <Compile Include="Models\BusinessSettings.cs" />
     <Compile Include="Models\ContactAllocation.cs" />
     <Compile Include="Models\ContactPayment.cs" />

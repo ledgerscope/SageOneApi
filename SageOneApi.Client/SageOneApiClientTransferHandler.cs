@@ -126,7 +126,8 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
+        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, 
+            Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -149,7 +150,8 @@ namespace SageOneApi.Client
             return WebRequest.Create(uri) as HttpWebRequest;
         }
 
-        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) where T : class
+        private HttpWebRequest createWebRequestForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null) 
+            where T : class
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -176,7 +178,7 @@ namespace SageOneApi.Client
         {
             var targetEntity = getTargetEntityPathFrom(typeof(T));
 
-            return $"{_baseUri}/{targetEntity}";
+            return $"{_baseUri}/accounts/v3/{targetEntity}";
         }
 
         private string getTargetEntityPathFrom(Type type)
