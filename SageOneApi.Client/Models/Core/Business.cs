@@ -13,12 +13,12 @@ namespace SageOneApi.Client.Models.Core
         public string address_line_2 { get; set; }
         public string city { get; set; }
         public string postal_code { get; set; }
-        public string country { get; set; }
+        public PropertyValueWithPath country { get; set; }
         public string region { get; set; }
         public string telephone { get; set; }
         public string mobile { get; set; }
         public string website { get; set; }
         public bool is_demo { get; set; }
-        public object subscriptions { get; set; }
+        public Subscription[] subscriptions { get; set; }
     }
 }
