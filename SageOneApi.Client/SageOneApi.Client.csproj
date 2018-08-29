@@ -70,6 +70,7 @@
     <Compile Include="Models\LedgerAccount.cs" />
     <Compile Include="Models\LedgerEntry.cs" />
     <Compile Include="Models\PaymentOnAccount.cs" />
+    <Compile Include="Models\Core\SageOneCoreEntity.cs" />
     <Compile Include="Models\SageOneSingleAccountingEntity.cs" />
     <Compile Include="Models\TaxPercentage.cs" />
     <Compile Include="Models\PropertyValue.cs" />

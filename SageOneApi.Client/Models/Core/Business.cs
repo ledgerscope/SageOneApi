@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace SageOneApi.Client.Models.Core
 {
-    public class Business
+    public class Business : SageOneCoreEntity
     {
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
-        public string displayed_as { get; set; }
-        public string id { get; set; }
         public string name { get; set; }
         public string address_line_1 { get; set; }
         public string address_line_2 { get; set; }
