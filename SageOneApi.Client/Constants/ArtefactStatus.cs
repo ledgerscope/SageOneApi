@@ -7,5 +7,6 @@
         public static string Unpaid = "UNPAID";
         public static string PartPaid = "PART_PAID";
         public static string Draft = "DRAFT";
+        public static string ProForma = "PRO_FORMA";
     }
 }
