@@ -17,5 +17,7 @@
         public const string TaxReturn = "TAX_RETURN";
         public const string TaxPayment = "TAX_PAYMENT";
         public const string BankReceipt = "BANK_RECEIPT";
+        public const string StaffPayment = "STAFF_PAYMENT";
+        public const string RevenuePayment = "REVENUE_PAYMENT";
     }
 }
