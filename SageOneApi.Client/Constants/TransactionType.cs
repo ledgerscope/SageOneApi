@@ -21,5 +21,15 @@
         public const string BankReceipt = "BANK_RECEIPT";
         public const string StaffPayment = "STAFF_PAYMENT";
         public const string RevenuePayment = "REVENUE_PAYMENT";
+        public const string Correction = "CORRECTION";
+        public const string CustomerOpeningBalanceInvoice = "CUSTOMER_OPENING_BALANCE_INVOICE";
+        public const string CustomerAllocation = "CUSTOMER_ALLOCATION";
+        public const string CustomerOpeningBalanceCreditNote = "CUSTOMER_OPENING_BALANCE_CREDIT_NOTE";
+        public const string Journal = "JOURNAL";
+        public const string VendorOpeningBalanceInvoice = "VENDOR_OPENING_BALANCE_INVOICE";
+        public const string VendorAllocation = "VENDOR_ALLOCATION";
+        public const string BankTransfer = "BANK_TRANSFER";
+        public const string PurchaseQuickEntryInvoice = "PURCHASE_QUICK_ENTRY_INVOICE";
+        public const string BankPayment = "BANK_PAYMENT";
     }
 }
