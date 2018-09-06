@@ -2,6 +2,7 @@
 {
     public static class TransactionType
     {
+        public const string GeneralLedgerOpeningBalance = "GENERAL_LEDGER_OPENING_BALANCE";
         public const string SalesInvoice = "SALES_INVOICE";
         public const string SalesCreditNote = "SALES_CREDIT_NOTE";
         public const string PurchaseInvoice = "PURCHASE_INVOICE";
