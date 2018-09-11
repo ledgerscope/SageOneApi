@@ -2,7 +2,7 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class DeliveryAddress
+    public class Address
     {
         [JsonProperty("$path")]
         public string path { get; set; }

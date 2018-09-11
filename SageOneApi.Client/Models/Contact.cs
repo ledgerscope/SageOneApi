@@ -15,8 +15,8 @@ namespace SageOneApi.Client.Models
         public string tax_number { get; set; }
         public string notes { get; set; }
         public string locale { get; set; }
-        public MainAddress main_address { get; set; }
-        public DeliveryAddress delivery_address { get; set; }
+        public Address main_address { get; set; }
+        public Address delivery_address { get; set; }
         public Contact main_contact_person { get; set; }
         public BankAccountDetails bank_account_details { get; set; }
         public string credit_limit { get; set; }
