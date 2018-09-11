@@ -64,7 +64,7 @@
     <Compile Include="Models\ControlTransactionLine.cs" />
     <Compile Include="Models\Core\Subscription.cs" />
     <Compile Include="Models\DefaultLedgerAccounts.cs" />
-    <Compile Include="Models\DeliveryAddress.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\FinancialSettings.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\JournalLine.cs" />
