@@ -6,7 +6,7 @@
         public LedgerAccount ledger_account { get; set; }
         public PropertyValueWithPath bank_account_type { get; set; }
         public decimal balance { get; set; }
-        public MainAddress main_address { get; set; }
+        public Address main_address { get; set; }
         public PropertyValueWithPath main_contact_person { get; set; }
         public string nominal_code { get; set; }
         public bool editable { get; set; }

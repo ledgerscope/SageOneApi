@@ -76,7 +76,6 @@
     <Compile Include="Models\TaxPercentage.cs" />
     <Compile Include="Models\PropertyValue.cs" />
     <Compile Include="Models\Link.cs" />
-    <Compile Include="Models\MainAddress.cs" />
     <Compile Include="Models\OtherPayment.cs" />
     <Compile Include="Models\PaymentLine.cs" />
     <Compile Include="Models\PropertyValueWithPath.cs" />

@@ -5,7 +5,7 @@ namespace SageOneApi.Client.Models
     public abstract class SalesTransaction : ControlTransaction
     {
         public string main_address_free_form { get; set; }
-        public MainAddress main_address { get; set; }
+        public Address main_address { get; set; }
         public string delivery_address_free_form { get; set; }
         public Address delivery_address { get; set; }
         public string terms_and_conditions { get; set; }
