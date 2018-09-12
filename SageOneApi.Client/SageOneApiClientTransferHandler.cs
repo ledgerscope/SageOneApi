@@ -233,6 +233,8 @@ namespace SageOneApi.Client
             { typeof(Transaction) , "transactions"},
 
             { typeof(Business), "business" },
+            { typeof(Me), "me" },
+            { typeof(User), "user" },
         };
     }
 }

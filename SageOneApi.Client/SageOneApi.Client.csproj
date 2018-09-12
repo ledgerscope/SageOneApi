@@ -62,7 +62,9 @@
     <Compile Include="Models\ContactPayment.cs" />
     <Compile Include="Models\ControlTransaction.cs" />
     <Compile Include="Models\ControlTransactionLine.cs" />
+    <Compile Include="Models\Core\Me.cs" />
     <Compile Include="Models\Core\Subscription.cs" />
+    <Compile Include="Models\Core\User.cs" />
     <Compile Include="Models\DefaultLedgerAccounts.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\FinancialSettings.cs" />
