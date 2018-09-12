@@ -45,5 +45,10 @@ namespace SageOneApi.Client
         {
             return _sageOneApiClientHandler.GetAll<T>(queryParameters);
         }
+
+        public IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity
+        {
+            return _sageOneApiClientHandler.GetAllCore<T>(queryParameters);
+        }
     }
 }

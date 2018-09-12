@@ -33,6 +33,11 @@ namespace SageOneApi.Client
             return getCore<T>(queryParameters);
         }
 
+        public override IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters)
+        {
+            return getAllCore<T>(queryParameters);
+        }
+
         public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
         {
             return getAllSummary<T>(pageNumber, queryParameters);
@@ -77,6 +82,20 @@ namespace SageOneApi.Client
                 retryNumber++;
 
                 return handleKnownExceptions(ex, () => getCore<T>(queryParameters, retryNumber), retryNumber);
+            }
+        }
+
+        private IEnumerable<T> getAllCore<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneCoreEntity
+        {
+            try
+            {
+                return base.GetAllCore<T>(queryParameters);
+            }
+            catch (WebException ex)
+            {
+                retryNumber++;
+
+                return handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, retryNumber), retryNumber);
             }
         }
 

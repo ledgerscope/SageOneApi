@@ -30,6 +30,15 @@ namespace SageOneApi.Client
             return result;
         }
 
+        public override IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters)
+        {
+            var result = base.GetAllCore<T>(queryParameters);
+
+            logDownloadMessage<T>();
+
+            return result;
+        }
+
         private void logDownloadMessage<T>()
         {
             _logMessage($"Downloaded {typeof(T).Name}");

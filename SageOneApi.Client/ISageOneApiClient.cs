@@ -10,5 +10,6 @@ namespace SageOneApi.Client
         T GetSingle<T>(Dictionary<string, string> queryParameters = null) where T : SageOneSingleAccountingEntity;
         T GetCore<T>(Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity;
         IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity;
+        IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity;
     }
 }

@@ -72,6 +72,19 @@ namespace SageOneApi.Client
             return response;
         }
 
+        public IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
+        {
+            var webRequest = createWebRequestForSingleEntity<T>(queryParameters: queryParameters);
+
+            setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
+
+            var jsonResponse = getRequest(webRequest);
+
+            var response = JsonConvert.DeserializeObject<T[]>(jsonResponse);
+
+            return response;
+        }
+
         public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
