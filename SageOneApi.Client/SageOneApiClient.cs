@@ -20,9 +20,10 @@ namespace SageOneApi.Client
             logMessage = logMessage ?? (_ => { }); // nullLogMessage 
 
             _sageOneApiClientHandler =
-               new SageOneApiClientPagingHandler(logMessage,
-                   new SageOneApiClientExceptionHandler(logMessage,
-                       new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken)));
+                new SageOneApiClientLoggingHandler(logMessage,
+                   new SageOneApiClientPagingHandler(logMessage,
+                       new SageOneApiClientExceptionHandler(logMessage,
+                           new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken))));
         }
 
         public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
