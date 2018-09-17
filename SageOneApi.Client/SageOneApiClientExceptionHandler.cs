@@ -139,8 +139,6 @@ namespace SageOneApi.Client
 
             if (httpWebResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
-                _logMessage("Renewing Auth Tokens");
-
                 renewRefreshAndAccessToken();
 
                 return retry();
@@ -166,7 +164,7 @@ namespace SageOneApi.Client
 
             if(httpWebResponse.StatusCode == HttpStatusCode.Forbidden)
             {
-                throw new InsufficientUserPermissionException(ex);
+                throw new InsufficientUserPermissionException("Insufficient User Permission to access endpoint", ex);
             }
 
             throw ex;

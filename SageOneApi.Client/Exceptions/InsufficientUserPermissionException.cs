@@ -3,17 +3,10 @@ using System.Net;
 
 namespace SageOneApi.Client.Exceptions
 {
-    public class InsufficientUserPermissionException : Exception
+    public class InsufficientUserPermissionException : WebException
     {
-        public WebException Exception { get; }
-
         public InsufficientUserPermissionException()
         {
-        }
-
-        public InsufficientUserPermissionException(WebException ex)
-        {
-            Exception = ex; 
         }
 
         public InsufficientUserPermissionException(string message) : base(message)
@@ -24,7 +17,15 @@ namespace SageOneApi.Client.Exceptions
         {
         }
 
-        protected InsufficientUserPermissionException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        public InsufficientUserPermissionException(string message, WebExceptionStatus status) : base(message, status)
+        {
+        }
+
+        public InsufficientUserPermissionException(string message, Exception innerException, WebExceptionStatus status, WebResponse response) : base(message, innerException, status, response)
+        {
+        }
+
+        protected InsufficientUserPermissionException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(serializationInfo, streamingContext)
         {
         }
     }
