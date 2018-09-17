@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;
+using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
@@ -161,6 +162,11 @@ namespace SageOneApi.Client
                 Thread.Sleep(TimeSpan.FromSeconds(10));
 
                 return retry();
+            }
+
+            if(httpWebResponse.StatusCode == HttpStatusCode.Forbidden)
+            {
+                throw new InsufficientUserPermissionException(ex);
             }
 
             throw ex;
