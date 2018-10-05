@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Threading;
 using SageOneApi.Client.Exceptions;
@@ -133,7 +134,21 @@ namespace SageOneApi.Client
 
         private T handleKnownExceptions<T>(WebException ex, Func<T> retry, int retryNumber)
         {
-            if (retryNumber >= _retryLimit || ex.Response == null) throw ex;
+            if (ex.Response == null)
+            {
+                throw new ApiException("No Response Received", ex);
+            }
+            else if (retryNumber >= _retryLimit)
+            {
+                using (var responseStream = ex.Response.GetResponseStream())
+                {
+                    using (var streamReader = new StreamReader(responseStream))
+                    {
+                        var responseTxt = streamReader.ReadToEnd();
+                        throw new ApiException(responseTxt, ex);
+                    }
+                }
+            }
 
             var httpWebResponse = (HttpWebResponse)ex.Response;
 

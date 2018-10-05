@@ -48,6 +48,7 @@
     <Compile Include="Constants\LedgerAccountType.cs" />
     <Compile Include="Constants\TaxRateType.cs" />
     <Compile Include="Constants\TransactionType.cs" />
+    <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Exceptions\InsufficientUserPermissionException.cs" />
     <Compile Include="ISageOneApiClient.cs" />
     <Compile Include="ISageOneApiClientHandler.cs" />
