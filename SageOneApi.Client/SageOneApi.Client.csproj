@@ -44,11 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ApiMessage.cs" />
     <Compile Include="Constants\ArtefactStatus.cs" />
     <Compile Include="Constants\LedgerAccountType.cs" />
     <Compile Include="Constants\TaxRateType.cs" />
     <Compile Include="Constants\TransactionType.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
+    <Compile Include="Exceptions\IncompatibleEditionException.cs" />
     <Compile Include="Exceptions\InsufficientUserPermissionException.cs" />
     <Compile Include="ISageOneApiClient.cs" />
     <Compile Include="ISageOneApiClientHandler.cs" />

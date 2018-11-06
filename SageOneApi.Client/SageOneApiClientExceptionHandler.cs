@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
+using SageOneApi.Client.Constants;
 using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
@@ -138,22 +139,26 @@ namespace SageOneApi.Client
             {
                 throw new ApiException("No Response Received", ex);
             }
-            else if (retryNumber >= _retryLimit)
+            else if (retryNumber == _retryLimit)
             {
-                using (var responseStream = ex.Response.GetResponseStream())
+                respondToExceptionMessage(ex, (responseTxt) =>
                 {
-                    using (var streamReader = new StreamReader(responseStream))
-                    {
-                        var responseTxt = streamReader.ReadToEnd();
-                        throw new ApiException(responseTxt, ex);
-                    }
-                }
+                    throw new ApiException(responseTxt, ex);
+                });
             }
 
             var httpWebResponse = (HttpWebResponse)ex.Response;
 
             if (httpWebResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
+                respondToExceptionMessage(ex, (responseTxt) =>
+                {
+                    if(responseTxt.Contains(ApiMessage.NoActiveSubscription))
+                    {
+                        throw new IncompatibleEditionException("Incompatible Edition to use endpoint", ex);
+                    }
+                });
+
                 renewRefreshAndAccessToken();
 
                 return retry();
@@ -183,6 +188,19 @@ namespace SageOneApi.Client
             }
 
             throw ex;
+        }
+
+        private void respondToExceptionMessage(WebException ex, Action<string> responseAction)
+        {
+            using (var responseStream = ex.Response.GetResponseStream())
+            {
+                using (var streamReader = new StreamReader(responseStream))
+                {
+                    var responseTxt = streamReader.ReadToEnd();
+
+                    responseAction(responseTxt);
+                }
+            }
         }
     }
 }

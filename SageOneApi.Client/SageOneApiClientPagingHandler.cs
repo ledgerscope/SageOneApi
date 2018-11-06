@@ -14,7 +14,6 @@ namespace SageOneApi.Client
 
         public override IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) 
         {
-            var entities = new List<T>();
             var pageNumber = 1;
             var itemsDownloaded = 0;
             var isDownloadRequired = true; 
@@ -27,7 +26,7 @@ namespace SageOneApi.Client
                 {
                     var entity = Get<T>(item.id, queryParameters);
 
-                    entities.Add(entity);
+                    yield return entity;
                 }
 
                 itemsDownloaded += summaryResponse.items.Length;
@@ -36,8 +35,6 @@ namespace SageOneApi.Client
 
                 isDownloadRequired = summaryResponse.next != null;
             }
-
-            return entities;
         }
     }
 }
