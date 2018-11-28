@@ -139,52 +139,52 @@ namespace SageOneApi.Client
             {
                 throw new ApiException("No Response Received", ex);
             }
-            else if (retryNumber == _retryLimit)
+            else
             {
-                respondToExceptionMessage(ex, (responseTxt) =>
-                {
-                    throw new ApiException(responseTxt, ex);
-                });
-            }
+                var httpWebResponse = (HttpWebResponse)ex.Response;
 
-            var httpWebResponse = (HttpWebResponse)ex.Response;
-
-            if (httpWebResponse.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                respondToExceptionMessage(ex, (responseTxt) =>
+                //Check for 429 before retryLimit as it could be due to the amount of data
+                if (httpWebResponse.StatusCode.ToString() == "429")
                 {
-                    if(responseTxt.Contains(ApiMessage.NoActiveSubscription))
+                    var secondsUntilNextRetry = httpWebResponse.Headers["Retry-After"];
+                    int seconds = (int.Parse(secondsUntilNextRetry) + 1) * (retryNumber + 1);
+
+                    Thread.Sleep(TimeSpan.FromSeconds(seconds));
+
+                    return retry();
+                }
+                else if (retryNumber >= _retryLimit)
+                {
+                    respondToExceptionMessage(ex, (responseTxt) =>
                     {
-                        throw new IncompatibleEditionException("Incompatible Edition to use endpoint", ex);
-                    }
-                });
+                        throw new ApiException(responseTxt, ex);
+                    });
+                }
+                else if (httpWebResponse.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    respondToExceptionMessage(ex, (responseTxt) =>
+                    {
+                        if (responseTxt.Contains(ApiMessage.NoActiveSubscription))
+                        {
+                            throw new IncompatibleEditionException("Incompatible Edition to use endpoint", ex);
+                        }
+                    });
 
-                renewRefreshAndAccessToken();
+                    renewRefreshAndAccessToken();
 
-                return retry();
-            }
+                    return retry();
+                }
+                // too many requests or too much data
+                else if (httpWebResponse.StatusCode == HttpStatusCode.GatewayTimeout || httpWebResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(10));
 
-            // too many requests or too much data
-            if (httpWebResponse.StatusCode.ToString() == "429")
-            {
-                var secondsUntilNextRetry = httpWebResponse.Headers["Retry-After"];
-                int seconds = int.Parse(secondsUntilNextRetry) + 1;
-
-                Thread.Sleep(TimeSpan.FromSeconds(seconds));
-
-                return retry();
-            }
-
-            if (httpWebResponse.StatusCode == HttpStatusCode.GatewayTimeout || httpWebResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
-            {
-                Thread.Sleep(TimeSpan.FromSeconds(10));
-
-                return retry();
-            }
-
-            if(httpWebResponse.StatusCode == HttpStatusCode.Forbidden)
-            {
-                throw new InsufficientUserPermissionException("Insufficient User Permission to access endpoint", ex);
+                    return retry();
+                }
+                else if (httpWebResponse.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    throw new InsufficientUserPermissionException("Insufficient User Permission to access endpoint", ex);
+                }
             }
 
             throw ex;
