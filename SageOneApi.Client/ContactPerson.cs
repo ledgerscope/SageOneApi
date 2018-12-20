@@ -1,11 +1,10 @@
-﻿using SageOneApi.Client.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SageOneApi.Client
+namespace SageOneApi.Client.Models
 {
     public class ContactPerson : SageOneAccountingEntity
     {
