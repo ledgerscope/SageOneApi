@@ -14,6 +14,7 @@ namespace SageOneApi.Client.Models
         public TaxRate default_sales_tax_rate { get; set; }
         public string tax_number { get; set; }
         public string notes { get; set; }
+        public string email { get; set; }
         public string locale { get; set; }
         public Address main_address { get; set; }
         public Address delivery_address { get; set; }
@@ -29,5 +30,6 @@ namespace SageOneApi.Client.Models
         public string registered_number { get; set; }
         public bool deletable { get; set; }
         public TaxTreatment tax_treatment { get; set; }
+        public bool gdpr_obfuscated { get; set; }
     }
 }
