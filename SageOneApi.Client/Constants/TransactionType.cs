@@ -31,5 +31,7 @@
         public const string BankTransfer = "BANK_TRANSFER";
         public const string PurchaseQuickEntryInvoice = "PURCHASE_QUICK_ENTRY_INVOICE";
         public const string BankPayment = "BANK_PAYMENT";
+        public const string Deposit = "DEPOSIT";
+        public const string PensionProviderPayment = "PENSION_PROVIDER_PAYMENT";
     }
 }
