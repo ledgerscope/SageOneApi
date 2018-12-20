@@ -18,7 +18,7 @@ namespace SageOneApi.Client.Models
         public string locale { get; set; }
         public Address main_address { get; set; }
         public Address delivery_address { get; set; }
-        public Contact main_contact_person { get; set; }
+        public ContactPerson main_contact_person { get; set; }
         public BankAccountDetails bank_account_details { get; set; }
         public string credit_limit { get; set; }
         public string credit_days { get; set; }

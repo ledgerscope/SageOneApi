@@ -7,7 +7,7 @@
         public PropertyValueWithPath bank_account_type { get; set; }
         public decimal balance { get; set; }
         public Address main_address { get; set; }
-        public PropertyValueWithPath main_contact_person { get; set; }
+        public ContactPerson main_contact_person { get; set; }
         public string nominal_code { get; set; }
         public bool editable { get; set; }
         public bool deletable { get; set; }
