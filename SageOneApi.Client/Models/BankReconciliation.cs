@@ -1,6 +1,4 @@
-﻿using SageOneApi.Client.Models;
-
-namespace SageOneApi.Client
+﻿namespace SageOneApi.Client.Models
 {
     public class BankReconciliation : SageOneAccountingEntity
     {
