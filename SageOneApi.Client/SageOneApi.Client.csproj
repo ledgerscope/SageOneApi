@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankReconciliation.cs" />
     <Compile Include="Constants\ApiMessage.cs" />
     <Compile Include="Constants\ArtefactStatus.cs" />
     <Compile Include="Constants\LedgerAccountType.cs" />

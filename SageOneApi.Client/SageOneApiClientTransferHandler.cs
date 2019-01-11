@@ -244,6 +244,7 @@ namespace SageOneApi.Client
             { typeof(BusinessSettings) , "business_settings"},
             { typeof(FinancialSettings) , "financial_settings"},
             { typeof(Transaction) , "transactions"},
+            { typeof(BankReconciliation) , "bank_reconciliations"},
 
             { typeof(Business), "business" },
             { typeof(Me), "me" },
