@@ -11,7 +11,7 @@ namespace SageOneApi.Client.Models
         public string terms_and_conditions { get; set; }
         public decimal? shipping_net_amount { get; set; }
         public TaxRate shipping_tax_rate { get; set; }
-        public decimal shipping_tax_amount { get; set; }
+        public decimal? shipping_tax_amount { get; set; }
         public List<Tax> shipping_tax_breakdown { get; set; }
         public decimal shipping_total_amount { get; set; }
         public decimal base_currency_shipping_net_amount { get; set; }
