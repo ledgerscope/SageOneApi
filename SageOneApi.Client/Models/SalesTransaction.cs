@@ -9,7 +9,7 @@ namespace SageOneApi.Client.Models
         public string delivery_address_free_form { get; set; }
         public Address delivery_address { get; set; }
         public string terms_and_conditions { get; set; }
-        public decimal shipping_net_amount { get; set; }
+        public decimal? shipping_net_amount { get; set; }
         public TaxRate shipping_tax_rate { get; set; }
         public decimal shipping_tax_amount { get; set; }
         public List<Tax> shipping_tax_breakdown { get; set; }
