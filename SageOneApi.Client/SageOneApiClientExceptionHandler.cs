@@ -175,9 +175,11 @@ namespace SageOneApi.Client
                     return retry();
                 }
                 // too many requests or too much data
-                else if (httpWebResponse.StatusCode == HttpStatusCode.GatewayTimeout || httpWebResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+                else if (httpWebResponse.StatusCode == HttpStatusCode.GatewayTimeout 
+                    || httpWebResponse.StatusCode == HttpStatusCode.ServiceUnavailable
+                    || httpWebResponse.StatusCode.ToString() == "525")
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds(10));
+                    Thread.Sleep(TimeSpan.FromMinutes(5));
 
                     return retry();
                 }
