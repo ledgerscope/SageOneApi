@@ -12,7 +12,7 @@ namespace SageOneApi.Client
         T GetCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity;
         IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity;
         IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity;
-        GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity;
+        GetAllResponse<T> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity;
         void RenewRefreshAndAccessToken();
     }
 }

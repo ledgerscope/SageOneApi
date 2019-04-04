@@ -41,7 +41,7 @@ namespace SageOneApi.Client
             return getAllCore<T>(queryParameters);
         }
 
-        public override GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters)
+        public override GetAllResponse<T> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters)
         {
             return getAllSummary<T>(pageNumber, queryParameters);
         }
@@ -102,11 +102,11 @@ namespace SageOneApi.Client
             }
         }
 
-        private GetAllResponse getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneAccountingEntity
+        private GetAllResponse<T> getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneAccountingEntity
         {
             try
             {
-                return base.GetAllSummary<T>(pageNumber, queryParameters);
+                return base.GetAllFromPage<T>(pageNumber, queryParameters);
             }
             catch (WebException ex)
             {

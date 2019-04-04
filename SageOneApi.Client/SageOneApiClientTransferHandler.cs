@@ -93,7 +93,7 @@ namespace SageOneApi.Client
 
             var jsonResponse = getRequest(webRequest);
 
-            var response = JsonConvert.DeserializeObject<GetAllResponse>(jsonResponse);
+            var response = JsonConvert.DeserializeObject<GetAllResponse<T>>(jsonResponse);
 
             var entities = new List<T>();
 
@@ -105,7 +105,7 @@ namespace SageOneApi.Client
             return entities;
         }
 
-        public GetAllResponse GetAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public GetAllResponse<T> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
             var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
 
@@ -113,7 +113,7 @@ namespace SageOneApi.Client
 
             var jsonResponse = getRequest(webRequest);
 
-            return JsonConvert.DeserializeObject<GetAllResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<GetAllResponse<T>>(jsonResponse);
         }
 
         public void RenewRefreshAndAccessToken()

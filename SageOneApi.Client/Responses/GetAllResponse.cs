@@ -2,7 +2,7 @@
 
 namespace SageOneApi.Client.Responses
 {
-    public class GetAllResponse
+    public class GetAllResponse<T>
     {
         [JsonProperty("$total")]
         public int total { get; set; }
@@ -20,15 +20,6 @@ namespace SageOneApi.Client.Responses
         public int itemsPerPage { get; set; }
 
         [JsonProperty("$items")]
-        public Item[] items { get; set; }
-    }
-
-    public class Item
-    {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
-
-        [JsonProperty("$path")]
-        public string path { get; set; }
+        public T[] items { get; set; }
     }
 }
