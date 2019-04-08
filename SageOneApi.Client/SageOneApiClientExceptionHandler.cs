@@ -16,7 +16,7 @@ namespace SageOneApi.Client
         private readonly Action<string> _logMessage;
         private const int _retryLimit = 3;
 
-        public SageOneApiClientExceptionHandler(Action<string> logMessage, ISageOneApiClientHandler apiClient) : base(apiClient)
+        public SageOneApiClientExceptionHandler(Action<string> logMessage, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
         {
             _logMessage = logMessage;
         }

@@ -6,9 +6,9 @@ namespace SageOneApi.Client
 {
     internal class SageOneApiClientPagingHandler : SageOneApiClientBaseHandler
     {
-        private Action<string> _logMessage;
+        private readonly Action<string> _logMessage;
 
-        public SageOneApiClientPagingHandler(Action<string> logMessage, ISageOneApiClientHandler apiClient) : base(apiClient)
+        public SageOneApiClientPagingHandler(Action<string> logMessage, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
         {
             _logMessage = logMessage;
         }

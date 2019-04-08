@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ContactTypeIds.cs" />
     <Compile Include="Models\BankReconciliation.cs" />
     <Compile Include="Constants\ApiMessage.cs" />
     <Compile Include="Constants\ArtefactStatus.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Models\TaxTreatment.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="SageOneApiClient.cs" />
+    <Compile Include="SageOneApiClientConfig.cs" />
     <Compile Include="SageOneApiClientLoggingHandler.cs" />
     <Compile Include="SageOneApiClientTransferHandler.cs" />
     <Compile Include="Models\Contact.cs" />
