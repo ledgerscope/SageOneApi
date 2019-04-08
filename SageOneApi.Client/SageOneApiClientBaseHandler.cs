@@ -8,10 +8,12 @@ namespace SageOneApi.Client
     internal abstract class SageOneApiClientBaseHandler : ISageOneApiClientHandler
     {
         private readonly ISageOneApiClientHandler _apiClient;
+        protected readonly SageOneApiClientConfig _config;
 
-        protected SageOneApiClientBaseHandler(ISageOneApiClientHandler apiClient)
+        protected SageOneApiClientBaseHandler(ISageOneApiClientHandler apiClient, SageOneApiClientConfig config)
         {
             _apiClient = apiClient;
+            _config = config;
         }
 
         public virtual T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity

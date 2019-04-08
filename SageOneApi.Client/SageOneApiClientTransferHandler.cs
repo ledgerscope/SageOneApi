@@ -18,19 +18,22 @@ namespace SageOneApi.Client
         private string _subscriptionId;
         private string _resourceOwnerId;
         private readonly Func<string> _renewRefreshAndAccessToken;
+        private readonly SageOneApiClientConfig _config;
 
         public SageOneApiClientTransferHandler(
             Uri baseUri,
             string accessToken,
             string subscriptionId,
             string resourceOwnerId,
-            Func<string> renewRefreshAndAccessToken)
+            Func<string> renewRefreshAndAccessToken,
+            SageOneApiClientConfig config)
         {
             _baseUri = baseUri;
             _accessToken = accessToken;
             _subscriptionId = subscriptionId;
             _resourceOwnerId = resourceOwnerId;
             _renewRefreshAndAccessToken = renewRefreshAndAccessToken;
+            _config = config;
         }
 
         public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
@@ -87,7 +90,7 @@ namespace SageOneApi.Client
 
         public IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
-            var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
+            var webRequest = createWebRequestForAllEntities<T>(pageNumber: 1, _config.PageSize, queryParameters: queryParameters);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -107,7 +110,7 @@ namespace SageOneApi.Client
 
         public GetAllResponse<T> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
         {
-            var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
+            var webRequest = createWebRequestForAllEntities<T>(pageNumber: pageNumber, _config.PageSize, queryParameters: queryParameters);
 
             setHeaders(webRequest, _accessToken, _subscriptionId, _resourceOwnerId);
 
@@ -153,7 +156,7 @@ namespace SageOneApi.Client
             return responseData;
         }
 
-        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber = 1, int pageSize = 100, 
+        private HttpWebRequest createWebRequestForAllEntities<T>(int pageNumber, int pageSize,
             Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
         {
             var sb = new StringBuilder()

@@ -15,15 +15,17 @@ namespace SageOneApi.Client
             string subscriptionId,
             string resourceOwnerId,
             Func<string> renewRefreshAndAccessToken, 
-            Action<string> logMessage = null)
+            Action<string> logMessage = null,
+            SageOneApiClientConfig sageOneApiClientConfig = null)
         {
             logMessage = logMessage ?? (_ => { }); // nullLogMessage 
+            sageOneApiClientConfig = sageOneApiClientConfig ?? SageOneApiClientConfig.Default;
 
             _sageOneApiClientHandler =
-                new SageOneApiClientLoggingHandler(logMessage,
-                   new SageOneApiClientPagingHandler(logMessage,
-                       new SageOneApiClientExceptionHandler(logMessage,
-                           new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken))));
+                new SageOneApiClientLoggingHandler(logMessage, sageOneApiClientConfig,
+                   new SageOneApiClientPagingHandler(logMessage, sageOneApiClientConfig,
+                       new SageOneApiClientExceptionHandler(logMessage, sageOneApiClientConfig,
+                           new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig))));
         }
 
         public T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
