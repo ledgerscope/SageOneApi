@@ -1,9 +1,12 @@
-﻿namespace SageOneApi.Client.Models
+﻿using Newtonsoft.Json;
+
+namespace SageOneApi.Client.Models
 {
     public class BusinessSettings : SageOneSingleAccountingEntity
     {
-        public PropertyValueWithPath country_of_registration { get; set; }
-
-        public DefaultLedgerAccounts default_ledger_accounts { get; set; }
+		[JsonProperty("country_of_registration")]
+        public PropertyValueWithPath CountryOfRegistration { get; set; }
+        [JsonProperty("default_ledger_accounts")]
+		public DefaultLedgerAccounts DefaultLedgerAccounts { get; set; }
     }
 }

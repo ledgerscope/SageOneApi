@@ -6,11 +6,17 @@ namespace SageOneApi.Client.Models
 {
     public class ContactAllocation : SageOneAccountingEntity
     {
-        public PropertyValueWithPath transaction { get; set; }
-        public PropertyValueWithPath transaction_type { get; set; }
-        public List<Link> links { get; set; }
-        public DateTime date { get; set; }
-        public Contact contact { get; set; }
-        public List<AllocatedArtefact> allocated_artefacts { get; set; }
+		[JsonProperty("transaction")]
+        public PropertyValueWithPath Transaction { get; set; }
+        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath TransactionType { get; set; }
+		[JsonProperty("links")]
+		public List<Link> Links { get; set; }
+		[JsonProperty("date")]
+		public DateTime Date { get; set; }
+		[JsonProperty("contact")]
+		public Contact Contact { get; set; }
+		[JsonProperty("allocated_artefacts")]
+		public List<AllocatedArtefact> AllocatedArtefacts { get; set; }
     }
 }

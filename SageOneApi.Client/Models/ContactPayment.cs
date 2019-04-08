@@ -1,29 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
     public class ContactPayment : SageOneAccountingEntity
     {
-        public PropertyValueWithPath transaction { get; set; }
-        public PropertyValueWithPath transaction_type { get; set; }
-        public List<Link> links { get; set; }
-        public PropertyValueWithPath payment_method { get; set; }
-        public Contact contact { get; set; }
-        public BankAccount bank_account { get; set; }
-        public DateTime date { get; set; }
-        public decimal net_amount { get; set; }
-        public decimal tax_amount { get; set; }
-        public decimal total_amount { get; set; }
-        public PropertyValueWithPath currency { get; set; }
-        public decimal exchange_rate { get; set; }
-        public decimal base_currency_net_amount { get; set; }
-        public decimal base_currency_tax_amount { get; set; }
-        public decimal base_currency_total_amount { get; set; }
-        public decimal base_currency_currency_charge { get; set; }
-        public string reference { get; set; }
-        public List<AllocatedArtefact> allocated_artefacts { get; set; }
-        public TaxRate tax_rate { get; set; }
-        public PaymentOnAccount payment_on_account { get; set; }
+		[JsonProperty("transaction")]
+        public PropertyValueWithPath Transaction { get; set; }
+        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath TransactionType { get; set; }
+		[JsonProperty("links")]
+		public List<Link> Links { get; set; }
+		[JsonProperty("payment_method")]
+		public PropertyValueWithPath PaymentMethod { get; set; }
+		[JsonProperty("contact")]
+		public Contact Contact { get; set; }
+		[JsonProperty("bank_account")]
+		public BankAccount BankAccount { get; set; }
+		[JsonProperty("date")]
+		public DateTime Date { get; set; }
+		[JsonProperty("net_amount")]
+		public decimal NetAmount { get; set; }
+		[JsonProperty("tax_amount")]
+		public decimal TaxAmount { get; set; }
+		[JsonProperty("total_amount")]
+		public decimal TotalAmount { get; set; }
+		[JsonProperty("currency")]
+		public PropertyValueWithPath Currency { get; set; }
+		[JsonProperty("exchange_rate")]
+		public decimal ExchangeRate { get; set; }
+		[JsonProperty("base_currency_net_amount")]
+		public decimal BaseCurrencyNetAmount { get; set; }
+        [JsonProperty("base_currency_tax_amount")]
+		public decimal BaseCurrencyTaxAmount { get; set; }
+		[JsonProperty("base_currency_total_amount")]
+		public decimal BaseCurrencyTotalAmount { get; set; }
+		[JsonProperty("base_currency_currency_charge")]
+		public decimal BaseCurrencyCurrencyCharge { get; set; }
+		[JsonProperty("reference")]
+		public string Reference { get; set; }
+		[JsonProperty("allocated_artefacts")]
+		public List<AllocatedArtefact> AllocatedArtefacts { get; set; }
+        [JsonProperty("tax_rate")]
+		public TaxRate TaxRate { get; set; }
+		[JsonProperty("payment_on_account")]
+		public PaymentOnAccount PaymentOnAccount { get; set; }
     }
 }
