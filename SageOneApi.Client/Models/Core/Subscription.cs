@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models.Core
 {
     public class Subscription : SageOneCoreEntity
     {
-        public bool active { get; set; }
+		[JsonProperty("active")]
+        public bool Active { get; set; }
     }
 }

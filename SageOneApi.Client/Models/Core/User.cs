@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models.Core
 {
     public class User : SageOneCoreEntity
     {
-        public string first_name { get; set; }
-        public string lasst_name { get; set; }
-        public string initials { get; set; }
-        public string email { get; set; }
-        public string locale { get; set; }
+	    [JsonProperty("first_name")]
+		public string FirstName { get; set; }
+		[JsonProperty("lasst_name")]
+		public string LasstName { get; set; }
+		[JsonProperty("initials")]
+		public string Initials { get; set; }
+		[JsonProperty("email")]
+		public string Email { get; set; }
+		[JsonProperty("locale")]
+		public string Locale { get; set; }
     }
 }

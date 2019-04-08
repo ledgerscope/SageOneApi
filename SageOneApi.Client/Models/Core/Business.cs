@@ -1,24 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models.Core
 {
     public class Business : SageOneCoreEntity
     {
-        public string name { get; set; }
-        public string address_line_1 { get; set; }
-        public string address_line_2 { get; set; }
-        public string city { get; set; }
-        public string postal_code { get; set; }
-        public PropertyValueWithPath country { get; set; }
-        public string region { get; set; }
-        public string telephone { get; set; }
-        public string mobile { get; set; }
-        public string website { get; set; }
-        public bool is_demo { get; set; }
-        public Subscription[] subscriptions { get; set; }
+		[JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("address_line_1")]
+		public string AddressLine1 { get; set; }
+		[JsonProperty("address_line_2")]
+		public string AddressLine2 { get; set; }
+		[JsonProperty("city")]
+		public string City { get; set; }
+		[JsonProperty("postal_code")]
+		public string PostalCode { get; set; }
+		[JsonProperty("country")]
+		public PropertyValueWithPath Country { get; set; }
+		[JsonProperty("region")]
+		public string Region { get; set; }
+		[JsonProperty("telephone")]
+		public string Telephone { get; set; }
+		[JsonProperty("mobile")]
+		public string Mobile { get; set; }
+		[JsonProperty("website")]
+		public string Website { get; set; }
+		[JsonProperty("is_demo")]
+		public bool IsDemo { get; set; }
+		[JsonProperty("subscriptions")]
+		public Subscription[] Subscriptions { get; set; }
     }
 }
