@@ -5,6 +5,7 @@ namespace SageOneApi.Client.Models
 {
     public class Artefact : PropertyValueWithPath
     {
-        public List<Link> links { get; set; }
+		[JsonProperty("links")]
+        public List<Link> Links { get; set; }
     }
 }
