@@ -119,6 +119,7 @@
     <Compile Include="SageOneApiClientBaseHandler.cs" />
     <Compile Include="SageOneApiClientExceptionHandler.cs" />
     <Compile Include="SageOneApiClientPagingHandler.cs" />
+    <Compile Include="Utils\HttpClientFactory.cs" />
     <Compile Include="Utils\ProgressUpdate.cs" />
   </ItemGroup>
   <ItemGroup>

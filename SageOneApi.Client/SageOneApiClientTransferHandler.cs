@@ -12,6 +12,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
 {
@@ -23,7 +24,6 @@ namespace SageOneApi.Client
 		private string _resourceOwnerId;
 		private readonly Func<string> _renewRefreshAndAccessToken;
 		private readonly SageOneApiClientConfig _config;
-		private readonly HttpClient _httpClient;
 
 		public SageOneApiClientTransferHandler(
 			Uri baseUri,
@@ -39,7 +39,6 @@ namespace SageOneApi.Client
 			_resourceOwnerId = resourceOwnerId;
 			_renewRefreshAndAccessToken = renewRefreshAndAccessToken;
 			_config = config;
-			_httpClient = new HttpClient();
 		}
 
 		public async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
@@ -136,15 +135,13 @@ namespace SageOneApi.Client
 			string responseData;
 			var message = buildGetRequestMessage(uri);
 
-			using (var response = await _httpClient.SendAsync(message, cancellationToken))
+			using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
 			{
 				responseData = await response.Content.ReadAsStringAsync();
 			}
 
 			return responseData;
 		}
-
-
 
 		private Uri createWebRequestUriForAllEntities<T>(int pageNumber, int pageSize,
 			Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
