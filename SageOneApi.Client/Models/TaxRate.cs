@@ -6,13 +6,21 @@ namespace SageOneApi.Client.Models
 {
     public class TaxRate : SageOneAccountingEntity
     {
-        public string name { get; set; }
-        public string agency { get; set; }
-        public decimal? percentage { get; set; }
-        public List<TaxPercentage> percentages { get; set; }
-        public bool is_visible { get; set; }
-        public bool is_combined_rate { get; set; }
-        public bool editable { get; set; }
-        public bool deletable { get; set; }
+		[JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("agency")]
+		public string Agency { get; set; }
+		[JsonProperty("percentage")]
+		public decimal? Percentage { get; set; }
+		[JsonProperty("percentages")]
+		public List<TaxPercentage> Percentages { get; set; }
+		[JsonProperty("is_visible")]
+		public bool IsVisible { get; set; }
+		[JsonProperty("is_combined_rate")]
+		public bool IsCombinedRate { get; set; }
+		[JsonProperty("editable")]
+		public bool Editable { get; set; }
+		[JsonProperty("deletable")]
+		public bool Deletable { get; set; }
     }
 }

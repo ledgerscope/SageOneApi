@@ -1,26 +1,48 @@
-﻿namespace SageOneApi.Client.Models
+﻿using Newtonsoft.Json;
+
+namespace SageOneApi.Client.Models
 {
     public class LedgerAccount : SageOneAccountingEntity
     {
-        public PropertyValue ledger_account_group { get; set; }
-        public string name { get; set; }
-        public string display_name { get; set; }
-        public string display_formatted { get; set; }
-        public bool? included_in_chart { get; set; }
-        public string nominal_code { get; set; }
-        public PropertyValueWithPath ledger_account_type { get; set; }
-        public string ledger_account_classification { get; set; }
-        public TaxRate tax_rate { get; set; }
-        public bool fixed_tax_rate { get; set; }
-        public bool visible_in_banking { get; set; }
-        public bool visible_in_expenses { get; set; }
-        public bool visible_in_journals { get; set; }
-        public bool visible_in_other_payments { get; set; }
-        public bool visible_in_other_receipts { get; set; }
-        public bool visible_in_reporting { get; set; }
-        public bool visible_in_sales { get; set; }
-        public bool is_control_account { get; set; }
-        public string control_name { get; set; }
-        public BalanceDetails balance_details { get; set; }
+	    [JsonProperty("ledger_account_group")]
+		public PropertyValue LedgerAccountGroup { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("display_name")]
+		public string DisplayName { get; set; }
+		[JsonProperty("display_formatted")]
+		public string DisplayFormatted { get; set; }
+		[JsonProperty("included_in_chart")]
+		public bool? IncludedInChart { get; set; }
+		[JsonProperty("nominal_code")]
+		public string NominalCode { get; set; }
+		[JsonProperty("ledger_account_type")]
+		public PropertyValueWithPath LedgerAccountType { get; set; }
+		[JsonProperty("ledger_account_classification")]
+		public string LedgerAccountClassification { get; set; }
+		[JsonProperty("tax_rate")]
+		public TaxRate TaxRate { get; set; }
+        [JsonProperty("fixed_tax_rate")]
+		public bool FixedTaxRate { get; set; }
+		[JsonProperty("visible_in_banking")]
+		public bool VisibleInBanking { get; set; }
+		[JsonProperty("visible_in_expenses")]
+		public bool VisibleInExpenses { get; set; }
+		[JsonProperty("visib" + "le_in_journals")]
+		public bool VisibleInJournals { get; set; }
+		[JsonProperty("visible_in_other_payments")]
+		public bool VisibleInOtherPayments { get; set; }
+		[JsonProperty("visible_in_other_receipts")]
+		public bool VisibleInOtherReceipts { get; set; }
+		[JsonProperty("visible_in_reporting")]
+		public bool VisibleInReporting { get; set; }
+		[JsonProperty("visible_in_sales")]
+		public bool VisibleInSales { get; set; }
+		[JsonProperty("is_control_account")]
+		public bool IsControlAccount { get; set; }
+        [JsonProperty("control_name")]
+		public string ControlName { get; set; }
+		[JsonProperty("balance_details")]
+		public BalanceDetails BalanceDetails { get; set; }
     }
 }

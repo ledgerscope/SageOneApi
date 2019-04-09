@@ -6,8 +6,11 @@ namespace SageOneApi.Client.Models
 {
     public class TaxPercentage
     {
-        public string percentage { get; set; }
-        public DateTime from_date { get; set; }
-        public DateTime? to_date { get; set; }
+		[JsonProperty("percentage")]
+        public string Percentage { get; set; }
+        [JsonProperty("from_date")]
+		public DateTime FromDate { get; set; }
+		[JsonProperty("to_date")]
+		public DateTime? ToDate { get; set; }
     }
 }

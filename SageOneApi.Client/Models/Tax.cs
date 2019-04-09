@@ -1,9 +1,14 @@
-﻿namespace SageOneApi.Client.Models
+﻿using Newtonsoft.Json;
+
+namespace SageOneApi.Client.Models
 {
     public class Tax
     {
-        public TaxRate tax_rate { get; set; }
-        public decimal percentage { get; set; }
-        public decimal amount { get; set; }
+		[JsonProperty("tax_rate")]
+        public TaxRate TaxRate { get; set; }
+        [JsonProperty("percentage")]
+		public decimal Percentage { get; set; }
+		[JsonProperty("amount")]
+		public decimal Amount { get; set; }
     }
 }

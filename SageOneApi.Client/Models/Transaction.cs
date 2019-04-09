@@ -1,18 +1,29 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
     public class Transaction : SageOneAccountingEntity
     {
-        public PropertyValueWithPath transaction { get; set; }
-        public PropertyValueWithPath transaction_type { get; set; }
-        public DateTime date { get; set; }
-        public string reference { get; set; }
-        public bool deleted { get; set; }
-        public decimal? total { get; set; }
-        public Contact contact { get; set; }
-        public Artefact origin { get; set; }
-        public string audit_trail_id { get; set; }
-        public int number_of_attachments { get; set; }
+		[JsonProperty("transaction")]
+        public PropertyValueWithPath TransactionPath { get; set; }
+        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath TransactionType { get; set; }
+		[JsonProperty("date")]
+		public DateTime Date { get; set; }
+		[JsonProperty("reference")]
+		public string Reference { get; set; }
+		[JsonProperty("deleted")]
+		public bool Deleted { get; set; }
+		[JsonProperty("total")]
+		public decimal? Total { get; set; }
+		[JsonProperty("contact")]
+		public Contact Contact { get; set; }
+		[JsonProperty("origin")]
+		public Artefact Origin { get; set; }
+		[JsonProperty("audit_trail_id")]
+		public string AuditTrailId { get; set; }
+		[JsonProperty("number_of_attachments")]
+		public int NumberOfAttachments { get; set; }
     }
 }

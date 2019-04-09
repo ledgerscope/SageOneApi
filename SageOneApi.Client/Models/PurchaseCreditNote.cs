@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
     public class PurchaseCreditNote : PurchaseTransaction
     {
-        public List<PurchaseTransactionLine> credit_note_lines { get; set; }
+	    [JsonProperty("credit_note_lines")]
+		public List<PurchaseTransactionLine> CreditNoteLines { get; set; }
     }
 }

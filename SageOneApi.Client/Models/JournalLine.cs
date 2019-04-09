@@ -1,11 +1,18 @@
-﻿namespace SageOneApi.Client.Models
+﻿using Newtonsoft.Json;
+
+namespace SageOneApi.Client.Models
 {
     public class JournalLine
     {
-        public LedgerAccount ledger_account { get; set; }
-        public string details { get; set; }
-        public decimal debit { get; set; }
-        public decimal credit { get; set; }
-        public bool include_on_tax_return { get; set; }
+		[JsonProperty("ledger_account")]
+        public LedgerAccount LedgerAccount { get; set; }
+        [JsonProperty("details")]
+		public string Details { get; set; }
+		[JsonProperty("debit")]
+		public decimal Debit { get; set; }
+		[JsonProperty("credit")]
+		public decimal Credit { get; set; }
+		[JsonProperty("include_on_tax_return")]
+		public bool IncludeOnTaxReturn { get; set; }
     }
 }

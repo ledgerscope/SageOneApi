@@ -102,7 +102,7 @@ namespace SageOneApi.Client
 
             foreach (var item in response.items)
             {
-                entities.Add(Get<T>(item.id, queryParameters));
+                entities.Add(Get<T>(item.Id, queryParameters));
             }
 
             return entities;

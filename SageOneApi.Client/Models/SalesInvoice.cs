@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
     public class SalesInvoice : SalesTransaction
     {
-        public string invoice_number { get; set; }
-        public DateTime due_date { get; set; }
-        public PropertyValueWithPath original_quote_estimate { get; set; }
-        public DateTime? delivery_performance_date { get; set; }
-        public TaxRate withholding_tax_rate { get; set; }
-        public decimal? withholding_tax_amount { get; set; }
-        public decimal? base_currency_withholding_tax_amount { get; set; }
-        public List<SalesTransactionLine> invoice_lines { get; set; }
+		[JsonProperty("invoice_number")]
+        public string InvoiceNumber { get; set; }
+        [JsonProperty("due_date")]
+		public DateTime DueDate { get; set; }
+		[JsonProperty("original_quote_estimate")]
+		public PropertyValueWithPath OriginalQuoteEstimate { get; set; }
+		[JsonProperty("delivery_performance_date")]
+		public DateTime? DeliveryPerformanceDate { get; set; }
+		[JsonProperty("withholding_tax_rate")]
+		public TaxRate WithholdingTaxRate { get; set; }
+		[JsonProperty("withholding_tax_amount")]
+		public decimal? WithholdingTaxAmount { get; set; }
+		[JsonProperty("base_currency_withholding_tax_amount")]
+		public decimal? BaseCurrencyWithholdingTaxAmount { get; set; }
+		[JsonProperty("invoice_lines")]
+		public List<SalesTransactionLine> InvoiceLines { get; set; }
     }
 }

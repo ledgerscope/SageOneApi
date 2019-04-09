@@ -1,8 +1,12 @@
-﻿namespace SageOneApi.Client.Models
+﻿using Newtonsoft.Json;
+
+namespace SageOneApi.Client.Models
 {
     public class PropertyValue
     {
-        public string id { get; set; }
-        public string displayed_as { get; set; }
+		[JsonProperty("id")]
+        public string Id { get; set; }
+        [JsonProperty("displayed_as")]
+		public string DisplayedAs { get; set; }
     }
 }

@@ -6,10 +6,14 @@ namespace SageOneApi.Client.Models
     public abstract class SageOneAccountingEntity
     {
         [JsonProperty("$path")]
-        public string path { get; set; }
-        public string id { get; set; }
-        public string displayed_as { get; set; }
-        public DateTime? created_at { get; set; }
-        public DateTime? updated_at { get; set; }
+        public string Path { get; set; }
+        [JsonProperty("id")]
+		public string Id { get; set; }
+		[JsonProperty("displayed_as")]
+		public string DisplayedAs { get; set; }
+		[JsonProperty("created_at")]
+		public DateTime? CreatedAt { get; set; }
+		[JsonProperty("updated_at")]
+		public DateTime? UpdatedAt { get; set; }
     }
 }

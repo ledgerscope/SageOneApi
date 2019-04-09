@@ -1,9 +1,14 @@
-﻿namespace SageOneApi.Client.Models
+﻿using Newtonsoft.Json;
+
+namespace SageOneApi.Client.Models
 {
     public class Link
     {
-        public string href { get; set; }
-        public string rel { get; set; }
-        public string type { get; set; }
+		[JsonProperty("href")]
+        public string Href { get; set; }
+        [JsonProperty("rel")]
+		public string Rel { get; set; }
+		[JsonProperty("type")]
+		public string Type { get; set; }
     }
 }
