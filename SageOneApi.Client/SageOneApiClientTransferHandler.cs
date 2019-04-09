@@ -23,6 +23,7 @@ namespace SageOneApi.Client
 		private string _resourceOwnerId;
 		private readonly Func<string> _renewRefreshAndAccessToken;
 		private readonly SageOneApiClientConfig _config;
+		private readonly HttpClient _httpClient;
 
 		public SageOneApiClientTransferHandler(
 			Uri baseUri,
@@ -38,6 +39,7 @@ namespace SageOneApi.Client
 			_resourceOwnerId = resourceOwnerId;
 			_renewRefreshAndAccessToken = renewRefreshAndAccessToken;
 			_config = config;
+			_httpClient = new HttpClient();
 		}
 
 		public async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
@@ -66,7 +68,7 @@ namespace SageOneApi.Client
 		{
 			var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
 
-			var jsonResponse =  await getResponse(uri, cancellationToken);
+			var jsonResponse = await getResponse(uri, cancellationToken);
 
 			var response = JsonConvert.DeserializeObject<T>(jsonResponse);
 
@@ -116,22 +118,26 @@ namespace SageOneApi.Client
 			_accessToken = _renewRefreshAndAccessToken();
 		}
 
-		private void setHeaders(HttpClient httpClient, string accessToken, string subscriptionId, string resourceOwnerId)
+		private HttpRequestMessage buildGetRequestMessage(Uri uri)
 		{
-			httpClient.DefaultRequestHeaders.Add("X-Site", resourceOwnerId);
-			httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionId);
-			httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-			httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+			var requestMessage = new HttpRequestMessage { Method = HttpMethod.Get };
+
+			requestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+			requestMessage.Headers.Add("X-Site", _resourceOwnerId);
+			requestMessage.Headers.Add("Ocp-Apim-Subscription-Key", _subscriptionId);
+			requestMessage.Headers.Add("Authorization", $"Bearer {_accessToken}");
+
+			return requestMessage;
 		}
 
 		private async Task<string> getResponse(Uri uri, CancellationToken cancellationToken)
 		{
 			string responseData;
+			var message = buildGetRequestMessage(uri);
 
-			using (var client = new HttpClient())
+			using (var response = await _httpClient.SendAsync(message, cancellationToken))
 			{
-				setHeaders(client, _accessToken, _subscriptionId, _resourceOwnerId);
-				var response = await client.GetAsync(uri, cancellationToken);
 				responseData = await response.Content.ReadAsStringAsync();
 			}
 
