@@ -24,13 +24,13 @@ namespace SageOneApi.Client
             {
                 var summaryResponse = base.GetAllFromPage<T>(pageNumber++, queryParameters);
 
-                entities.AddRange(summaryResponse.items);
+                entities.AddRange(summaryResponse.Items);
 
-                itemsDownloaded += summaryResponse.items.Length;
+                itemsDownloaded += summaryResponse.Items.Length;
 
-                _logMessage($"Downloaded {itemsDownloaded}/{summaryResponse.total} {typeof(T).Name} records");
+                _logMessage($"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records");
 
-                isDownloadRequired = summaryResponse.next != null;
+                isDownloadRequired = summaryResponse.Next != null;
             }
 
             return entities;

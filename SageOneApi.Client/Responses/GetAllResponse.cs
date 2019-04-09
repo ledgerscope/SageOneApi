@@ -5,21 +5,21 @@ namespace SageOneApi.Client.Responses
     public class GetAllResponse<T>
     {
         [JsonProperty("$total")]
-        public int total { get; set; }
+        public int Total { get; set; }
 
         [JsonProperty("$page")]
-        public int page { get; set; }
+        public int Page { get; set; }
 
         [JsonProperty("$next")]
-        public object next { get; set; }
+        public object Next { get; set; }
 
         [JsonProperty("$back")]
-        public object back { get; set; }
+        public object Back { get; set; }
 
         [JsonProperty("$itemsPerPage")]
-        public int itemsPerPage { get; set; }
+        public int ItemsPerPage { get; set; }
 
         [JsonProperty("$items")]
-        public T[] items { get; set; }
+        public T[] Items { get; set; }
     }
 }
