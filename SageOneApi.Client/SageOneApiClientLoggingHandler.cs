@@ -1,47 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
 {
-    internal class SageOneApiClientLoggingHandler : SageOneApiClientBaseHandler
-    {
-        private readonly Action<string> _logMessage;
+	internal class SageOneApiClientLoggingHandler : SageOneApiClientBaseHandler
+	{
+		private readonly IProgress<ProgressUpdate> _progressUpdate;
 
-        public SageOneApiClientLoggingHandler(Action<string> logMessage, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
-        {
-            _logMessage = logMessage;
-        }
+		public SageOneApiClientLoggingHandler(IProgress<ProgressUpdate> progressUpdate, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
+		{
+			_progressUpdate = progressUpdate;
+		}
 
-        public override T GetSingle<T>(Dictionary<string, string> queryParameters)
-        {
-            var result = base.GetSingle<T>(queryParameters);
+		public override T GetSingle<T>(Dictionary<string, string> queryParameters)
+		{
+			var result = base.GetSingle<T>(queryParameters);
 
-            logDownloadMessage<T>();
+			logDownloadMessage<T>();
 
-            return result;
-        }
+			return result;
+		}
 
-        public override T GetCore<T>(Dictionary<string, string> queryParameters)
-        {
-            var result = base.GetCore<T>(queryParameters);
+		public override T GetCore<T>(Dictionary<string, string> queryParameters)
+		{
+			var result = base.GetCore<T>(queryParameters);
 
-            logDownloadMessage<T>();
+			logDownloadMessage<T>();
 
-            return result;
-        }
+			return result;
+		}
 
-        public override IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters)
-        {
-            var result = base.GetAllCore<T>(queryParameters);
+		public override IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters)
+		{
+			var result = base.GetAllCore<T>(queryParameters);
 
-            logDownloadMessage<T>();
+			logDownloadMessage<T>();
 
-            return result;
-        }
+			return result;
+		}
 
-        private void logDownloadMessage<T>()
-        {
-            _logMessage($"Downloaded {typeof(T).Name}");
-        }
-    }
+		private void logDownloadMessage<T>()
+		{
+			_progressUpdate.Report(new ProgressUpdate { Message = $"Downloaded {typeof(T).Name}" });
+		}
+	}
 }

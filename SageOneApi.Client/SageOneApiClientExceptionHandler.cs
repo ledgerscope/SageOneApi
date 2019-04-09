@@ -8,17 +8,18 @@ using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
+using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
 {
     internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
-        private readonly Action<string> _logMessage;
+        private readonly IProgress<ProgressUpdate> _progressUpdate;
         private const int _retryLimit = 3;
 
-        public SageOneApiClientExceptionHandler(Action<string> logMessage, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
+        public SageOneApiClientExceptionHandler(IProgress<ProgressUpdate> progressUpdate, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
         {
-            _logMessage = logMessage;
+            _progressUpdate = progressUpdate;
         }
 
         public override T Get<T>(string id, Dictionary<string, string> queryParameters)
@@ -200,8 +201,8 @@ namespace SageOneApi.Client
                 {
                     var responseTxt = streamReader.ReadToEnd();
 
-                    responseAction(responseTxt);
-                }
+					responseAction(responseTxt);
+				}
             }
         }
     }

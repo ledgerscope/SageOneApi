@@ -11,7 +11,7 @@
     <AssemblyName>SageOneApi.Client</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-	<Deterministic>true</Deterministic>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-	<WarningsAsErrors>4014</WarningsAsErrors>
+    <WarningsAsErrors>4014</WarningsAsErrors>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-	<WarningsAsErrors>4014</WarningsAsErrors>
+    <WarningsAsErrors>4014</WarningsAsErrors>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -119,6 +119,7 @@
     <Compile Include="SageOneApiClientBaseHandler.cs" />
     <Compile Include="SageOneApiClientExceptionHandler.cs" />
     <Compile Include="SageOneApiClientPagingHandler.cs" />
+    <Compile Include="Utils\ProgressUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

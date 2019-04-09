@@ -2,6 +2,7 @@
 using SageOneApi.Client.Models.Core;
 using System;
 using System.Collections.Generic;
+using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
 {
@@ -15,16 +16,15 @@ namespace SageOneApi.Client
             string subscriptionId,
             string resourceOwnerId,
             Func<string> renewRefreshAndAccessToken, 
-            Action<string> logMessage = null,
+            IProgress<ProgressUpdate> progressUpdate = null,
             SageOneApiClientConfig sageOneApiClientConfig = null)
         {
-            logMessage = logMessage ?? (_ => { }); // nullLogMessage 
             sageOneApiClientConfig = sageOneApiClientConfig ?? SageOneApiClientConfig.Default;
 
             _sageOneApiClientHandler =
-                new SageOneApiClientLoggingHandler(logMessage, sageOneApiClientConfig,
-                   new SageOneApiClientPagingHandler(logMessage, sageOneApiClientConfig,
-                       new SageOneApiClientExceptionHandler(logMessage, sageOneApiClientConfig,
+                new SageOneApiClientLoggingHandler(progressUpdate, sageOneApiClientConfig,
+                   new SageOneApiClientPagingHandler(progressUpdate, sageOneApiClientConfig,
+                       new SageOneApiClientExceptionHandler(progressUpdate, sageOneApiClientConfig,
                            new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig))));
         }
 
