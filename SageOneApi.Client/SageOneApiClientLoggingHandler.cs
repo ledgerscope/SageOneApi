@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
@@ -13,27 +15,27 @@ namespace SageOneApi.Client
 			_progressUpdate = progressUpdate;
 		}
 
-		public override T GetSingle<T>(Dictionary<string, string> queryParameters)
+		public override async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
-			var result = base.GetSingle<T>(queryParameters);
+			var result = await base.GetSingle<T>(queryParameters, cancellationToken);
 
 			logDownloadMessage<T>();
 
 			return result;
 		}
 
-		public override T GetCore<T>(Dictionary<string, string> queryParameters)
+		public override async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
-			var result = base.GetCore<T>(queryParameters);
+			var result = await base.GetCore<T>(queryParameters, cancellationToken);
 
 			logDownloadMessage<T>();
 
 			return result;
 		}
 
-		public override IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters)
+		public override async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
-			var result = base.GetAllCore<T>(queryParameters);
+			var result = await base.GetAllCore<T>(queryParameters, cancellationToken);
 
 			logDownloadMessage<T>();
 

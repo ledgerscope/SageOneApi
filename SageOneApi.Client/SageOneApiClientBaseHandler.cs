@@ -2,6 +2,8 @@
 using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SageOneApi.Client
 {
@@ -16,34 +18,34 @@ namespace SageOneApi.Client
             _config = config;
         }
 
-        public virtual T Get<T>(string id, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public virtual async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
         {
-            return _apiClient.Get<T>(id, queryParameters);
+            return await _apiClient.Get<T>(id, queryParameters, cancellationToken);
         }
 
-        public virtual IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public virtual async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
         {
-            return _apiClient.GetAll<T>(queryParameters);
+            return await _apiClient.GetAll<T>(queryParameters, cancellationToken);
         }
 
-        public virtual IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
+        public virtual async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneCoreEntity
         {
-            return _apiClient.GetAllCore<T>(queryParameters);
+            return await _apiClient.GetAllCore<T>(queryParameters, cancellationToken);
         }
 
-        public virtual GetAllResponse<T> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public virtual async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
         {
-            return _apiClient.GetAllFromPage<T>(pageNumber, queryParameters);
+            return await _apiClient.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
         }
 
-        public virtual T GetCore<T>(Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
+        public virtual async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneCoreEntity
         {
-            return _apiClient.GetCore<T>(queryParameters);
+            return await _apiClient.GetCore<T>(queryParameters, cancellationToken);
         }
 
-        public virtual T GetSingle<T>(Dictionary<string, string> queryParameters) where T : SageOneSingleAccountingEntity
+        public virtual async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneSingleAccountingEntity
         {
-            return _apiClient.GetSingle<T>(queryParameters);
+            return await _apiClient.GetSingle<T>(queryParameters, cancellationToken);
         }
 
         public virtual void RenewRefreshAndAccessToken()

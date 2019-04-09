@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using SageOneApi.Client.Constants;
 using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
@@ -22,98 +23,98 @@ namespace SageOneApi.Client
             _progressUpdate = progressUpdate;
         }
 
-        public override T Get<T>(string id, Dictionary<string, string> queryParameters)
+        public override async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return get<T>(id, queryParameters);
+            return await get<T>(id, queryParameters, cancellationToken);
         }
 
-        public override T GetSingle<T>(Dictionary<string, string> queryParameters)
+        public override async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return getSingle<T>(queryParameters);
+            return await getSingle<T>(queryParameters, cancellationToken);
         }
 
-        public override T GetCore<T>(Dictionary<string, string> queryParameters)
+        public override async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return getCore<T>(queryParameters);
+            return await getCore<T>(queryParameters, cancellationToken);
         }
 
-        public override IEnumerable<T> GetAllCore<T>(Dictionary<string, string> queryParameters)
+        public override async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return getAllCore<T>(queryParameters);
+            return await getAllCore<T>(queryParameters, cancellationToken);
         }
 
-        public override GetAllResponse<T> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters)
+        public override async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return getAllSummary<T>(pageNumber, queryParameters);
+            return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
         }
 
-        private T get<T>(string id, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneAccountingEntity
+        private async Task<T> get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
         {
             try
             {
-                return base.Get<T>(id, queryParameters);
+                return await base.Get<T>(id, queryParameters, cancellationToken);
             }
             catch (WebException ex)
             {
                 retryNumber++;
 
-                return handleKnownExceptions(ex, () => get<T>(id, queryParameters, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => get<T>(id, queryParameters, cancellationToken, retryNumber), retryNumber);
             }
         }
 
-        private T getSingle<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneSingleAccountingEntity
+        private async Task<T> getSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneSingleAccountingEntity
         {
             try
             {
-                return base.GetSingle<T>(queryParameters);
+                return await base.GetSingle<T>(queryParameters, cancellationToken);
             }
             catch (WebException ex)
             {
                 retryNumber++;
 
-                return handleKnownExceptions(ex, () => getSingle<T>(queryParameters, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getSingle<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
             }
         }
 
-        private T getCore<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneCoreEntity
+        private async Task<T> getCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneCoreEntity
         {
             try
             {
-                return base.GetCore<T>(queryParameters);
+                return await base.GetCore<T>(queryParameters, cancellationToken);
             }
             catch (WebException ex)
             {
                 retryNumber++;
 
-                return handleKnownExceptions(ex, () => getCore<T>(queryParameters, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
             }
         }
 
-        private IEnumerable<T> getAllCore<T>(Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneCoreEntity
+        private async Task<IEnumerable<T>> getAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneCoreEntity
         {
             try
             {
-                return base.GetAllCore<T>(queryParameters);
+                return await base.GetAllCore<T>(queryParameters, cancellationToken);
             }
             catch (WebException ex)
             {
                 retryNumber++;
 
-                return handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
             }
         }
 
-        private GetAllResponse<T> getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, int retryNumber = 0) where T : SageOneAccountingEntity
+        private async Task<GetAllResponse<T>> getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
         {
             try
             {
-                return base.GetAllFromPage<T>(pageNumber, queryParameters);
+                return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
             }
             catch (WebException ex)
             {
                 retryNumber++;
 
-                return handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, cancellationToken, retryNumber), retryNumber);
             }
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
@@ -14,7 +16,7 @@ namespace SageOneApi.Client
             _progressUpdate = progressUpdate;
         }
 
-        public override IEnumerable<T> GetAll<T>(Dictionary<string, string> queryParameters) 
+        public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) 
         {
             var pageNumber = 1;
             var itemsDownloaded = 0;
@@ -23,7 +25,7 @@ namespace SageOneApi.Client
 
             while (isDownloadRequired)
             {
-                var summaryResponse = base.GetAllFromPage<T>(pageNumber++, queryParameters);
+                var summaryResponse = await base.GetAllFromPage<T>(pageNumber++, queryParameters, cancellationToken);
 
                 entities.AddRange(summaryResponse.Items);
 
