@@ -133,18 +133,19 @@ namespace SageOneApi.Client
 
 		private async Task<string> getResponse(Uri uri, CancellationToken cancellationToken)
 		{
-			string responseData;
+			string responseContent;
 			var message = buildGetRequestMessage(uri);
 
 			using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
 			{
-				if(!response.IsSuccessStatusCode)
-					throw new SageOneApiRequestFailedException(response);
+				responseContent = await response.Content.ReadAsStringAsync();
 
-				responseData = await response.Content.ReadAsStringAsync();
+				if (!response.IsSuccessStatusCode)
+					throw new SageOneApiRequestFailedException(response, responseContent);
+		
 			}
 
-			return responseData;
+			return responseContent;
 		}
 
 		private Uri createWebRequestUriForAllEntities<T>(int pageNumber, int pageSize,

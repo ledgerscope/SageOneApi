@@ -158,11 +158,11 @@ namespace SageOneApi.Client
 				}
 				else if (retryNumber >= _retryLimit)
 				{
-					await respondToExceptionMessage(ex, (responseTxt) => throw new ApiException(responseTxt, ex));
+					respondToExceptionMessage(ex, (responseTxt) => throw new ApiException(responseTxt, ex));
 				}
 				else if (response.StatusCode == HttpStatusCode.Unauthorized)
 				{
-					await respondToExceptionMessage(ex, (responseTxt) =>
+					respondToExceptionMessage(ex, (responseTxt) =>
 					{
 						if (responseTxt.Contains(ApiMessage.NoActiveSubscription))
 						{
@@ -192,10 +192,9 @@ namespace SageOneApi.Client
 			throw ex;
 		}
 
-		private async Task respondToExceptionMessage(SageOneApiRequestFailedException ex, Action<string> responseAction)
+		private void respondToExceptionMessage(SageOneApiRequestFailedException ex, Action<string> responseAction)
 		{
-			var responseText = await ex.Response.Content.ReadAsStringAsync();
-			responseAction(responseText);
+			responseAction(ex.ResponseContent);
 		}
 	}
 }
