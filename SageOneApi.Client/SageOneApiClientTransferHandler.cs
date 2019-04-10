@@ -12,6 +12,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
@@ -137,6 +138,9 @@ namespace SageOneApi.Client
 
 			using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
 			{
+				if(!response.IsSuccessStatusCode)
+					throw new SageOneApiRequestFailedException(response);
+
 				responseData = await response.Content.ReadAsStringAsync();
 			}
 

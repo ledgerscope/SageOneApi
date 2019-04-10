@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ContactTypeIds.cs" />
+    <Compile Include="Exceptions\SageOneApiRequestFailedException.cs" />
     <Compile Include="Models\BankReconciliation.cs" />
     <Compile Include="Constants\ApiMessage.cs" />
     <Compile Include="Constants\ArtefactStatus.cs" />
