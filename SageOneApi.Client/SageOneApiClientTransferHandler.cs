@@ -119,7 +119,7 @@ namespace SageOneApi.Client
 
 		private HttpRequestMessage buildGetRequestMessage(Uri uri)
 		{
-			var requestMessage = new HttpRequestMessage { Method = HttpMethod.Get };
+			var requestMessage = new HttpRequestMessage { Method = HttpMethod.Get, RequestUri = uri};
 
 			requestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
