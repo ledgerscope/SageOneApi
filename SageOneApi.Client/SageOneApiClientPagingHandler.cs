@@ -16,12 +16,12 @@ namespace SageOneApi.Client
             _progressUpdate = progressUpdate;
         }
 
-        public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) 
+        public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
             var pageNumber = 1;
             var itemsDownloaded = 0;
             var isDownloadRequired = true;
-            var entities = new List<T>(); 
+            var entities = new List<T>();
 
             while (isDownloadRequired)
             {
@@ -31,8 +31,10 @@ namespace SageOneApi.Client
 
                 itemsDownloaded += summaryResponse.Items.Length;
 
-                _progressUpdate.Report(new ProgressUpdate
-	                {Message = $"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records"});
+                _progressUpdate.Report(new ProgressUpdate(
+                    $"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records",
+                    itemsDownloaded,
+                    summaryResponse.Total));
 
                 isDownloadRequired = summaryResponse.Next != null;
             }

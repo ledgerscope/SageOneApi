@@ -44,7 +44,7 @@ namespace SageOneApi.Client
 
 		private void logDownloadMessage<T>()
 		{
-			_progressUpdate.Report(new ProgressUpdate { Message = $"Downloaded {typeof(T).Name}" });
+			_progressUpdate.Report(new ProgressUpdate($"Downloaded {typeof(T).Name}"));
 		}
 	}
 }
