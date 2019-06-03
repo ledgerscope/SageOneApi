@@ -142,7 +142,6 @@ namespace SageOneApi.Client
 
 				if (!response.IsSuccessStatusCode)
 					throw new SageOneApiRequestFailedException(response, responseContent);
-		
 			}
 
 			return responseContent;
