@@ -12,7 +12,9 @@ namespace SageOneApi.Client
 	{
 		private ISageOneApiClientHandler _sageOneApiClientHandler;
 
-		public SageOneApiClient(
+        public IProgress<ProgressUpdate> ProgressUpdate { get; set; }
+
+        public SageOneApiClient(
 			Uri baseUri,
 			string accessToken,
 			string subscriptionId,
@@ -23,10 +25,16 @@ namespace SageOneApi.Client
 		{
 			sageOneApiClientConfig = sageOneApiClientConfig ?? SageOneApiClientConfig.Default;
 
+            var progressUpdater = new Progress<ProgressUpdate>((a) =>
+            {
+                ProgressUpdate?.Report(a);
+                progressUpdate?.Report(a);
+            });
+
 			_sageOneApiClientHandler =
-				new SageOneApiClientLoggingHandler(progressUpdate, sageOneApiClientConfig,
-				   new SageOneApiClientPagingHandler(progressUpdate, sageOneApiClientConfig,
-					   new SageOneApiClientExceptionHandler(progressUpdate, sageOneApiClientConfig,
+				new SageOneApiClientLoggingHandler(progressUpdater, sageOneApiClientConfig,
+				   new SageOneApiClientPagingHandler(progressUpdater, sageOneApiClientConfig,
+					   new SageOneApiClientExceptionHandler(progressUpdater, sageOneApiClientConfig,
 						   new SageOneApiClientTransferHandler(baseUri, accessToken, subscriptionId, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig))));
 		}
 
