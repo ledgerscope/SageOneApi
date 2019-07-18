@@ -34,7 +34,8 @@ namespace SageOneApi.Client
                 _progressUpdate.Report(new ProgressUpdate(
                     $"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records",
                     itemsDownloaded,
-                    summaryResponse.Total));
+                    summaryResponse.Total,
+                    typeof(T).Name));
 
                 isDownloadRequired = summaryResponse.Next != null;
             }
