@@ -10,11 +10,11 @@ namespace SageOneApi.Client
 {
     public interface ISageOneApiClient
     {
-        Task<T> Get<T>(string id, CancellationToken cancellationToken, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity;
-        Task<T> GetSingle<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters = null) where T : SageOneSingleAccountingEntity;
-        Task<T> GetCore<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity;
-        Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity;
-        Task<IEnumerable<T>> GetAllCore<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity;
+        Task<T> Get<T>(string id, CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity;
+        Task<T> GetSingle<T>(CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneSingleAccountingEntity;
+        Task<T> GetCore<T>(CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity;
+        Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity;
+        Task<IEnumerable<T>> GetAllCore<T>(CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity;
 
         IProgress<ProgressUpdate> ProgressUpdate { get; set; }
     }
