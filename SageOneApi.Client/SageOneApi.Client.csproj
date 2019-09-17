@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Ledgerscope</Authors>
+    <Company>Ledgerscope</Company>
+    <Product />
+    <Description>Wrapper for Sage Business Cloud Accounting API</Description>
   </PropertyGroup>
 
   <ItemGroup>
