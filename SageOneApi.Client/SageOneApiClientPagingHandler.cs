@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using SageOneApi.Client.Exceptions;
+using SageOneApi.Client.Responses;
 using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
@@ -25,9 +28,48 @@ namespace SageOneApi.Client
 
             while (isDownloadRequired)
             {
-                var summaryResponse = await base.GetAllFromPage<T>(pageNumber++, queryParameters, cancellationToken);
+                GetAllResponse<T> summaryResponse = null;
 
-                entities.AddRange(summaryResponse.Items);
+                try
+                {
+                    summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+
+                    entities.AddRange(summaryResponse.Items);
+                }
+                catch (SageOneApiRequestFailedException ex)
+                {
+                    if (ex.Response.StatusCode != HttpStatusCode.InternalServerError) throw;
+                    if (!queryParameters.ContainsKey("attributes")) throw;
+
+                    queryParameters.Remove("attributes");
+
+                    summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+
+                    queryParameters.Add("attributes", "all");
+
+                    foreach (var item in summaryResponse.Items)
+                    {
+                        T fullItem = null;
+
+                        try
+                        {
+                            fullItem = await base.Get<T>(item.Id, queryParameters, cancellationToken);
+                        }
+                        catch (SageOneApiRequestFailedException ex1)
+                        {
+                            if (ex1.Response.StatusCode == HttpStatusCode.InternalServerError)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                throw;
+                            }
+                        }
+
+                        entities.Add(fullItem);
+                    }
+                }
 
                 itemsDownloaded += summaryResponse.Items.Length;
 
@@ -38,6 +80,8 @@ namespace SageOneApi.Client
                     typeof(T).Name));
 
                 isDownloadRequired = summaryResponse.Next != null;
+
+                pageNumber++;
             }
 
             return entities;
