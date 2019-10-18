@@ -35,6 +35,8 @@ namespace SageOneApi.Client
                     summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
 
                     entities.AddRange(summaryResponse.Items);
+
+                    itemsDownloaded += summaryResponse.Items.Length;
                 }
                 catch (SageOneApiRequestFailedException ex)
                 {
@@ -54,11 +56,15 @@ namespace SageOneApi.Client
                         try
                         {
                             fullItem = await base.Get<T>(item.Id, queryParameters, cancellationToken);
+
+                            itemsDownloaded++;
                         }
                         catch (SageOneApiRequestFailedException ex1)
                         {
                             if (ex1.Response.StatusCode == HttpStatusCode.InternalServerError)
                             {
+                                _progressUpdate.Report(new ProgressUpdate($"Failed to download {typeof(T).Name} record ({item.Id})"));
+
                                 continue;
                             }
                             else
@@ -70,8 +76,6 @@ namespace SageOneApi.Client
                         entities.Add(fullItem);
                     }
                 }
-
-                itemsDownloaded += summaryResponse.Items.Length;
 
                 _progressUpdate.Report(new ProgressUpdate(
                     $"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records",
