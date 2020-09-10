@@ -15,7 +15,7 @@ namespace SageOneApi.Client.Models
 		[JsonProperty("delivery_performance_date")]
 		public DateTime? DeliveryPerformanceDate { get; set; }
 		[JsonProperty("withholding_tax_rate")]
-		public TaxRate WithholdingTaxRate { get; set; }
+		public double? WithholdingTaxRate { get; set; }
 		[JsonProperty("withholding_tax_amount")]
 		public decimal? WithholdingTaxAmount { get; set; }
 		[JsonProperty("base_currency_withholding_tax_amount")]
