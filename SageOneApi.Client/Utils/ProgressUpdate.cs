@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SageOneApi.Client.Utils
+﻿namespace SageOneApi.Client.Utils
 {
-	public class ProgressUpdate
-	{
+    public class ProgressUpdate
+    {
         public ProgressUpdate(string message)
         {
             Message = message;
@@ -20,9 +14,9 @@ namespace SageOneApi.Client.Utils
             Entity = entity;
         }
 
-		public string Message { get; }
-		public int Progress { get; }
-		public int TotalCount { get; }
+        public string Message { get; }
+        public int Progress { get; }
+        public int TotalCount { get; }
         public string Entity { get; }
     }
 }
