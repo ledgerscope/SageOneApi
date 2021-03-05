@@ -29,7 +29,7 @@ namespace SageOneApi.Client.Models
 		[JsonProperty("net_amount")]
 		public decimal? NetAmount { get; set; }
 		[JsonProperty("tax_amount")]
-		public decimal TaxAmount { get; set; }
+		public decimal? TaxAmount { get; set; }
 		[JsonProperty("total_amount")]
 		public decimal TotalAmount { get; set; }
 		[JsonProperty("payments_allocations_total_amount")]
