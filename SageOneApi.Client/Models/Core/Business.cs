@@ -2,8 +2,8 @@
 
 namespace SageOneApi.Client.Models.Core
 {
-    public class Business : SageOneCoreEntity
-    {
+    public class Business : SageOneAccountingEntity
+	{
 		[JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("address_line_1")]

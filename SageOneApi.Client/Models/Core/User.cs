@@ -6,7 +6,7 @@ namespace SageOneApi.Client.Models.Core
     {
 	    [JsonProperty("first_name")]
 		public string FirstName { get; set; }
-		[JsonProperty("lasst_name")]
+		[JsonProperty("last_name")]
 		public string LasstName { get; set; }
 		[JsonProperty("initials")]
 		public string Initials { get; set; }
