@@ -2,11 +2,13 @@
 {
     public class SageOneApiClientConfig
     {
-        public int PageSize { get; set; }
+        public int PageSize { get; }
 
-        public static SageOneApiClientConfig Default => new SageOneApiClientConfig()
+        public SageOneApiClientConfig(int pageSize = 50)
         {
-            PageSize = 100,
-        };
+            PageSize = pageSize;
+        }
+
+        public static SageOneApiClientConfig Default => new SageOneApiClientConfig();
     }
 }
