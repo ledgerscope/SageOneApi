@@ -15,40 +15,37 @@ namespace SageOneApi.Client
 {
     internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
     {
-        private readonly IProgress<ProgressUpdate> _progressUpdate;
         private const int _retryLimit = 3;
 
         public SageOneApiClientExceptionHandler(
-            IProgress<ProgressUpdate> progressUpdate,
             SageOneApiClientConfig config,
             ISageOneApiClientHandler apiClient) : base(apiClient, config)
         {
-            _progressUpdate = progressUpdate;
         }
 
-        public override async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        public override Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await get<T>(id, queryParameters, cancellationToken);
+            return get<T>(id, queryParameters, cancellationToken);
         }
 
-        public override async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        public override Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getSingle<T>(queryParameters, cancellationToken);
+            return getSingle<T>(queryParameters, cancellationToken);
         }
 
-        public override async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        public override Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getCore<T>(queryParameters, cancellationToken);
+            return getCore<T>(queryParameters, cancellationToken);
         }
 
-        public override async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        public override Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getAllCore<T>(queryParameters, cancellationToken);
+            return getAllCore<T>(queryParameters, cancellationToken);
         }
 
-        public override async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        public override Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
+            return getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
         }
 
         private async Task<T> get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
