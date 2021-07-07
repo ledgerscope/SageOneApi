@@ -56,5 +56,9 @@ namespace SageOneApi.Client.Models
 		public TaxTreatment TaxTreatment { get; set; }
 		[JsonProperty("gdpr_obfuscated")]
 		public bool GdprObfuscated { get; set; }
-    }
+		[JsonProperty("balance")]
+        public decimal? Balance { get; set; }
+		[JsonProperty("balance_details")]
+		public BalanceDetails BalanceDetails { get; set; }
+	}
 }
