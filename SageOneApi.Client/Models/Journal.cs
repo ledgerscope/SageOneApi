@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class Journal : SageOneAccountingEntity
-    {
+	public class Journal : SageOneAccountingEntity
+	{
 		[JsonProperty("transaction")]
-        public PropertyValueWithPath Transaction { get; set; }
-        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath Transaction { get; set; }
+		[JsonProperty("transaction_type")]
 		public PropertyValueWithPath TransactionType { get; set; }
 		[JsonProperty("date")]
 		public DateTime Date { get; set; }

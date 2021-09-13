@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class FinancialSettings : SageOneSingleAccountingEntity
-    {
-        [JsonProperty("$path")]
-        public string Path { get; set; }
-        [JsonProperty("year_end_date")]
+	public class FinancialSettings : SageOneSingleAccountingEntity
+	{
+		[JsonProperty("$path")]
+		public string Path { get; set; }
+		[JsonProperty("year_end_date")]
 		public string YearEndDate { get; set; }
 		[JsonProperty("year_end_lockdown_date")]
 		public string YearEndLockdownDate { get; set; }
@@ -19,19 +19,19 @@ namespace SageOneApi.Client.Models
 		public bool MultiCurrencyEnabled { get; set; }
 		[JsonProperty("use_live_exchange_rates")]
 		public bool UseLiveExchangeRates { get; set; }
-        [JsonProperty("base_currency_id")]
-        public string BaseCurrencyId { get; set; }
+		[JsonProperty("base_currency_id")]
+		public string BaseCurrencyId { get; set; }
 		[JsonProperty("tax_scheme")]
 		public PropertyValueWithPath TaxScheme { get; set; }
 		[JsonProperty("tax_return_frequency")]
 		public PropertyValueWithPath TaxReturnFrequency { get; set; }
-        [JsonProperty("mtd_activation_status")]
-        public string MtdActivationStatus { get; set; }
-        [JsonProperty("mtd_connected")]
-        public bool MtdConnected { get; set; }
-        [JsonProperty("mtd_authenticated_date")]
-        public DateTime? MtdAuthenticatedDate { get; set; }
-        [JsonProperty("tax_number")]
+		[JsonProperty("mtd_activation_status")]
+		public string MtdActivationStatus { get; set; }
+		[JsonProperty("mtd_connected")]
+		public bool MtdConnected { get; set; }
+		[JsonProperty("mtd_authenticated_date")]
+		public DateTime? MtdAuthenticatedDate { get; set; }
+		[JsonProperty("tax_number")]
 		public string TaxNumber { get; set; }
 		[JsonProperty("general_tax_number")]
 		public string GeneralTaxNumber { get; set; }
@@ -45,5 +45,5 @@ namespace SageOneApi.Client.Models
 		public object SalesTaxCalculation { get; set; }
 		[JsonProperty("purchase_tax_calculation")]
 		public object PurchaseTaxCalculation { get; set; }
-    }
+	}
 }

@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class ContactPerson : SageOneAccountingEntity
-    {
+	public class ContactPerson : SageOneAccountingEntity
+	{
 		[JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("job_title")]
+		public string Name { get; set; }
+		[JsonProperty("job_title")]
 		public string JobTitle { get; set; }
 		[JsonProperty("telephone")]
 		public string Telephone { get; set; }
@@ -29,5 +25,5 @@ namespace SageOneApi.Client.Models
 		public Address Address { get; set; }
 		[JsonProperty("deleted_at")]
 		public DateTime? DeletedAt { get; set; }
-    }
+	}
 }

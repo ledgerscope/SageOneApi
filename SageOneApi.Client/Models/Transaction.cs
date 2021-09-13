@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class Transaction : SageOneAccountingEntity
-    {
+	public class Transaction : SageOneAccountingEntity
+	{
 		[JsonProperty("transaction")]
-        public PropertyValueWithPath TransactionPath { get; set; }
-        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath TransactionPath { get; set; }
+		[JsonProperty("transaction_type")]
 		public PropertyValueWithPath TransactionType { get; set; }
 		[JsonProperty("date")]
 		public DateTime Date { get; set; }
@@ -25,5 +25,5 @@ namespace SageOneApi.Client.Models
 		public string AuditTrailId { get; set; }
 		[JsonProperty("number_of_attachments")]
 		public int NumberOfAttachments { get; set; }
-    }
+	}
 }

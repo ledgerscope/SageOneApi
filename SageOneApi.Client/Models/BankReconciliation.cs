@@ -2,11 +2,11 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class BankReconciliation : SageOneAccountingEntity
-    {
+	public class BankReconciliation : SageOneAccountingEntity
+	{
 		[JsonProperty("bank_account")]
-        public BankAccount BankAccount { get; set; }
-        [JsonProperty("statement_date")]
+		public BankAccount BankAccount { get; set; }
+		[JsonProperty("statement_date")]
 		public string StatementDate { get; set; }
 		[JsonProperty("statement_end_balance")]
 		public string StatementEndBalance { get; set; }
@@ -16,7 +16,7 @@ namespace SageOneApi.Client.Models
 		public string TotalReceived { get; set; }
 		[JsonProperty("total_paid")]
 		public string TotalPaid { get; set; }
-        [JsonProperty("starting_balance")]
+		[JsonProperty("starting_balance")]
 		public string StartingBalance { get; set; }
 		[JsonProperty("closing_balance")]
 		public string ClosingBalance { get; set; }
@@ -26,5 +26,5 @@ namespace SageOneApi.Client.Models
 		public string BalanceDifference { get; set; }
 		[JsonProperty("status")]
 		public PropertyValue Status { get; set; }
-    }
+	}
 }

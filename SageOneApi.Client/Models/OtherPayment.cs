@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class OtherPayment : SageOneAccountingEntity
-    {
-	    [JsonProperty("transaction")]
+	public class OtherPayment : SageOneAccountingEntity
+	{
+		[JsonProperty("transaction")]
 		public PropertyValueWithPath Transaction { get; set; }
 		[JsonProperty("transaction_type")]
 		public PropertyValueWithPath TransactionType { get; set; }
@@ -38,5 +38,5 @@ namespace SageOneApi.Client.Models
 		public double? WithholdingTaxRate { get; set; }
 		[JsonProperty("withholding_tax_amount")]
 		public decimal? WithholdingTaxAmount { get; set; }
-    }
+	}
 }

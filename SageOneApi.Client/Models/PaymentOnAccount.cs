@@ -3,11 +3,11 @@ using System;
 
 namespace SageOneApi.Client.Models
 {
-    public class PaymentOnAccount
-    {
+	public class PaymentOnAccount
+	{
 		[JsonProperty("id")]
-        public string Id { get; set; }
-        [JsonProperty("displayed_as")]
+		public string Id { get; set; }
+		[JsonProperty("displayed_as")]
 		public string DisplayedAs { get; set; }
 		[JsonProperty("path")]
 		public string Path { get; set; }
@@ -35,13 +35,13 @@ namespace SageOneApi.Client.Models
 		public decimal ExchangeRate { get; set; }
 		[JsonProperty("base_currency_net_amount")]
 		public decimal BaseCurrencyNetAmount { get; set; }
-        [JsonProperty("base_currency_tax_amount")]
+		[JsonProperty("base_currency_tax_amount")]
 		public decimal BaseCurrencyTaxAmount { get; set; }
 		[JsonProperty("base_currency_total_amount")]
 		public decimal BaseCurrencyTotalAmount { get; set; }
-        [JsonProperty("base_currency_outstanding_amount")]
+		[JsonProperty("base_currency_outstanding_amount")]
 		public decimal BaseCurrencyOutstandingAmount { get; set; }
 		[JsonProperty("status")]
 		public PropertyValueWithPath Status { get; set; }
-    }
+	}
 }

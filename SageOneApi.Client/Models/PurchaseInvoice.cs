@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class PurchaseInvoice : PurchaseTransaction
-    {
-	    [JsonProperty("due_date")]
+	public class PurchaseInvoice : PurchaseTransaction
+	{
+		[JsonProperty("due_date")]
 		public DateTime DueDate { get; set; }
 		[JsonProperty("invoice_lines")]
 		public List<PurchaseTransactionLine> InvoiceLines { get; set; }
@@ -16,5 +16,5 @@ namespace SageOneApi.Client.Models
 		public decimal? WithholdingTaxAmount { get; set; }
 		[JsonProperty("base_currency_withholding_tax_amount")]
 		public decimal? BaseCurrencyWithholdingTaxAmount { get; set; }
-    }
+	}
 }

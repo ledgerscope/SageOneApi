@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class ControlTransaction : SageOneAccountingEntity
-    {
+	public abstract class ControlTransaction : SageOneAccountingEntity
+	{
 		[JsonProperty("transaction")]
-        public PropertyValueWithPath Transaction { get; set; }
-        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath Transaction { get; set; }
+		[JsonProperty("transaction_type")]
 		public PropertyValueWithPath TransactionType { get; set; }
 		[JsonProperty("links")]
 		public List<Link> Links { get; set; }
@@ -70,5 +70,5 @@ namespace SageOneApi.Client.Models
 		public bool Migrated { get; set; }
 		[JsonProperty("tax_calculation_method")]
 		public string TaxCalculationMethod { get; set; }
-    }
+	}
 }

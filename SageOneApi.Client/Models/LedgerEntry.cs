@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class LedgerEntry : SageOneAccountingEntity
-    {
-	    [JsonProperty("transaction")]
+	public class LedgerEntry : SageOneAccountingEntity
+	{
+		[JsonProperty("transaction")]
 		public Transaction Transaction { get; set; }
 		[JsonProperty("transaction_type")]
 		public PropertyValueWithPath TransactionType { get; set; }
@@ -25,5 +25,5 @@ namespace SageOneApi.Client.Models
 		public Contact Contact { get; set; }
 		[JsonProperty("deleted")]
 		public bool Deleted { get; set; }
-    }
+	}
 }

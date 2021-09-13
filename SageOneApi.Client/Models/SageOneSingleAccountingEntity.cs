@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class SageOneSingleAccountingEntity
-    {
-    }
+	/// <summary>Accounting data item.</summary>
+	/// <remarks>See also <seealso cref="Core.SageOneCoreEntity"/>, which is on a different URL endpoint.</remarks>
+	public abstract class SageOneSingleAccountingEntity
+	{
+	}
 }

@@ -3,11 +3,11 @@ using System;
 
 namespace SageOneApi.Client.Models
 {
-    public class BankTransfer : SageOneAccountingEntity
-    {
+	public class BankTransfer : SageOneAccountingEntity
+	{
 		[JsonProperty("transaction")]
-        public PropertyValueWithPath Transaction { get; set; }
-        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath Transaction { get; set; }
+		[JsonProperty("transaction_type")]
 		public PropertyValueWithPath TransactionType { get; set; }
 		[JsonProperty("from_bank_account")]
 		public BankAccount FromBankAccount { get; set; }
@@ -21,5 +21,5 @@ namespace SageOneApi.Client.Models
 		public decimal Amount { get; set; }
 		[JsonProperty("description")]
 		public string Description { get; set; }
-    }
+	}
 }

@@ -17,9 +17,9 @@ namespace SageOneApi.Client
 {
 	internal class SageOneApiClientTransferHandler : ISageOneApiClientHandler
 	{
-        private readonly Uri _baseUri;
+		private readonly Uri _baseUri;
 		private string _accessToken;
-        private readonly string _resourceOwnerId;
+		private readonly string _resourceOwnerId;
 		private readonly Func<string> _renewRefreshAndAccessToken;
 		private readonly SageOneApiClientConfig _config;
 
@@ -204,28 +204,28 @@ namespace SageOneApi.Client
 			throw new ArgumentException($"Working with entity '{type.Name}' is currently unsupported");
 		}
 
-        private static readonly Dictionary<Type, string> targetEntityPathByType = new Dictionary<Type, string>()
+		private static readonly Dictionary<Type, string> targetEntityPathByType = new Dictionary<Type, string>()
 		{
 			{ typeof(Contact), "contacts" },
-            { typeof(LedgerAccount), "ledger_accounts" },
-            { typeof(LedgerEntry), "ledger_entries" },
-            { typeof(SalesInvoice) , "sales_invoices" },
-            { typeof(SalesQuickEntry) , "sales_quick_entries" },
-            { typeof(SalesCreditNote) , "sales_credit_notes" },
-            { typeof(ContactPayment) , "contact_payments" },
-            { typeof(PurchaseInvoice) , "purchase_invoices" },
-            { typeof(PurchaseQuickEntry) , "purchase_quick_entries" },
-            { typeof(PurchaseCreditNote) , "purchase_credit_notes" },
-            { typeof(OtherPayment) , "other_payments" },
-            { typeof(BankTransfer) , "bank_transfers" },
-            { typeof(Journal) , "journals" },
-            { typeof(ContactAllocation) , "contact_allocations" },
-            { typeof(TaxRate) , "tax_rates" },
+			{ typeof(LedgerAccount), "ledger_accounts" },
+			{ typeof(LedgerEntry), "ledger_entries" },
+			{ typeof(SalesInvoice) , "sales_invoices" },
+			{ typeof(SalesQuickEntry) , "sales_quick_entries" },
+			{ typeof(SalesCreditNote) , "sales_credit_notes" },
+			{ typeof(ContactPayment) , "contact_payments" },
+			{ typeof(PurchaseInvoice) , "purchase_invoices" },
+			{ typeof(PurchaseQuickEntry) , "purchase_quick_entries" },
+			{ typeof(PurchaseCreditNote) , "purchase_credit_notes" },
+			{ typeof(OtherPayment) , "other_payments" },
+			{ typeof(BankTransfer) , "bank_transfers" },
+			{ typeof(Journal) , "journals" },
+			{ typeof(ContactAllocation) , "contact_allocations" },
+			{ typeof(TaxRate) , "tax_rates" },
 			{ typeof(BankAccount) , "bank_accounts"},
-            { typeof(BusinessSettings) , "business_settings" },
-            { typeof(FinancialSettings) , "financial_settings" },
-            { typeof(Transaction) , "transactions" },
-            { typeof(BankReconciliation) , "bank_reconciliations" },
+			{ typeof(BusinessSettings) , "business_settings" },
+			{ typeof(FinancialSettings) , "financial_settings" },
+			{ typeof(Transaction) , "transactions" },
+			{ typeof(BankReconciliation) , "bank_reconciliations" },
 
 			{ typeof(Business), "businesses" },
 			{ typeof(Me), "me" },

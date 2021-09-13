@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class BalanceDetails
-    {
+	public class BalanceDetails
+	{
 		[JsonProperty("balance")]
-        public decimal Balance { get; set; }
-        [JsonProperty("credit_or_debit")]
+		public decimal Balance { get; set; }
+		[JsonProperty("credit_or_debit")]
 		public string CreditOrDebit { get; set; }
 		[JsonProperty("credits")]
 		public decimal Credits { get; set; }
@@ -21,5 +21,5 @@ namespace SageOneApi.Client.Models
 		public string FromDate { get; set; }
 		[JsonProperty("to_date")]
 		public string ToDate { get; set; }
-    }
+	}
 }

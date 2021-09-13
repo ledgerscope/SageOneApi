@@ -2,9 +2,9 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class LedgerAccount : SageOneAccountingEntity
-    {
-	    [JsonProperty("ledger_account_group")]
+	public class LedgerAccount : SageOneAccountingEntity
+	{
+		[JsonProperty("ledger_account_group")]
 		public PropertyValue LedgerAccountGroup { get; set; }
 		[JsonProperty("name")]
 		public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace SageOneApi.Client.Models
 		public string LedgerAccountClassification { get; set; }
 		[JsonProperty("tax_rate")]
 		public TaxRate TaxRate { get; set; }
-        [JsonProperty("fixed_tax_rate")]
+		[JsonProperty("fixed_tax_rate")]
 		public bool FixedTaxRate { get; set; }
 		[JsonProperty("visible_in_banking")]
 		public bool VisibleInBanking { get; set; }
@@ -40,9 +40,9 @@ namespace SageOneApi.Client.Models
 		public bool VisibleInSales { get; set; }
 		[JsonProperty("is_control_account")]
 		public bool IsControlAccount { get; set; }
-        [JsonProperty("control_name")]
+		[JsonProperty("control_name")]
 		public string ControlName { get; set; }
 		[JsonProperty("balance_details")]
 		public BalanceDetails BalanceDetails { get; set; }
-    }
+	}
 }

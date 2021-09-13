@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class TaxRate : SageOneAccountingEntity
-    {
+	public class TaxRate : SageOneAccountingEntity
+	{
 		[JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("agency")]
+		public string Name { get; set; }
+		[JsonProperty("agency")]
 		public string Agency { get; set; }
 		[JsonProperty("percentage")]
 		public decimal? Percentage { get; set; }
@@ -22,5 +22,5 @@ namespace SageOneApi.Client.Models
 		public bool Editable { get; set; }
 		[JsonProperty("deletable")]
 		public bool Deletable { get; set; }
-    }
+	}
 }

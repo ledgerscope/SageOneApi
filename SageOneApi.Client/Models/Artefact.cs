@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class Artefact : PropertyValueWithPath
-    {
+	public class Artefact : PropertyValueWithPath
+	{
 		[JsonProperty("links")]
-        public List<Link> Links { get; set; }
-    }
+		public List<Link> Links { get; set; }
+	}
 }

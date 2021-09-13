@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class QuickEntry : ControlTransaction
-    {
+	public abstract class QuickEntry : ControlTransaction
+	{
 		[JsonProperty("quick_entry_type")]
-        public PropertyValueWithPath QuickEntryType { get; set; }
-        [JsonProperty("ledger_account")]
+		public PropertyValueWithPath QuickEntryType { get; set; }
+		[JsonProperty("ledger_account")]
 		public LedgerAccount LedgerAccount { get; set; }
 		[JsonProperty("details")]
 		public string Details { get; set; }
@@ -19,5 +19,5 @@ namespace SageOneApi.Client.Models
 		public List<Tax> BaseCurrencyTaxBreakdown { get; set; }
 		[JsonProperty("trade_of_asset")]
 		public bool TradeOfAsset { get; set; }
-    }
+	}
 }

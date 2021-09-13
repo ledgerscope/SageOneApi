@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-    public class Contact : SageOneAccountingEntity
-    {
+	public class Contact : SageOneAccountingEntity
+	{
 		[JsonProperty("links")]
-        public List<Link> Links { get; set; }
-        [JsonProperty("contact_types")]
+		public List<Link> Links { get; set; }
+		[JsonProperty("contact_types")]
 		public List<PropertyValueWithPath> ContactTypes { get; set; }
 		[JsonProperty("name")]
 		public string Name { get; set; }
@@ -57,7 +57,7 @@ namespace SageOneApi.Client.Models
 		[JsonProperty("gdpr_obfuscated")]
 		public bool GdprObfuscated { get; set; }
 		[JsonProperty("balance")]
-        public decimal? Balance { get; set; }
+		public decimal? Balance { get; set; }
 		[JsonProperty("balance_details")]
 		public BalanceDetails BalanceDetails { get; set; }
 	}

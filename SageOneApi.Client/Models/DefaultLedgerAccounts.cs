@@ -2,9 +2,9 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class DefaultLedgerAccounts
-    {
-	    [JsonProperty("bank_charges_ledger_account")]
+	public class DefaultLedgerAccounts
+	{
+		[JsonProperty("bank_charges_ledger_account")]
 		public PropertyValueWithPath BankChargesLedgerAccount { get; set; }
 		[JsonProperty("bank_interest_charges_paid_ledger_account")]
 		public PropertyValueWithPath BankInterestChargesPaidLedgerAccount { get; set; }
@@ -38,5 +38,5 @@ namespace SageOneApi.Client.Models
 		public PropertyValueWithPath ServiceSalesLedgerAccount { get; set; }
 		[JsonProperty("vendor_payment_discount_ledger_account")]
 		public PropertyValueWithPath VendorPaymentDiscountLedgerAccount { get; set; }
-    }
+	}
 }

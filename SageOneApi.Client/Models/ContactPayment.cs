@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class ContactPayment : SageOneAccountingEntity
-    {
+	public class ContactPayment : SageOneAccountingEntity
+	{
 		[JsonProperty("transaction")]
-        public PropertyValueWithPath Transaction { get; set; }
-        [JsonProperty("transaction_type")]
+		public PropertyValueWithPath Transaction { get; set; }
+		[JsonProperty("transaction_type")]
 		public PropertyValueWithPath TransactionType { get; set; }
 		[JsonProperty("links")]
 		public List<Link> Links { get; set; }
@@ -32,7 +32,7 @@ namespace SageOneApi.Client.Models
 		public decimal ExchangeRate { get; set; }
 		[JsonProperty("base_currency_net_amount")]
 		public decimal BaseCurrencyNetAmount { get; set; }
-        [JsonProperty("base_currency_tax_amount")]
+		[JsonProperty("base_currency_tax_amount")]
 		public decimal BaseCurrencyTaxAmount { get; set; }
 		[JsonProperty("base_currency_total_amount")]
 		public decimal BaseCurrencyTotalAmount { get; set; }
@@ -42,9 +42,9 @@ namespace SageOneApi.Client.Models
 		public string Reference { get; set; }
 		[JsonProperty("allocated_artefacts")]
 		public List<AllocatedArtefact> AllocatedArtefacts { get; set; }
-        [JsonProperty("tax_rate")]
+		[JsonProperty("tax_rate")]
 		public TaxRate TaxRate { get; set; }
 		[JsonProperty("payment_on_account")]
 		public PaymentOnAccount PaymentOnAccount { get; set; }
-    }
+	}
 }

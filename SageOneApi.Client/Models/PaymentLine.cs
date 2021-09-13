@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public class PaymentLine
-    {
-	    [JsonProperty("id")]
+	public class PaymentLine
+	{
+		[JsonProperty("id")]
 		public string Id { get; set; }
 		[JsonProperty("displayed_as")]
 		public string DisplayedAs { get; set; }
@@ -25,5 +25,5 @@ namespace SageOneApi.Client.Models
 		public List<Tax> TaxBreakdown { get; set; }
 		[JsonProperty("is_purchase_for_resale")]
 		public bool IsPurchaseForResale { get; set; }
-    }
+	}
 }

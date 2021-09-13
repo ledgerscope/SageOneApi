@@ -10,11 +10,11 @@ namespace SageOneApi.Client
 {
 	public class SageOneApiClient : ISageOneApiClient
 	{
-        private readonly ISageOneApiClientHandler _sageOneApiClientHandler;
+		private readonly ISageOneApiClientHandler _sageOneApiClientHandler;
 
-        public IProgress<ProgressUpdate> ProgressUpdate { get; set; }
+		public IProgress<ProgressUpdate> ProgressUpdate { get; set; }
 
-        public SageOneApiClient(
+		public SageOneApiClient(
 			Uri baseUri,
 			string accessToken,
 			string resourceOwnerId,
@@ -24,11 +24,11 @@ namespace SageOneApi.Client
 		{
 			sageOneApiClientConfig = sageOneApiClientConfig ?? SageOneApiClientConfig.Default;
 
-            var progressUpdater = new Progress<ProgressUpdate>((a) =>
-            {
-                ProgressUpdate?.Report(a);
-                progressUpdate?.Report(a);
-            });
+			var progressUpdater = new Progress<ProgressUpdate>((a) =>
+			{
+				ProgressUpdate?.Report(a);
+				progressUpdate?.Report(a);
+			});
 
 			_sageOneApiClientHandler =
 				new SageOneApiClientLoggingHandler(progressUpdater, sageOneApiClientConfig,
@@ -48,9 +48,9 @@ namespace SageOneApi.Client
 		}
 
 		public Task<T> GetCore<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
-        {
-            return _sageOneApiClientHandler.GetCore<T>(queryParameters, cancellationToken);
-        }
+		{
+			return _sageOneApiClientHandler.GetCore<T>(queryParameters, cancellationToken);
+		}
 
 		public Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
 		{

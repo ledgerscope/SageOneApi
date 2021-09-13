@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,85 +9,85 @@ using SageOneApi.Client.Utils;
 
 namespace SageOneApi.Client
 {
-    internal class SageOneApiClientPagingHandler : SageOneApiClientBaseHandler
-    {
-        private readonly IProgress<ProgressUpdate> _progressUpdate;
+	internal class SageOneApiClientPagingHandler : SageOneApiClientBaseHandler
+	{
+		private readonly IProgress<ProgressUpdate> _progressUpdate;
 
-        public SageOneApiClientPagingHandler(IProgress<ProgressUpdate> progressUpdate, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
-        {
-            _progressUpdate = progressUpdate;
-        }
+		public SageOneApiClientPagingHandler(IProgress<ProgressUpdate> progressUpdate, SageOneApiClientConfig config, ISageOneApiClientHandler apiClient) : base(apiClient, config)
+		{
+			_progressUpdate = progressUpdate;
+		}
 
-        public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
-        {
-            var pageNumber = 1;
-            var itemsDownloaded = 0;
-            var isDownloadRequired = true;
-            var entities = new List<T>();
+		public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+		{
+			var pageNumber = 1;
+			var itemsDownloaded = 0;
+			var isDownloadRequired = true;
+			var entities = new List<T>();
 
-            while (isDownloadRequired)
-            {
-                GetAllResponse<T> summaryResponse = null;
+			while (isDownloadRequired)
+			{
+				GetAllResponse<T> summaryResponse = null;
 
-                try
-                {
-                    summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+				try
+				{
+					summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
 
-                    entities.AddRange(summaryResponse.Items);
+					entities.AddRange(summaryResponse.Items);
 
-                    itemsDownloaded += summaryResponse.Items.Length;
-                }
-                catch (SageOneApiRequestFailedException ex)
-                {
-                    if (ex.Response.StatusCode != HttpStatusCode.InternalServerError) throw;
-                    if (!queryParameters.ContainsKey("attributes")) throw;
+					itemsDownloaded += summaryResponse.Items.Length;
+				}
+				catch (SageOneApiRequestFailedException ex)
+				{
+					if (ex.Response.StatusCode != HttpStatusCode.InternalServerError) throw;
+					if (!queryParameters.ContainsKey("attributes")) throw;
 
-                    queryParameters.Remove("attributes");
+					queryParameters.Remove("attributes");
 
-                    summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+					summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
 
-                    queryParameters.Add("attributes", "all");
+					queryParameters.Add("attributes", "all");
 
-                    foreach (var item in summaryResponse.Items)
-                    {
-                        T fullItem = null;
+					foreach (var item in summaryResponse.Items)
+					{
+						T fullItem = null;
 
-                        try
-                        {
-                            fullItem = await base.Get<T>(item.Id, queryParameters, cancellationToken);
+						try
+						{
+							fullItem = await base.Get<T>(item.Id, queryParameters, cancellationToken);
 
-                            itemsDownloaded++;
-                        }
-                        catch (SageOneApiRequestFailedException ex1)
-                        {
-                            if (ex1.Response.StatusCode == HttpStatusCode.InternalServerError)
-                            {
-                                _progressUpdate.Report(new ProgressUpdate($"Failed to download {typeof(T).Name} record ({item.Id})"));
+							itemsDownloaded++;
+						}
+						catch (SageOneApiRequestFailedException ex1)
+						{
+							if (ex1.Response.StatusCode == HttpStatusCode.InternalServerError)
+							{
+								_progressUpdate.Report(new ProgressUpdate($"Failed to download {typeof(T).Name} record ({item.Id})"));
 
-                                continue;
-                            }
-                            else
-                            {
-                                throw;
-                            }
-                        }
+								continue;
+							}
+							else
+							{
+								throw;
+							}
+						}
 
-                        entities.Add(fullItem);
-                    }
-                }
+						entities.Add(fullItem);
+					}
+				}
 
-                _progressUpdate.Report(new ProgressUpdate(
-                    $"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records",
-                    itemsDownloaded,
-                    summaryResponse.Total,
-                    typeof(T).Name));
+				_progressUpdate.Report(new ProgressUpdate(
+					$"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records",
+					itemsDownloaded,
+					summaryResponse.Total,
+					typeof(T).Name));
 
-                isDownloadRequired = summaryResponse.Next != null;
+				isDownloadRequired = summaryResponse.Next != null;
 
-                pageNumber++;
-            }
+				pageNumber++;
+			}
 
-            return entities;
-        }
-    }
+			return entities;
+		}
+	}
 }

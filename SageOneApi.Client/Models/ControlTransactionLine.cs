@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-    public abstract class ControlTransactionLine
-    {
+	public abstract class ControlTransactionLine
+	{
 		[JsonProperty("id")]
-        public string Id { get; set; }
-        [JsonProperty("displayed_as")]
+		public string Id { get; set; }
+		[JsonProperty("displayed_as")]
 		public string DisplayedAs { get; set; }
 		[JsonProperty("description")]
 		public string Description { get; set; }
@@ -43,5 +43,5 @@ namespace SageOneApi.Client.Models
 		public decimal BaseCurrencyTotalAmount { get; set; }
 		[JsonProperty("eu_goods_services_type")]
 		public PropertyValueWithPath EuGoodsServicesType { get; set; }
-    }
+	}
 }

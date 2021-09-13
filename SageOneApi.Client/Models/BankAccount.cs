@@ -2,11 +2,11 @@
 
 namespace SageOneApi.Client.Models
 {
-    public class BankAccount : SageOneAccountingEntity
-    {
+	public class BankAccount : SageOneAccountingEntity
+	{
 		[JsonProperty("bank_account_details")]
-        public BankAccountDetails BankAccountDetails { get; set; }
-        [JsonProperty("ledger_account")]
+		public BankAccountDetails BankAccountDetails { get; set; }
+		[JsonProperty("ledger_account")]
 		public LedgerAccount LedgerAccount { get; set; }
 		[JsonProperty("bank_account_type")]
 		public PropertyValueWithPath BankAccountType { get; set; }
@@ -26,5 +26,5 @@ namespace SageOneApi.Client.Models
 		public string JournalCode { get; set; }
 		[JsonProperty("default_payment_method")]
 		public PropertyValueWithPath DefaultPaymentMethod { get; set; }
-    }
+	}
 }
