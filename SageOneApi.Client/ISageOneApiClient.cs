@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace SageOneApi.Client
 {
+	/// <summary>Methods for accessing the Sage API.</summary>
+	/// <remarks>Compatible with Sage API v3.0</remarks>
 	public interface ISageOneApiClient
 	{
 		Task<T> Get<T>(string id, CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity;
