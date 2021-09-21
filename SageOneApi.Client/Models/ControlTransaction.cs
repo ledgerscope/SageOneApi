@@ -4,12 +4,8 @@ using System.Collections.Generic;
 
 namespace SageOneApi.Client.Models
 {
-	public abstract class ControlTransaction : SageOneAccountingEntity
+	public abstract class ControlTransaction : DatedTransaction
 	{
-		[JsonProperty("transaction")]
-		public PropertyValueWithPath Transaction { get; set; }
-		[JsonProperty("transaction_type")]
-		public PropertyValueWithPath TransactionType { get; set; }
 		[JsonProperty("links")]
 		public List<Link> Links { get; set; }
 		[JsonProperty("contact_name")]
@@ -19,8 +15,6 @@ namespace SageOneApi.Client.Models
 		[JsonProperty("contact")]
 		public Contact Contact { get; set; }
 		[JsonProperty("date")]
-		public DateTime Date { get; set; }
-		[JsonProperty("reference")]
 		public string Reference { get; set; }
 		[JsonProperty("notes")]
 		public string Notes { get; set; }

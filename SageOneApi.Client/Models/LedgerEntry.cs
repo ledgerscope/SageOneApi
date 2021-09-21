@@ -3,14 +3,8 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-	public class LedgerEntry : SageOneAccountingEntity
+	public class LedgerEntry : DatedTransaction
 	{
-		[JsonProperty("transaction")]
-		public Transaction Transaction { get; set; }
-		[JsonProperty("transaction_type")]
-		public PropertyValueWithPath TransactionType { get; set; }
-		[JsonProperty("date")]
-		public DateTime Date { get; set; }
 		[JsonProperty("description")]
 		public string Description { get; set; }
 		[JsonProperty("debit")]

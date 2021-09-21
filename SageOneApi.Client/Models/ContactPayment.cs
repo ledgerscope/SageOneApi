@@ -4,12 +4,8 @@ using Newtonsoft.Json;
 
 namespace SageOneApi.Client.Models
 {
-	public class ContactPayment : SageOneAccountingEntity
+	public class ContactPayment : DatedTransaction
 	{
-		[JsonProperty("transaction")]
-		public PropertyValueWithPath Transaction { get; set; }
-		[JsonProperty("transaction_type")]
-		public PropertyValueWithPath TransactionType { get; set; }
 		[JsonProperty("links")]
 		public List<Link> Links { get; set; }
 		[JsonProperty("payment_method")]
@@ -18,8 +14,6 @@ namespace SageOneApi.Client.Models
 		public Contact Contact { get; set; }
 		[JsonProperty("bank_account")]
 		public BankAccount BankAccount { get; set; }
-		[JsonProperty("date")]
-		public DateTime Date { get; set; }
 		[JsonProperty("net_amount")]
 		public decimal NetAmount { get; set; }
 		[JsonProperty("tax_amount")]

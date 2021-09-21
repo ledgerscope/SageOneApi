@@ -2,11 +2,11 @@
 
 namespace SageOneApi.Client.Models.Core
 {
-    public class Business : SageOneAccountingEntity
+	public class Business : SageOneAccountingEntity
 	{
 		[JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("address_line_1")]
+		public string Name { get; set; }
+		[JsonProperty("address_line_1")]
 		public string AddressLine1 { get; set; }
 		[JsonProperty("address_line_2")]
 		public string AddressLine2 { get; set; }
@@ -28,5 +28,5 @@ namespace SageOneApi.Client.Models.Core
 		public bool IsDemo { get; set; }
 		[JsonProperty("subscriptions")]
 		public Subscription[] Subscriptions { get; set; }
-    }
+	}
 }
