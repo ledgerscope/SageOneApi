@@ -2,17 +2,17 @@
 
 namespace SageOneApi.Client.Models.Core
 {
-    public class User : SageOneCoreEntity
-    {
-	    [JsonProperty("first_name")]
+	public class User : SageOneCoreEntity
+	{
+		[JsonProperty("first_name")]
 		public string FirstName { get; set; }
 		[JsonProperty("last_name")]
-		public string LasstName { get; set; }
+		public string LastName { get; set; }
 		[JsonProperty("initials")]
 		public string Initials { get; set; }
 		[JsonProperty("email")]
 		public string Email { get; set; }
 		[JsonProperty("locale")]
 		public string Locale { get; set; }
-    }
+	}
 }
