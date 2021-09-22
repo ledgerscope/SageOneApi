@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Ledgerscope</Authors>
-    <Company>Ledgerscope</Company>
-    <Product />
-    <Description>Wrapper for Sage Business Cloud Accounting API</Description>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Authors>Ledgerscope</Authors>
+		<Company>Ledgerscope</Company>
+		<Product />
+		<Description>Wrapper for Sage Business Cloud Accounting API</Description>
+		<IncludeSymbols>true</IncludeSymbols>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+	</ItemGroup>
 
 </Project>
