@@ -1,18 +1,18 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models.Core
 {
 	public class User : SageOneCoreEntity
 	{
-		[JsonProperty("first_name")]
+		[JsonPropertyName("first_name")]
 		public string FirstName { get; set; }
-		[JsonProperty("last_name")]
+		[JsonPropertyName("last_name")]
 		public string LastName { get; set; }
-		[JsonProperty("initials")]
+		[JsonPropertyName("initials")]
 		public string Initials { get; set; }
-		[JsonProperty("email")]
+		[JsonPropertyName("email")]
 		public string Email { get; set; }
-		[JsonProperty("locale")]
+		[JsonPropertyName("locale")]
 		public string Locale { get; set; }
 	}
 }

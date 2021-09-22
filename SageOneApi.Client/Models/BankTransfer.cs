@@ -1,19 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 
 namespace SageOneApi.Client.Models
 {
 	public class BankTransfer : DatedTransaction
 	{
-		[JsonProperty("from_bank_account")]
+		[JsonPropertyName("from_bank_account")]
 		public BankAccount FromBankAccount { get; set; }
-		[JsonProperty("to_bank_account")]
+		[JsonPropertyName("to_bank_account")]
 		public BankAccount ToBankAccount { get; set; }
-		[JsonProperty("reference")]
+		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
-		[JsonProperty("amount")]
+		[JsonPropertyName("amount")]
 		public decimal Amount { get; set; }
-		[JsonProperty("description")]
+		[JsonPropertyName("description")]
 		public string Description { get; set; }
 	}
 }

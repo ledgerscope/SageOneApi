@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class PaymentLine
 	{
-		[JsonProperty("id")]
+		[JsonPropertyName("id")]
 		public string Id { get; set; }
-		[JsonProperty("displayed_as")]
+		[JsonPropertyName("displayed_as")]
 		public string DisplayedAs { get; set; }
-		[JsonProperty("ledger_account")]
+		[JsonPropertyName("ledger_account")]
 		public LedgerAccount LedgerAccount { get; set; }
-		[JsonProperty("details")]
+		[JsonPropertyName("details")]
 		public string Details { get; set; }
-		[JsonProperty("tax_rate")]
+		[JsonPropertyName("tax_rate")]
 		public TaxRate TaxRate { get; set; }
-		[JsonProperty("net_amount")]
+		[JsonPropertyName("net_amount")]
 		public decimal NetAmount { get; set; }
-		[JsonProperty("tax_amount")]
+		[JsonPropertyName("tax_amount")]
 		public decimal? TaxAmount { get; set; }
-		[JsonProperty("total_amount")]
+		[JsonPropertyName("total_amount")]
 		public decimal TotalAmount { get; set; }
-		[JsonProperty("tax_breakdown")]
+		[JsonPropertyName("tax_breakdown")]
 		public List<Tax> TaxBreakdown { get; set; }
-		[JsonProperty("is_purchase_for_resale")]
+		[JsonPropertyName("is_purchase_for_resale")]
 		public bool IsPurchaseForResale { get; set; }
 	}
 }

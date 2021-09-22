@@ -1,43 +1,43 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public abstract class SalesTransaction : ControlTransaction
 	{
-		[JsonProperty("main_address_free_form")]
+		[JsonPropertyName("main_address_free_form")]
 		public string MainAddressFreeForm { get; set; }
-		[JsonProperty("main_address")]
+		[JsonPropertyName("main_address")]
 		public Address MainAddress { get; set; }
-		[JsonProperty("delivery_address_free_form")]
+		[JsonPropertyName("delivery_address_free_form")]
 		public string DeliveryAddressFreeForm { get; set; }
-		[JsonProperty("delivery_address")]
+		[JsonPropertyName("delivery_address")]
 		public Address DeliveryAddress { get; set; }
-		[JsonProperty("terms_and_conditions")]
+		[JsonPropertyName("terms_and_conditions")]
 		public string TermsAndConditions { get; set; }
-		[JsonProperty("shipping_net_amount")]
+		[JsonPropertyName("shipping_net_amount")]
 		public decimal? ShippingNetAmount { get; set; }
-		[JsonProperty("shipping_tax_rate")]
+		[JsonPropertyName("shipping_tax_rate")]
 		public TaxRate ShippingTaxRate { get; set; }
-		[JsonProperty("shipping_tax_amount")]
+		[JsonPropertyName("shipping_tax_amount")]
 		public decimal? ShippingTaxAmount { get; set; }
-		[JsonProperty("shipping_tax_breakdown")]
+		[JsonPropertyName("shipping_tax_breakdown")]
 		public List<Tax> ShippingTaxBreakdown { get; set; }
-		[JsonProperty("shipping_total_amount")]
+		[JsonPropertyName("shipping_total_amount")]
 		public decimal? ShippingTotalAmount { get; set; }
-		[JsonProperty("base_currency_shipping_net_amount")]
+		[JsonPropertyName("base_currency_shipping_net_amount")]
 		public decimal? BaseCurrencyShippingNetAmount { get; set; }
-		[JsonProperty("base_currency_shipping_tax_amount")]
+		[JsonPropertyName("base_currency_shipping_tax_amount")]
 		public decimal? BaseCurrencyShippingTaxAmount { get; set; }
-		[JsonProperty("base_currency_shipping_tax_breakdown")]
+		[JsonPropertyName("base_currency_shipping_tax_breakdown")]
 		public List<Tax> BaseCurrencyShippingTaxBreakdown { get; set; }
-		[JsonProperty("base_currency_shipping_total_amount")]
+		[JsonPropertyName("base_currency_shipping_total_amount")]
 		public decimal BaseCurrencyShippingTotalAmount { get; set; }
-		[JsonProperty("total_discount_amount")]
+		[JsonPropertyName("total_discount_amount")]
 		public decimal TotalDiscountAmount { get; set; }
-		[JsonProperty("base_currency_total_discount_amount")]
+		[JsonPropertyName("base_currency_total_discount_amount")]
 		public decimal BaseCurrencyTotalDiscountAmount { get; set; }
-		[JsonProperty("sent")]
+		[JsonPropertyName("sent")]
 		public bool Sent { get; set; }
 	}
 }

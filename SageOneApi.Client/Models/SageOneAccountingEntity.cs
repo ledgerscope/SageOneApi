@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 
 namespace SageOneApi.Client.Models
@@ -6,15 +6,19 @@ namespace SageOneApi.Client.Models
 	/// <summary>Accounting data items.</summary>
 	public abstract class SageOneAccountingEntity
 	{
-		[JsonProperty("$path")]
+		[JsonPropertyName("$path")]
 		public string Path { get; set; }
-		[JsonProperty("id")]
+
+		[JsonPropertyName("id")]
 		public string Id { get; set; }
-		[JsonProperty("displayed_as")]
+
+		[JsonPropertyName("displayed_as")]
 		public string DisplayedAs { get; set; }
-		[JsonProperty("created_at")]
+
+		[JsonPropertyName("created_at")]
 		public DateTime? CreatedAt { get; set; }
-		[JsonProperty("updated_at")]
+
+		[JsonPropertyName("updated_at")]
 		public DateTime? UpdatedAt { get; set; }
 	}
 }

@@ -1,47 +1,47 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public abstract class ControlTransactionLine
 	{
-		[JsonProperty("id")]
+		[JsonPropertyName("id")]
 		public string Id { get; set; }
-		[JsonProperty("displayed_as")]
+		[JsonPropertyName("displayed_as")]
 		public string DisplayedAs { get; set; }
-		[JsonProperty("description")]
+		[JsonPropertyName("description")]
 		public string Description { get; set; }
-		[JsonProperty("product")]
+		[JsonPropertyName("product")]
 		public object Product { get; set; }
-		[JsonProperty("service")]
+		[JsonPropertyName("service")]
 		public object Service { get; set; }
-		[JsonProperty("ledger_account")]
+		[JsonPropertyName("ledger_account")]
 		public LedgerAccount LedgerAccount { get; set; }
-		[JsonProperty("quantity")]
+		[JsonPropertyName("quantity")]
 		public double Quantity { get; set; }
-		[JsonProperty("unit_price")]
+		[JsonPropertyName("unit_price")]
 		public decimal UnitPrice { get; set; }
-		[JsonProperty("net_amount")]
+		[JsonPropertyName("net_amount")]
 		public decimal NetAmount { get; set; }
-		[JsonProperty("tax_rate")]
+		[JsonPropertyName("tax_rate")]
 		public TaxRate TaxRate { get; set; }
-		[JsonProperty("tax_amount")]
+		[JsonPropertyName("tax_amount")]
 		public decimal? TaxAmount { get; set; }
-		[JsonProperty("tax_breakdown")]
+		[JsonPropertyName("tax_breakdown")]
 		public List<Tax> TaxBreakdown { get; set; }
-		[JsonProperty("total_amount")]
+		[JsonPropertyName("total_amount")]
 		public decimal TotalAmount { get; set; }
-		[JsonProperty("base_currency_unit_price")]
+		[JsonPropertyName("base_currency_unit_price")]
 		public decimal BaseCurrencyUnitPrice { get; set; }
-		[JsonProperty("base_currency_net_amount")]
+		[JsonPropertyName("base_currency_net_amount")]
 		public decimal BaseCurrencyNetAmount { get; set; }
-		[JsonProperty("base_currency_tax_amount")]
+		[JsonPropertyName("base_currency_tax_amount")]
 		public decimal BaseCurrencyTaxAmount { get; set; }
-		[JsonProperty("base_currency_tax_breakdown")]
+		[JsonPropertyName("base_currency_tax_breakdown")]
 		public List<Tax> BaseCurrencyTaxBreakdown { get; set; }
-		[JsonProperty("base_currency_total_amount")]
+		[JsonPropertyName("base_currency_total_amount")]
 		public decimal BaseCurrencyTotalAmount { get; set; }
-		[JsonProperty("eu_goods_services_type")]
+		[JsonPropertyName("eu_goods_services_type")]
 		public PropertyValueWithPath EuGoodsServicesType { get; set; }
 	}
 }

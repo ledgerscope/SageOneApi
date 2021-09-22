@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -6,11 +6,11 @@ namespace SageOneApi.Client.Models
 {
 	public class ContactAllocation : DatedTransaction
 	{
-		[JsonProperty("links")]
+		[JsonPropertyName("links")]
 		public List<Link> Links { get; set; }
-		[JsonProperty("contact")]
+		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
-		[JsonProperty("allocated_artefacts")]
+		[JsonPropertyName("allocated_artefacts")]
 		public List<AllocatedArtefact> AllocatedArtefacts { get; set; }
 	}
 }

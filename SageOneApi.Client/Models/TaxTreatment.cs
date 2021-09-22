@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class TaxTreatment
 	{
-		[JsonProperty("home_tax")]
+		[JsonPropertyName("home_tax")]
 		public bool HomeTax { get; set; }
-		[JsonProperty("eu_tax_registered")]
+		[JsonPropertyName("eu_tax_registered")]
 		public bool? EuTaxRegistered { get; set; }
-		[JsonProperty("eu_not_tax_registered")]
+		[JsonPropertyName("eu_not_tax_registered")]
 		public bool? EuNotTaxRegistered { get; set; }
-		[JsonProperty("rest_of_world_tax")]
+		[JsonPropertyName("rest_of_world_tax")]
 		public bool RestOfWorldTax { get; set; }
 	}
 }

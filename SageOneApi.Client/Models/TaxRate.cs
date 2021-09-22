@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -6,21 +6,21 @@ namespace SageOneApi.Client.Models
 {
 	public class TaxRate : SageOneAccountingEntity
 	{
-		[JsonProperty("name")]
+		[JsonPropertyName("name")]
 		public string Name { get; set; }
-		[JsonProperty("agency")]
+		[JsonPropertyName("agency")]
 		public string Agency { get; set; }
-		[JsonProperty("percentage")]
+		[JsonPropertyName("percentage")]
 		public decimal? Percentage { get; set; }
-		[JsonProperty("percentages")]
+		[JsonPropertyName("percentages")]
 		public List<TaxPercentage> Percentages { get; set; }
-		[JsonProperty("is_visible")]
+		[JsonPropertyName("is_visible")]
 		public bool IsVisible { get; set; }
-		[JsonProperty("is_combined_rate")]
+		[JsonPropertyName("is_combined_rate")]
 		public bool IsCombinedRate { get; set; }
-		[JsonProperty("editable")]
+		[JsonPropertyName("editable")]
 		public bool Editable { get; set; }
-		[JsonProperty("deletable")]
+		[JsonPropertyName("deletable")]
 		public bool Deletable { get; set; }
 	}
 }

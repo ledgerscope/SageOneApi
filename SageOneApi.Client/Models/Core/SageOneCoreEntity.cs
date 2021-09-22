@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 
 namespace SageOneApi.Client.Models.Core
@@ -7,19 +7,19 @@ namespace SageOneApi.Client.Models.Core
 	/// <remarks>See also <seealso cref="SageOneAccountingEntity"/>, which is on a different URL endpoint.</remarks>
 	public abstract class SageOneCoreEntity
 	{
-		[JsonProperty("id")]
+		[JsonPropertyName("id")]
 		public string Id { get; set; }
 
-		[JsonProperty("displayed_as")]
+		[JsonPropertyName("displayed_as")]
 		public string DisplayedAs { get; set; }
 
-		[JsonProperty("created_at")]
+		[JsonPropertyName("created_at")]
 		public DateTime? CreatedAt { get; set; }
 
-		[JsonProperty("updated_at")]
+		[JsonPropertyName("updated_at")]
 		public DateTime? UpdatedAt { get; set; }
 
-		[JsonProperty("business_owner")]
+		[JsonPropertyName("business_owner")]
 		public bool BusinessOwner { get; set; }
 	}
 }

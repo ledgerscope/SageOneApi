@@ -1,26 +1,26 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class Address
 	{
-		[JsonProperty("$path")]
+		[JsonPropertyName("$path")]
 		public string Path { get; set; }
-		[JsonProperty("address_type")]
+		[JsonPropertyName("address_type")]
 		public PropertyValueWithPath AddressType { get; set; }
-		[JsonProperty("address_line_1")]
+		[JsonPropertyName("address_line_1")]
 		public string AddressLine1 { get; set; }
-		[JsonProperty("address_line_2")]
+		[JsonPropertyName("address_line_2")]
 		public string AddressLine2 { get; set; }
-		[JsonProperty("city")]
+		[JsonPropertyName("city")]
 		public string City { get; set; }
-		[JsonProperty("region")]
+		[JsonPropertyName("region")]
 		public string Region { get; set; }
-		[JsonProperty("postal_code")]
+		[JsonPropertyName("postal_code")]
 		public string PostalCode { get; set; }
-		[JsonProperty("country")]
+		[JsonPropertyName("country")]
 		public PropertyValueWithPath Country { get; set; }
-		[JsonProperty("country_group")]
+		[JsonPropertyName("country_group")]
 		public PropertyValueWithPath CountryGroup { get; set; }
 	}
 }

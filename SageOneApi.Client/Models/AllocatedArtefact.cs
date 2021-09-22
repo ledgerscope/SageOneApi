@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class AllocatedArtefact
 	{
-		[JsonProperty("id")]
+		[JsonPropertyName("id")]
 		public string Id { get; set; }
-		[JsonProperty("artefact")]
+		[JsonPropertyName("artefact")]
 		public Artefact Artefact { get; set; }
-		[JsonProperty("amount")]
+		[JsonPropertyName("amount")]
 		public decimal Amount { get; set; }
-		[JsonProperty("discount")]
+		[JsonPropertyName("discount")]
 		public decimal? Discount { get; set; }
 	}
 }

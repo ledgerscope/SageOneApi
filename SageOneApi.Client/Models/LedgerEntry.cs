@@ -1,23 +1,23 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class LedgerEntry : DatedTransaction
 	{
-		[JsonProperty("description")]
+		[JsonPropertyName("description")]
 		public string Description { get; set; }
-		[JsonProperty("debit")]
+		[JsonPropertyName("debit")]
 		public decimal Debit { get; set; }
-		[JsonProperty("credit")]
+		[JsonPropertyName("credit")]
 		public decimal Credit { get; set; }
-		[JsonProperty("tax_rate")]
+		[JsonPropertyName("tax_rate")]
 		public TaxRate TaxRate { get; set; }
-		[JsonProperty("ledger_account")]
+		[JsonPropertyName("ledger_account")]
 		public LedgerAccount LedgerAccount { get; set; }
-		[JsonProperty("contact")]
+		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
-		[JsonProperty("deleted")]
+		[JsonPropertyName("deleted")]
 		public bool Deleted { get; set; }
 	}
 }

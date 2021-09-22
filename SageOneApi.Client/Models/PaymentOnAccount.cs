@@ -1,47 +1,47 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 
 namespace SageOneApi.Client.Models
 {
 	public class PaymentOnAccount
 	{
-		[JsonProperty("id")]
+		[JsonPropertyName("id")]
 		public string Id { get; set; }
-		[JsonProperty("displayed_as")]
+		[JsonPropertyName("displayed_as")]
 		public string DisplayedAs { get; set; }
-		[JsonProperty("path")]
+		[JsonPropertyName("path")]
 		public string Path { get; set; }
-		[JsonProperty("contact_name")]
+		[JsonPropertyName("contact_name")]
 		public string ContactName { get; set; }
-		[JsonProperty("contact_reference")]
+		[JsonPropertyName("contact_reference")]
 		public string ContactReference { get; set; }
-		[JsonProperty("contact")]
+		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
-		[JsonProperty("date")]
+		[JsonPropertyName("date")]
 		public DateTime Date { get; set; }
-		[JsonProperty("reference")]
+		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
-		[JsonProperty("net_amount")]
+		[JsonPropertyName("net_amount")]
 		public decimal NetAmount { get; set; }
-		[JsonProperty("tax_amount")]
+		[JsonPropertyName("tax_amount")]
 		public decimal? TaxAmount { get; set; }
-		[JsonProperty("total_amount")]
+		[JsonPropertyName("total_amount")]
 		public decimal TotalAmount { get; set; }
-		[JsonProperty("outstanding_amount")]
+		[JsonPropertyName("outstanding_amount")]
 		public decimal OutstandingAmount { get; set; }
-		[JsonProperty("currency")]
+		[JsonPropertyName("currency")]
 		public PropertyValueWithPath Currency { get; set; }
-		[JsonProperty("exchange_rate")]
+		[JsonPropertyName("exchange_rate")]
 		public decimal ExchangeRate { get; set; }
-		[JsonProperty("base_currency_net_amount")]
+		[JsonPropertyName("base_currency_net_amount")]
 		public decimal BaseCurrencyNetAmount { get; set; }
-		[JsonProperty("base_currency_tax_amount")]
+		[JsonPropertyName("base_currency_tax_amount")]
 		public decimal BaseCurrencyTaxAmount { get; set; }
-		[JsonProperty("base_currency_total_amount")]
+		[JsonPropertyName("base_currency_total_amount")]
 		public decimal BaseCurrencyTotalAmount { get; set; }
-		[JsonProperty("base_currency_outstanding_amount")]
+		[JsonPropertyName("base_currency_outstanding_amount")]
 		public decimal BaseCurrencyOutstandingAmount { get; set; }
-		[JsonProperty("status")]
+		[JsonPropertyName("status")]
 		public PropertyValueWithPath Status { get; set; }
 	}
 }

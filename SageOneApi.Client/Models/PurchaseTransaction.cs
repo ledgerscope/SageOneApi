@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public abstract class PurchaseTransaction : ControlTransaction
 	{
-		[JsonProperty("vendor_reference")]
+		[JsonPropertyName("vendor_reference")]
 		public string VendorReference { get; set; }
 	}
 }

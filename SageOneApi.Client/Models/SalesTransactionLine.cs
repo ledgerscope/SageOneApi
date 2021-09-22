@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class SalesTransactionLine : ControlTransactionLine
 	{
-		[JsonProperty("discount_amount")]
+		[JsonPropertyName("discount_amount")]
 		public decimal DiscountAmount { get; set; }
-		[JsonProperty("base_currency_discount_amount")]
+		[JsonPropertyName("base_currency_discount_amount")]
 		public decimal BaseCurrencyDiscountAmount { get; set; }
-		[JsonProperty("discount_percentage")]
+		[JsonPropertyName("discount_percentage")]
 		public decimal DiscountPercentage { get; set; }
-		[JsonProperty("eu_sales_description")]
+		[JsonPropertyName("eu_sales_description")]
 		public PropertyValueWithPath EuSalesDescription { get; set; }
 	}
 }

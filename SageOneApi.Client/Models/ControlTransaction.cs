@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -6,63 +6,63 @@ namespace SageOneApi.Client.Models
 {
 	public abstract class ControlTransaction : DatedTransaction
 	{
-		[JsonProperty("links")]
+		[JsonPropertyName("links")]
 		public List<Link> Links { get; set; }
-		[JsonProperty("contact_name")]
+		[JsonPropertyName("contact_name")]
 		public string ContactName { get; set; }
-		[JsonProperty("contact_reference")]
+		[JsonPropertyName("contact_reference")]
 		public string ContactReference { get; set; }
-		[JsonProperty("contact")]
+		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
-		[JsonProperty("date")]
+		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
-		[JsonProperty("notes")]
+		[JsonPropertyName("notes")]
 		public string Notes { get; set; }
-		[JsonProperty("total_quantity")]
+		[JsonPropertyName("total_quantity")]
 		public double? TotalQuantity { get; set; }
-		[JsonProperty("net_amount")]
+		[JsonPropertyName("net_amount")]
 		public decimal? NetAmount { get; set; }
-		[JsonProperty("tax_amount")]
+		[JsonPropertyName("tax_amount")]
 		public decimal? TaxAmount { get; set; }
-		[JsonProperty("total_amount")]
+		[JsonPropertyName("total_amount")]
 		public decimal TotalAmount { get; set; }
-		[JsonProperty("payments_allocations_total_amount")]
+		[JsonPropertyName("payments_allocations_total_amount")]
 		public decimal? PaymentsAllocationsTotalAmount { get; set; }
-		[JsonProperty("payments_allocations_total_discount")]
+		[JsonPropertyName("payments_allocations_total_discount")]
 		public decimal? PaymentsAllocationsTotalDiscount { get; set; }
-		[JsonProperty("total_paid")]
+		[JsonPropertyName("total_paid")]
 		public decimal? TotalPaid { get; set; }
-		[JsonProperty("outstanding_amount")]
+		[JsonPropertyName("outstanding_amount")]
 		public decimal OutstandingAmount { get; set; }
-		[JsonProperty("currency")]
+		[JsonPropertyName("currency")]
 		public PropertyValueWithPath Currency { get; set; }
-		[JsonProperty("exchange_rate")]
+		[JsonPropertyName("exchange_rate")]
 		public decimal ExchangeRate { get; set; }
-		[JsonProperty("inverse_exchange_rate")]
+		[JsonPropertyName("inverse_exchange_rate")]
 		public decimal InverseExchangeRate { get; set; }
-		[JsonProperty("base_currency_net_amount")]
+		[JsonPropertyName("base_currency_net_amount")]
 		public decimal BaseCurrencyNetAmount { get; set; }
-		[JsonProperty("base_currency_tax_amount")]
+		[JsonPropertyName("base_currency_tax_amount")]
 		public decimal BaseCurrencyTaxAmount { get; set; }
-		[JsonProperty("base_currency_total_amount")]
+		[JsonPropertyName("base_currency_total_amount")]
 		public decimal BaseCurrencyTotalAmount { get; set; }
-		[JsonProperty("base_currency_outstanding_amount")]
+		[JsonPropertyName("base_currency_outstanding_amount")]
 		public decimal BaseCurrencyOutstandingAmount { get; set; }
-		[JsonProperty("status")]
+		[JsonPropertyName("status")]
 		public PropertyValueWithPath Status { get; set; }
-		[JsonProperty("void_reason")]
+		[JsonPropertyName("void_reason")]
 		public string VoidReason { get; set; }
-		[JsonProperty("tax_analysis")]
+		[JsonPropertyName("tax_analysis")]
 		public List<TaxAnalysis> TaxAnalysis { get; set; }
-		[JsonProperty("last_paid")]
+		[JsonPropertyName("last_paid")]
 		public string LastPaid { get; set; }
-		[JsonProperty("tax_address_region")]
+		[JsonPropertyName("tax_address_region")]
 		public object TaxAddressRegion { get; set; }
-		[JsonProperty("tax_reconciled")]
+		[JsonPropertyName("tax_reconciled")]
 		public bool TaxReconciled { get; set; }
-		[JsonProperty("migrated")]
+		[JsonPropertyName("migrated")]
 		public bool Migrated { get; set; }
-		[JsonProperty("tax_calculation_method")]
+		[JsonPropertyName("tax_calculation_method")]
 		public string TaxCalculationMethod { get; set; }
 	}
 }

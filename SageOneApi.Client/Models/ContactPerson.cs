@@ -1,29 +1,29 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class ContactPerson : SageOneAccountingEntity
 	{
-		[JsonProperty("name")]
+		[JsonPropertyName("name")]
 		public string Name { get; set; }
-		[JsonProperty("job_title")]
+		[JsonPropertyName("job_title")]
 		public string JobTitle { get; set; }
-		[JsonProperty("telephone")]
+		[JsonPropertyName("telephone")]
 		public string Telephone { get; set; }
-		[JsonProperty("mobile")]
+		[JsonPropertyName("mobile")]
 		public string Mobile { get; set; }
-		[JsonProperty("email")]
+		[JsonPropertyName("email")]
 		public string Email { get; set; }
-		[JsonProperty("fax")]
+		[JsonPropertyName("fax")]
 		public string Fax { get; set; }
-		[JsonProperty("is_mail_contact")]
+		[JsonPropertyName("is_mail_contact")]
 		public bool IsMailContact { get; set; }
-		[JsonProperty("is_preferred_contact")]
+		[JsonPropertyName("is_preferred_contact")]
 		public bool IsPreferredContact { get; set; }
-		[JsonProperty("address")]
+		[JsonPropertyName("address")]
 		public Address Address { get; set; }
-		[JsonProperty("deleted_at")]
+		[JsonPropertyName("deleted_at")]
 		public DateTime? DeletedAt { get; set; }
 	}
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
@@ -12,10 +12,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace SageOneApi.Client
 {
-	internal class SageOneApiClientTransferHandler : ISageOneApiClientHandler
+	public partial class SageOneApiClientTransferHandler : ISageOneApiClientHandler
 	{
 		private const string itemsPerPageKey = "items_per_page";
 
@@ -45,7 +46,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = JsonConvert.DeserializeObject<T>(jsonResponse);
+			var response = deserializeObject<T>(jsonResponse);
 
 			return response;
 		}
@@ -56,7 +57,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = JsonConvert.DeserializeObject<T>(jsonResponse);
+			var response = deserializeObject<T>(jsonResponse);
 
 			return response;
 		}
@@ -67,7 +68,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = JsonConvert.DeserializeObject<T>(jsonResponse);
+			var response = deserializeObject<T>(jsonResponse);
 
 			return response;
 		}
@@ -78,7 +79,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = JsonConvert.DeserializeObject<T[]>(jsonResponse);
+			var response = deserializeObject<T[]>(jsonResponse);
 
 			return response;
 		}
@@ -89,7 +90,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = JsonConvert.DeserializeObject<GetAllResponse<T>>(jsonResponse);
+			var response = deserializeObjects<T>(jsonResponse);
 
 			var entities = new List<T>();
 
@@ -107,7 +108,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			return JsonConvert.DeserializeObject<GetAllResponse<T>>(jsonResponse);
+			return deserializeObjects<T>(jsonResponse);
 		}
 
 		public void RenewRefreshAndAccessToken()
@@ -216,6 +217,16 @@ namespace SageOneApi.Client
 			var targetEntity = getTargetEntityPathFrom(typeof(T));
 
 			return $"{_baseUri}/{targetEntity}";
+		}
+
+		private static T deserializeObject<T>(string json)
+		{
+			return JsonSerializer.Deserialize<T>(json);
+		}
+
+		private static GetAllResponse<T> deserializeObjects<T>(string json)
+		{
+			return JsonSerializer.Deserialize<GetAllResponse<T>>(json);
 		}
 
 		private string getTargetEntityPathFrom(Type type)

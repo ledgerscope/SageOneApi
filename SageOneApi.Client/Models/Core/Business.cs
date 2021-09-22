@@ -1,32 +1,32 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models.Core
 {
 	public class Business : SageOneAccountingEntity
 	{
-		[JsonProperty("name")]
+		[JsonPropertyName("name")]
 		public string Name { get; set; }
-		[JsonProperty("address_line_1")]
+		[JsonPropertyName("address_line_1")]
 		public string AddressLine1 { get; set; }
-		[JsonProperty("address_line_2")]
+		[JsonPropertyName("address_line_2")]
 		public string AddressLine2 { get; set; }
-		[JsonProperty("city")]
+		[JsonPropertyName("city")]
 		public string City { get; set; }
-		[JsonProperty("postal_code")]
+		[JsonPropertyName("postal_code")]
 		public string PostalCode { get; set; }
-		[JsonProperty("country")]
+		[JsonPropertyName("country")]
 		public PropertyValueWithPath Country { get; set; }
-		[JsonProperty("region")]
+		[JsonPropertyName("region")]
 		public string Region { get; set; }
-		[JsonProperty("telephone")]
+		[JsonPropertyName("telephone")]
 		public string Telephone { get; set; }
-		[JsonProperty("mobile")]
+		[JsonPropertyName("mobile")]
 		public string Mobile { get; set; }
-		[JsonProperty("website")]
+		[JsonPropertyName("website")]
 		public string Website { get; set; }
-		[JsonProperty("is_demo")]
+		[JsonPropertyName("is_demo")]
 		public bool IsDemo { get; set; }
-		[JsonProperty("subscriptions")]
+		[JsonPropertyName("subscriptions")]
 		public Subscription[] Subscriptions { get; set; }
 	}
 }

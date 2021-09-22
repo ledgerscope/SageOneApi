@@ -1,18 +1,18 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class JournalLine
 	{
-		[JsonProperty("ledger_account")]
+		[JsonPropertyName("ledger_account")]
 		public LedgerAccount LedgerAccount { get; set; }
-		[JsonProperty("details")]
+		[JsonPropertyName("details")]
 		public string Details { get; set; }
-		[JsonProperty("debit")]
+		[JsonPropertyName("debit")]
 		public decimal Debit { get; set; }
-		[JsonProperty("credit")]
+		[JsonPropertyName("credit")]
 		public decimal Credit { get; set; }
-		[JsonProperty("include_on_tax_return")]
+		[JsonPropertyName("include_on_tax_return")]
 		public bool IncludeOnTaxReturn { get; set; }
 	}
 }

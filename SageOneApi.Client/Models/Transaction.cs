@@ -1,23 +1,23 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class Transaction : DatedTransaction
 	{
-		[JsonProperty("reference")]
+		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
-		[JsonProperty("deleted")]
+		[JsonPropertyName("deleted")]
 		public bool Deleted { get; set; }
-		[JsonProperty("total")]
+		[JsonPropertyName("total")]
 		public decimal? Total { get; set; }
-		[JsonProperty("contact")]
+		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
-		[JsonProperty("origin")]
+		[JsonPropertyName("origin")]
 		public Artefact Origin { get; set; }
-		[JsonProperty("audit_trail_id")]
+		[JsonPropertyName("audit_trail_id")]
 		public string AuditTrailId { get; set; }
-		[JsonProperty("number_of_attachments")]
+		[JsonPropertyName("number_of_attachments")]
 		public int NumberOfAttachments { get; set; }
 	}
 }

@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class PurchaseTransactionLine : ControlTransactionLine
 	{
-		[JsonProperty("is_purchase_for_resale")]
+		[JsonPropertyName("is_purchase_for_resale")]
 		public bool IsPurchaseForResale { get; set; }
 	}
 }

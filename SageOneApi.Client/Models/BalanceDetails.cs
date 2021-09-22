@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class BalanceDetails
 	{
-		[JsonProperty("balance")]
+		[JsonPropertyName("balance")]
 		public decimal Balance { get; set; }
-		[JsonProperty("credit_or_debit")]
+		[JsonPropertyName("credit_or_debit")]
 		public string CreditOrDebit { get; set; }
-		[JsonProperty("credits")]
+		[JsonPropertyName("credits")]
 		public decimal Credits { get; set; }
-		[JsonProperty("debits")]
+		[JsonPropertyName("debits")]
 		public decimal Debits { get; set; }
-		[JsonProperty("from_date")]
+		[JsonPropertyName("from_date")]
 		public string FromDate { get; set; }
-		[JsonProperty("to_date")]
+		[JsonPropertyName("to_date")]
 		public string ToDate { get; set; }
 	}
 }

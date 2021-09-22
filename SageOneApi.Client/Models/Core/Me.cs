@@ -1,12 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models.Core
 {
     public class Me
     {
-		[JsonProperty("business")]
+		[JsonPropertyName("business")]
         public Business Business { get; set; }
-        [JsonProperty("user")]
+        [JsonPropertyName("user")]
 		public User User { get; set; }
     }
 }

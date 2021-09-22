@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models.Core
 {
     public class Subscription : SageOneCoreEntity
     {
-		[JsonProperty("active")]
+		[JsonPropertyName("active")]
         public bool Active { get; set; }
     }
 }

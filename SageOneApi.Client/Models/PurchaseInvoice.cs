@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class PurchaseInvoice : PurchaseTransaction
 	{
-		[JsonProperty("due_date")]
+		[JsonPropertyName("due_date")]
 		public DateTime DueDate { get; set; }
-		[JsonProperty("invoice_lines")]
+		[JsonPropertyName("invoice_lines")]
 		public List<PurchaseTransactionLine> InvoiceLines { get; set; }
-		[JsonProperty("withholding_tax_rate")]
+		[JsonPropertyName("withholding_tax_rate")]
 		public double? WithholdingTaxRate { get; set; }
-		[JsonProperty("withholding_tax_amount")]
+		[JsonPropertyName("withholding_tax_amount")]
 		public decimal? WithholdingTaxAmount { get; set; }
-		[JsonProperty("base_currency_withholding_tax_amount")]
+		[JsonPropertyName("base_currency_withholding_tax_amount")]
 		public decimal? BaseCurrencyWithholdingTaxAmount { get; set; }
 	}
 }

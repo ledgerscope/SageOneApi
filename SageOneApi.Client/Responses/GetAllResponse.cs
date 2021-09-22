@@ -1,25 +1,25 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Responses
 {
 	public class GetAllResponse<T>
 	{
-		[JsonProperty("$total")]
+		[JsonPropertyName("$total")]
 		public int Total { get; set; }
 
-		[JsonProperty("$page")]
+		[JsonPropertyName("$page")]
 		public int Page { get; set; }
 
-		[JsonProperty("$next")]
+		[JsonPropertyName("$next")]
 		public object Next { get; set; }
 
-		[JsonProperty("$back")]
+		[JsonPropertyName("$back")]
 		public object Back { get; set; }
 
-		[JsonProperty("$itemsPerPage")]
+		[JsonPropertyName("$itemsPerPage")]
 		public int ItemsPerPage { get; set; }
 
-		[JsonProperty("$items")]
+		[JsonPropertyName("$items")]
 		public T[] Items { get; set; }
 	}
 }

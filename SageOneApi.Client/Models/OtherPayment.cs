@@ -1,36 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class OtherPayment : DatedTransaction
 	{
-		[JsonProperty("payment_method")]
+		[JsonPropertyName("payment_method")]
 		public PropertyValueWithPath PaymentMethod { get; set; }
-		[JsonProperty("contact")]
+		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
-		[JsonProperty("bank_account")]
+		[JsonPropertyName("bank_account")]
 		public BankAccount bank_account { get; set; }
-		[JsonProperty("tax_address_region")]
+		[JsonPropertyName("tax_address_region")]
 		public string TaxAddressRegion { get; set; }
-		[JsonProperty("net_amount")]
+		[JsonPropertyName("net_amount")]
 		public decimal NetAmount { get; set; }
-		[JsonProperty("tax_amount")]
+		[JsonPropertyName("tax_amount")]
 		public decimal? TaxAmount { get; set; }
-		[JsonProperty("total_amount")]
+		[JsonPropertyName("total_amount")]
 		public decimal TotalAmount { get; set; }
-		[JsonProperty("reference")]
+		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
-		[JsonProperty("payment_lines")]
+		[JsonPropertyName("payment_lines")]
 		public List<PaymentLine> PaymentLines { get; set; }
-		[JsonProperty("editable")]
+		[JsonPropertyName("editable")]
 		public bool Editable { get; set; }
-		[JsonProperty("deletable")]
+		[JsonPropertyName("deletable")]
 		public bool Deletable { get; set; }
-		[JsonProperty("withholding_tax_rate")]
+		[JsonPropertyName("withholding_tax_rate")]
 		public double? WithholdingTaxRate { get; set; }
-		[JsonProperty("withholding_tax_amount")]
+		[JsonPropertyName("withholding_tax_amount")]
 		public decimal? WithholdingTaxAmount { get; set; }
 	}
 }

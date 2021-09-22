@@ -1,44 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class ContactPayment : DatedTransaction
 	{
-		[JsonProperty("links")]
+		[JsonPropertyName("links")]
 		public List<Link> Links { get; set; }
-		[JsonProperty("payment_method")]
+		[JsonPropertyName("payment_method")]
 		public PropertyValueWithPath PaymentMethod { get; set; }
-		[JsonProperty("contact")]
+		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
-		[JsonProperty("bank_account")]
+		[JsonPropertyName("bank_account")]
 		public BankAccount BankAccount { get; set; }
-		[JsonProperty("net_amount")]
+		[JsonPropertyName("net_amount")]
 		public decimal NetAmount { get; set; }
-		[JsonProperty("tax_amount")]
+		[JsonPropertyName("tax_amount")]
 		public decimal? TaxAmount { get; set; }
-		[JsonProperty("total_amount")]
+		[JsonPropertyName("total_amount")]
 		public decimal TotalAmount { get; set; }
-		[JsonProperty("currency")]
+		[JsonPropertyName("currency")]
 		public PropertyValueWithPath Currency { get; set; }
-		[JsonProperty("exchange_rate")]
+		[JsonPropertyName("exchange_rate")]
 		public decimal ExchangeRate { get; set; }
-		[JsonProperty("base_currency_net_amount")]
+		[JsonPropertyName("base_currency_net_amount")]
 		public decimal BaseCurrencyNetAmount { get; set; }
-		[JsonProperty("base_currency_tax_amount")]
+		[JsonPropertyName("base_currency_tax_amount")]
 		public decimal BaseCurrencyTaxAmount { get; set; }
-		[JsonProperty("base_currency_total_amount")]
+		[JsonPropertyName("base_currency_total_amount")]
 		public decimal BaseCurrencyTotalAmount { get; set; }
-		[JsonProperty("base_currency_currency_charge")]
+		[JsonPropertyName("base_currency_currency_charge")]
 		public decimal BaseCurrencyCurrencyCharge { get; set; }
-		[JsonProperty("reference")]
+		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
-		[JsonProperty("allocated_artefacts")]
+		[JsonPropertyName("allocated_artefacts")]
 		public List<AllocatedArtefact> AllocatedArtefacts { get; set; }
-		[JsonProperty("tax_rate")]
+		[JsonPropertyName("tax_rate")]
 		public TaxRate TaxRate { get; set; }
-		[JsonProperty("payment_on_account")]
+		[JsonPropertyName("payment_on_account")]
 		public PaymentOnAccount PaymentOnAccount { get; set; }
 	}
 }

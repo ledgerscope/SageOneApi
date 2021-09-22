@@ -1,30 +1,30 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
 	public class BankReconciliation : SageOneAccountingEntity
 	{
-		[JsonProperty("bank_account")]
+		[JsonPropertyName("bank_account")]
 		public BankAccount BankAccount { get; set; }
-		[JsonProperty("statement_date")]
+		[JsonPropertyName("statement_date")]
 		public string StatementDate { get; set; }
-		[JsonProperty("statement_end_balance")]
+		[JsonPropertyName("statement_end_balance")]
 		public string StatementEndBalance { get; set; }
-		[JsonProperty("reference")]
+		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
-		[JsonProperty("total_received")]
+		[JsonPropertyName("total_received")]
 		public string TotalReceived { get; set; }
-		[JsonProperty("total_paid")]
+		[JsonPropertyName("total_paid")]
 		public string TotalPaid { get; set; }
-		[JsonProperty("starting_balance")]
+		[JsonPropertyName("starting_balance")]
 		public string StartingBalance { get; set; }
-		[JsonProperty("closing_balance")]
+		[JsonPropertyName("closing_balance")]
 		public string ClosingBalance { get; set; }
-		[JsonProperty("reconciled_balance")]
+		[JsonPropertyName("reconciled_balance")]
 		public string ReconciledBalance { get; set; }
-		[JsonProperty("balance_difference")]
+		[JsonPropertyName("balance_difference")]
 		public string BalanceDifference { get; set; }
-		[JsonProperty("status")]
+		[JsonPropertyName("status")]
 		public PropertyValue Status { get; set; }
 	}
 }
