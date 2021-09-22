@@ -2,7 +2,6 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
 		<EmbedAllSources>true</EmbedAllSources>
 		<DebugType>embedded</DebugType>
 		<Authors>Ledgerscope</Authors>
@@ -27,6 +26,9 @@
 		for unit testing and code analysis; remove them for Release.  -->
 	<Choose>
 		<When Condition="'$(Configuration)' == 'Debug'">
+			<PropertyGroup>
+				<TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+			</PropertyGroup>
 			<ItemGroup>
 				<Compile Update="**\?*.tests*.cs">
 					<DependentUpon>$([System.Text.RegularExpressions.Regex]::Match(%(Filename), `^.*(?=\.tests.*)`)).cs</DependentUpon>
@@ -52,6 +54,9 @@
 			</PropertyGroup>
 		</When>
 		<Otherwise>
+			<PropertyGroup>
+				<TargetFrameworks>netstandard2.0</TargetFrameworks>
+			</PropertyGroup>
 			<ItemGroup>
 				<Compile Remove="**\?*.tests*.cs" />
 			</ItemGroup>
