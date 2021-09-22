@@ -17,6 +17,8 @@ namespace SageOneApi.Client
 {
 	internal class SageOneApiClientTransferHandler : ISageOneApiClientHandler
 	{
+		private const string itemsPerPageKey = "items_per_page";
+
 		private readonly Uri _baseUri;
 		private string _accessToken;
 		private readonly string _resourceOwnerId;
@@ -83,7 +85,7 @@ namespace SageOneApi.Client
 
 		public async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
 		{
-			var uri = createWebRequestUriForAllEntities<T>(pageNumber: 1, _config.PageSize, queryParameters: queryParameters);
+			var uri = createWebRequestUriForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
@@ -101,7 +103,7 @@ namespace SageOneApi.Client
 
 		public async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
 		{
-			var uri = createWebRequestUriForAllEntities<T>(pageNumber: pageNumber, _config.PageSize, queryParameters: queryParameters);
+			var uri = createWebRequestUriForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
@@ -141,15 +143,15 @@ namespace SageOneApi.Client
 			return responseContent;
 		}
 
-		private Uri createWebRequestUriForAllEntities<T>(int pageNumber, int pageSize,
+		private Uri createWebRequestUriForAllEntities<T>(int pageNumber,
 			Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
 		{
+			int pageSize = getPageSize(queryParameters);
+
 			var sb = new StringBuilder()
 				.Append(createBaseUriPath<T>())
-				.Append("?page=")
-				.Append(pageNumber)
-				.Append("&items_per_page=")
-				.Append(pageSize);
+				.Append($"?page={pageNumber}")
+				.Append($"&{itemsPerPageKey}={pageSize}");
 
 			if (queryParameters != null && queryParameters.Any())
 			{
@@ -163,6 +165,19 @@ namespace SageOneApi.Client
 			var uri = new Uri(uriPath);
 
 			return uri;
+		}
+
+		private int getPageSize(Dictionary<string, string> queryParameters)
+		{
+			if (queryParameters.TryGetValue(itemsPerPageKey, out string strItemsPerPage))
+			{
+				if (int.TryParse(strItemsPerPage, out int itemsPerPage))
+				{
+					return itemsPerPage;
+				}
+			}
+
+			return _config.PageSize;
 		}
 
 		private Uri createWebRequestUriForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null)
