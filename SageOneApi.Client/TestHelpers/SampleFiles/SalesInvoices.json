@@ -1,0 +1,16 @@
+﻿{
+  "$total": 2,
+  "$page": 1,
+  "$next": "/sales_invoices?page=2&items_per_page=1&attributes=date&sort=date:asc",
+  "$back": null,
+  "$itemsPerPage": 1,
+  "$items": [
+    {
+      "id": "722548a1a599461796bbfc4a6b8b0ae2",
+      "displayed_as": "SI-1",
+      "$path": "/sales_invoices/722548a1a599461796bbfc4a6b8b0ae2",
+      "created_at": "2021-09-09T14:36:01Z",
+      "date": "2015-02-19"
+    }
+  ]
+}

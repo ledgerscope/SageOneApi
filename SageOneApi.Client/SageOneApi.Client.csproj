@@ -12,6 +12,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="TestHelpers\SampleFiles\SalesInvoices.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="TestHelpers\SampleFiles\SalesInvoices.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="System.Text.Json" Version="6.0.0-rc.1.21451.13" />
 	</ItemGroup>
 
@@ -46,7 +54,6 @@
 		<Otherwise>
 			<ItemGroup>
 				<Compile Remove="**\?*.tests*.cs" />
-				<Compile Remove="TestHelpers\**\*.cs" />
 			</ItemGroup>
 			<PropertyGroup>
 				<DebugType>portable</DebugType>

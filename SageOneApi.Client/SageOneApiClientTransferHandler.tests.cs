@@ -2,6 +2,8 @@
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Responses;
 using System;
+using System.IO;
+using System.Reflection;
 
 namespace SageOneApi.Client
 {
@@ -13,46 +15,7 @@ namespace SageOneApi.Client
 			[TestMethod]
 			public void Test_deserialization()
 			{
-				// https://api.accounting.sage.com/v3.1/sales_invoices?page=1&attributes=date&sort=date:asc&items_per_page=1
-				string json = @"
-{
-  `$total`: 2,
-  `$page`: 1,
-  `$next`: `/sales_invoices?page=2&items_per_page=1&attributes=date&sort=date:asc`,
-  `$back`: null,
-  `$itemsPerPage`: 1,
-  `$items`: [
-    {
-      `id`: `722548a1a599461796bbfc4a6b8b0ae2`,
-      `displayed_as`: `SI-1`,
-      `$path`: `/sales_invoices/722548a1a599461796bbfc4a6b8b0ae2`,
-      `date`: `2015-02-19`,
-      `created_at`: `2021-09-09T14:36:01Z`
-    }
-  ]
-}".Replace('`', '"');
-
-				//Newtonsoft.Json.JsonConvert.DefaultSettings = () 
-				//	=> new Newtonsoft.Json.JsonSerializerSettings()
-				//	{
-				//		DateFormatString = 
-				//		DateFormatHandling = Newtonsoft.Json.DateFormatHandling.IsoDateFormat,
-				//		DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local,
-				//		DateParseHandling = Newtonsoft.Json.DateParseHandling.DateTimeOffset
-				//	};
-
-
-				//var settings = new Newtonsoft.Json.JsonSerializerSettings()
-				//{
-				//	DateFormatString = "yyyy-MM-dd"
-				//	// DateFormatHandling = Newtonsoft.Json.DateFormatHandling.
-				//};
-
-				//GetAllResponse<SalesInvoice> response = Newtonsoft.Json.JsonConvert.DeserializeObject<GetAllResponse<SalesInvoice>>(json, settings);
-
-
-				// GetAllResponse<SalesInvoice> response = Newtonsoft.Json.JsonConvert.DeserializeObject<GetAllResponse<SalesInvoice>>(json);
-
+				string json = getEmbeddedJson("SalesInvoices.json");
 
 				GetAllResponse<SalesInvoice> response = System.Text.Json.JsonSerializer.Deserialize<GetAllResponse<SalesInvoice>>(json);
 
@@ -71,6 +34,27 @@ namespace SageOneApi.Client
 
 				Assert.AreEqual("2015-02-19 00:00:00Z", item.Date.ToString("u"));
 
+			}
+
+			private string getEmbeddedJson(string fileName)
+			{
+				var assembly = Assembly.GetExecutingAssembly();
+				var resourcePath = $"{typeof(TestHelpers.SampleFiles.Namespacer).Namespace}.{fileName}";
+
+				string json;
+				using (Stream stream = assembly.GetManifestResourceStream(resourcePath))
+				{
+					if (stream is null)
+					{
+						throw new FileNotFoundException($"Embedded json file not found: {resourcePath}");
+					}
+
+					using (StreamReader reader = new StreamReader(stream))
+					{
+						json = reader.ReadToEnd();
+					}
+				}
+				return json;
 			}
 		}
 	}
