@@ -146,19 +146,26 @@ namespace SageOneApi.Client
 		private Uri createWebRequestUriForAllEntities<T>(int pageNumber,
 			Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
 		{
-			int pageSize = getPageSize(queryParameters);
-
 			var sb = new StringBuilder()
 				.Append(createBaseUriPath<T>())
-				.Append($"?page={pageNumber}")
-				.Append($"&{itemsPerPageKey}={pageSize}");
+				.Append($"?page={pageNumber}");
 
-			if (queryParameters != null && queryParameters.Any())
+			bool isItemsPerPageAdded = false;
+			if (queryParameters != null)
 			{
 				foreach (var item in queryParameters)
 				{
+					if (item.Key.Equals(itemsPerPageKey, StringComparison.InvariantCultureIgnoreCase))
+					{
+						isItemsPerPageAdded = true;
+					}
 					sb.Append("&").Append(item.Key).Append("=").Append(item.Value);
 				}
+			}
+
+			if (!isItemsPerPageAdded)
+			{
+				sb.Append($"&{itemsPerPageKey}={_config.PageSize}");
 			}
 
 			var uriPath = sb.ToString();
