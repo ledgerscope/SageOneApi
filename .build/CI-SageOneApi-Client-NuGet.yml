@@ -1,0 +1,63 @@
+# Pipeline for building our SageOneApi.Client NuGet
+
+# Variable 'PasswordForPFXfile' was defined in the Variables tab
+# Variable 'PFXHash' was defined in the Variables tab
+trigger:
+  branches:
+    include:
+    - refs/heads/master
+  batch: True
+jobs:
+- job: Phase_1
+  displayName: Phase 1
+  cancelTimeoutInMinutes: 1
+  pool:
+    vmImage: windows-2019
+  steps:
+  - checkout: self
+  - task: DownloadSecureFile@1
+    displayName: Download secure file
+    inputs:
+      secureFile: e4a99c4f-86be-4d7f-a331-df06b41dc8d4
+      retryCount: 5
+  - task: PowerShell@2
+    displayName: Install PFX
+    inputs:
+      targetType: inline
+      script: >-
+        $password = "$(PasswordForPFXfile)" | ConvertTo-SecureString -AsPlainText -Force
+
+        Import-PfxCertificate -FilePath "$(Agent.WorkFolder)\_temp\LS Code 2019.pfx" -CertStoreLocation Cert:\CurrentUser\My -Password $password
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet '
+    inputs:
+      checkLatest: true
+  - task: NuGetCommand@2
+    name: NuGetCommand1
+    displayName: NuGet restore
+    inputs:
+      solution: SageOneApi.sln
+      searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
+  - task: VSBuild@1
+    name: VSBuild2
+    displayName: Build solution SageOneApi.sln
+    inputs:
+      solution: SageOneApi.sln
+  - task: NuGetCommand@2
+    name: NuGetCommand3
+    displayName: NuGet pack
+    inputs:
+      command: pack
+      searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
+      searchPatternPack: SageOneApi.Client/SageOneApi.Client.csproj
+      versioningScheme: byPrereleaseNumber
+      requestedMajorVersion: 0
+      requestedMinorVersion: 2
+  - task: NuGetCommand@2
+    name: NuGetCommand4
+    displayName: NuGet push
+    inputs:
+      command: push
+      searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
+      feedPublish: aeaa4311-673f-4791-a14d-d19ad82f0603
+...
