@@ -21,12 +21,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Compilers" Version="4.0.0-4.final" />
-		<PackageReference Include="Microsoft.Net.Compilers" Version="4.0.0-4.final">
+		<PackageReference Include="Microsoft.CodeAnalysis.Compilers" Version="3.11.0" />
+		<PackageReference Include="Microsoft.Net.Compilers" Version="3.11.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.Text.Json" Version="6.0.0-rc.1.21451.13" />
+		<PackageReference Include="System.Text.Json" Version="5.0.2" />
 	</ItemGroup>
 
 	<!--	When compiled in Debug mode, nest the tests.cs classes, and include the packages needed
