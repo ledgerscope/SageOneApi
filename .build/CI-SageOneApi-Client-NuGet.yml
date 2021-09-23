@@ -71,6 +71,15 @@ jobs:
 
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
+  - task: CopyFiles@2
+    displayName: 'Copy to artifacts'
+    inputs:
+      SourceFolder: 'SageOneApi.Client/bin/$(BuildConfiguration)/'
+      Contents: '*.*'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)\mybin'
+    continueOnError: true
+    enabled: true
+
   - powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
 
   - task: PublishBuildArtifacts@1
