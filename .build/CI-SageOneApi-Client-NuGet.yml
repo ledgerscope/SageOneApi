@@ -51,6 +51,7 @@ jobs:
     displayName: NuGet pack
     inputs:
       command: pack
+      configuration: Release
       searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
       searchPatternPack: SageOneApi.Client/SageOneApi.Client.csproj
       versioningScheme: byPrereleaseNumber
