@@ -9,7 +9,7 @@
 		<Product />
 		<Description>Wrapper for Sage Business Cloud Accounting API</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>$(PackageVersion)</PackageVersion>
+		<PackageVersion>$(packageVersion)</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
