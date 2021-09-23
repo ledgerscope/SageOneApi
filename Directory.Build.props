@@ -1,5 +1,5 @@
-<!--<Project>
-  <PropertyGroup Condition="Exists('C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe')">
+<Project>
+  <!--<PropertyGroup Condition="Exists('C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe')">
     <SignToolPath>C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool.exe</SignToolPath>
   </PropertyGroup>
   <Target Name="BeforePublishSign" BeforeTargets="Publish" Condition="'$(PFXHash)' != '' AND '$(SignToolPath)' != ''">
@@ -7,5 +7,5 @@
   </Target>
   <Target Name="AfterBuildSign" AfterTargets="Build" Condition="'$(PFXHash)' != '' AND '$(SignToolPath)' != ''">
     <Exec Command="&quot;$(SignToolPath)&quot; sign /sha1 $(PFXHash) /v &quot;$(TargetPath)&quot;" />
-  </Target>
-</Project>-->
+  </Target>-->
+</Project>
