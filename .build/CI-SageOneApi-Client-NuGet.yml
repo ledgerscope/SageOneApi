@@ -76,6 +76,6 @@ jobs:
     displayName: NuGet push
     inputs:
       command: push
-      searchPatternPush: $(Pipeline.Workspace)/**/SageOneApi*.nupkg
+      searchPatternPush: '$(Pipeline.Workspace)/**/SageOneApi*.nupkg'
       feedPublish: aeaa4311-673f-4791-a14d-d19ad82f0603
 ...
