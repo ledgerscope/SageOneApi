@@ -68,16 +68,13 @@ jobs:
     inputs:
       solution: SageOneApi.sln
       configuration: $(BuildConfiguration)
-      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.stagingDirectory)\Published" /p:IncludeServerNameInBuildInfo=True'
 
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
-  - task: PublishPipelineArtifact@1
-    displayName: 'Publish Artifacts'
+  - task: PublishBuildArtifacts@1
     inputs:
-      targetPath: '$(Build.StagingDirectory)\Published'
-      artifactName: SageOneApiPipelineArtifacts
-    condition: succeededOrFailed()
+      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: drop
 
   - task: NuGetCommand@2
     name: NuGetCommand4
