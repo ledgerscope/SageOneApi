@@ -2,12 +2,15 @@
 
 # Variable 'PasswordForPFXfile' was defined in the Variables tab
 # Variable 'PFXHash' was defined in the Variables tab
+
 trigger:
   branches:
     include:
     - refs/heads/master
   batch: True
+
 jobs:
+
 - job: Phase_1
   displayName: Phase 1
   cancelTimeoutInMinutes: 1
