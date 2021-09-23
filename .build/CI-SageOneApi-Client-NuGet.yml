@@ -10,7 +10,7 @@ trigger: none
 name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:rrr)
 
 variables:
-  buildConfiguration: 'Debug'
+  buildConfiguration: 'Release'
   packageVersion: $(Build.BuildNumber)
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
