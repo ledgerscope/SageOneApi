@@ -7,12 +7,13 @@ trigger: none
 #    - refs/heads/master
 #  batch: True
 
+name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:r)
+
 variables:
   buildConfiguration: 'Release'
+  PackageVersion: '$(Build.Number)'
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
-
-name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:r)
 
 jobs:
 
