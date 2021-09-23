@@ -26,9 +26,10 @@ jobs:
 
   - script: |
       echo 'Right, off we go then'
-      echo 'BuildNumber: $(Build.BuildNumber)'
+      echo 'Build.BuildNumber: $(Build.BuildNumber)'
       echo 'buildConfiguration: $(buildConfiguration)'
       echo 'packageVersion: $(packageVersion)'
+      echo 'Build.ArtifactStagingDirectory: $(Build.ArtifactStagingDirectory)'
 
   - checkout: self
 
@@ -73,6 +74,6 @@ jobs:
     displayName: NuGet push
     inputs:
       command: push
-      searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
+      searchPatternPush: $(Build.ArtifactStagingDirectory)/**/*.nupkg
       feedPublish: aeaa4311-673f-4791-a14d-d19ad82f0603
 ...
