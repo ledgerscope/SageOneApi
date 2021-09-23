@@ -8,6 +8,7 @@
 		<Company>Ledgerscope</Company>
 		<Product />
 		<Description>Wrapper for Sage Business Cloud Accounting API</Description>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,6 +34,7 @@
 		<When Condition="'$(Configuration)' == 'Debug'">
 			<PropertyGroup>
 				<TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+				<AnalysisLevel>latest</AnalysisLevel>
 			</PropertyGroup>
 			<ItemGroup>
 				<Compile Update="**\?*.tests*.cs">
@@ -50,13 +52,11 @@
 					<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 				</PackageReference>
 			</ItemGroup>
-			<PropertyGroup>
-				<AnalysisLevel>latest</AnalysisLevel>
-			</PropertyGroup>
 		</When>
 		<Otherwise>
 			<PropertyGroup>
 				<TargetFrameworks>netstandard2.0</TargetFrameworks>
+				<AnalysisLevel>latest</AnalysisLevel>
 			</PropertyGroup>
 			<ItemGroup>
 				<Compile Remove="**\?*.tests*.cs" />
