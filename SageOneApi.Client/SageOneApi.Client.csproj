@@ -48,6 +48,10 @@
 					<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 				</PackageReference>
 			</ItemGroup>
+			<PropertyGroup>
+				<DebugType>full</DebugType>
+				<DebugSymbols>true</DebugSymbols>
+			</PropertyGroup>
 		</When>
 		<Otherwise>
 			<PropertyGroup>
@@ -56,7 +60,12 @@
 			</PropertyGroup>
 			<ItemGroup>
 				<Compile Remove="**\?*.tests*.cs" />
+				<Compile Remove="TestHelpers\**\*.cs" />
 			</ItemGroup>
+			<PropertyGroup>
+				<DebugType>portable</DebugType>
+				<DebugSymbols>true</DebugSymbols>
+			</PropertyGroup>
 		</Otherwise>
 	</Choose>
 
