@@ -8,6 +8,7 @@
 		<Company>Ledgerscope</Company>
 		<Product />
 		<Description>Wrapper for Sage Business Cloud Accounting API</Description>
+		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageVersion>$(packageVersion)</PackageVersion>
 	</PropertyGroup>
