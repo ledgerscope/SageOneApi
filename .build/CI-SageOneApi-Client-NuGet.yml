@@ -74,6 +74,6 @@ jobs:
     displayName: NuGet push
     inputs:
       command: push
-      searchPatternPush: $(System.DefaultWorkingDirectory)/**/*.nupkg;!$(System.DefaultWorkingDirectory)/**/*.symbols.nupkg
+      searchPatternPush: $(System.DefaultWorkingDirectory)\**\SageOneApi.Client.*.nupkg
       feedPublish: aeaa4311-673f-4791-a14d-d19ad82f0603
 ...
