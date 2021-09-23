@@ -11,7 +11,7 @@ name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:r)
 
 variables:
   buildConfiguration: 'Release'
-  PackageVersion: $(Build.BuildNumber)
+  packageVersion: $(Build.BuildNumber)
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
 
@@ -27,7 +27,8 @@ jobs:
   - script: |
       echo 'Right, off we go then'
       echo 'BuildNumber: $(Build.BuildNumber)'
-      echo 'PackageVersion: $(PackageVersion)'
+      echo 'buildConfiguration: $(buildConfiguration)'
+      echo 'packageVersion: $(packageVersion)'
 
   - checkout: self
 
