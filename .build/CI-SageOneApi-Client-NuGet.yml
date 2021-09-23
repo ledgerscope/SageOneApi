@@ -1,6 +1,6 @@
 # Pipeline for building our SageOneApi.Client NuGet
 
-trigger:
+# trigger:
 #  branches:
 #    include:
 #    - refs/heads/master
@@ -56,17 +56,7 @@ jobs:
       solution: SageOneApi.sln
       configuration: $(BuildConfiguration)
 
-  - task: NuGetCommand@2
-    name: NuGetCommand3
-    displayName: NuGet pack
-    inputs:
-      command: pack
-      searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
-      searchPatternPack: SageOneApi.Client/SageOneApi.Client.csproj
-      versioningScheme: byPrereleaseNumber
-      requestedMajorVersion: 0
-      requestedMinorVersion: 2
-      restoreDirectory: bin\release\netstandard2.0
+# Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
   - task: NuGetCommand@2
     name: NuGetCommand4
