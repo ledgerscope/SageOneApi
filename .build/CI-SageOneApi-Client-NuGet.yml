@@ -12,6 +12,8 @@ variables:
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
 
+name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:.r)
+
 jobs:
 
 - job: Phase_1
@@ -23,7 +25,6 @@ jobs:
 
   - script: |
       echo 'Right, off we go then'
-      echo 'Nuget version: 0.2.0-$(Date:yyyyMMdd)-$(Rev:r)'
       echo 'BuildNumber: $(Build.BuildNumber)'
 
   - checkout: self
