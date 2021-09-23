@@ -69,6 +69,13 @@ jobs:
       solution: SageOneApi.sln
       configuration: $(BuildConfiguration)
 
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish Artifacts'
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'
+      artifactName: SageOneApiPipelineArtifacts
+    condition: succeededOrFailed()
+
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
   - task: NuGetCommand@2
