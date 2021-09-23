@@ -23,7 +23,7 @@ jobs:
 
   - bash: |
       echo 'Right, off we go then'
-      echo 'BuildNumber: $(Build.BuildName)'
+      echo 'Nuget version: 0.2.0-$(Date:yyyyMMdd)-$(Rev:r)'
       echo 'BuildNumber: $(Build.BuildNumber)'
 
   - checkout: self
