@@ -48,6 +48,7 @@ jobs:
     displayName: Build solution SageOneApi.sln
     inputs:
       solution: SageOneApi.sln
+      configuration: $(BuildConfiguration)
   - task: NuGetCommand@2
     name: NuGetCommand3
     displayName: NuGet pack
