@@ -11,7 +11,7 @@ name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:r)
 
 variables:
   buildConfiguration: 'Release'
-  PackageVersion: $(Build.Number)
+  PackageVersion: 'This is the package version'
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
 
