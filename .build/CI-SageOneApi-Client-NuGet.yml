@@ -82,6 +82,8 @@ jobs:
 
   - powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
 
+  - powershell: Get-ChildItem -Path $env:PIPELINE_WORKSPACE -recurse | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/directory-structure.txt
+
   - task: PublishBuildArtifacts@1
     inputs:
       pathToPublish: '$(Build.ArtifactStagingDirectory)'
