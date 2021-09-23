@@ -74,7 +74,7 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy to artifacts'
     inputs:
-      SourceFolder: 'SageOneApi.Client/bin/$(BuildConfiguration)/'
+      SourceFolder: 'SageOneApi.Client/bin/$(BuildConfiguration)/netstandard2.0'
       Contents: '*.*'
       TargetFolder: '$(Build.ArtifactStagingDirectory)\mybin'
     continueOnError: true
