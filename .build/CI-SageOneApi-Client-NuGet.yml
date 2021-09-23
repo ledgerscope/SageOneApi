@@ -7,7 +7,7 @@ trigger: none
 #    - refs/heads/master
 #  batch: True
 
-name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:r)
+name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:rrr)
 
 variables:
   buildConfiguration: 'Release'
