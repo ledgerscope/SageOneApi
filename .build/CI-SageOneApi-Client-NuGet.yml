@@ -68,11 +68,12 @@ jobs:
     inputs:
       solution: SageOneApi.sln
       configuration: $(BuildConfiguration)
+      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.stagingDirectory)\Published" /p:IncludeServerNameInBuildInfo=True'
 
   - task: PublishPipelineArtifact@1
     displayName: 'Publish Artifacts'
     inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)'
+      targetPath: '$(Build.ArtifactStagingDirectory)\Published'
       artifactName: SageOneApiPipelineArtifacts
     condition: succeededOrFailed()
 
@@ -83,6 +84,6 @@ jobs:
     displayName: NuGet push
     inputs:
       command: push
-      searchPatternPush: '$(Pipeline.Workspace)\\**\\SageOneApi*.nupkg'
+      searchPatternPush: '$(Build.ArtifactStagingDirectory)\Published\*.nupkg'
       feedPublish: aeaa4311-673f-4791-a14d-d19ad82f0603
 ...
