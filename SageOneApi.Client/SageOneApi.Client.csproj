@@ -13,6 +13,10 @@
 		<PackageVersion>$(packageVersion)</PackageVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' Or '$(TF_BUILD)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup> 
+
 	<ItemGroup>
 		<None Remove="TestHelpers\SampleFiles\SalesInvoices.json" />
 	</ItemGroup>
