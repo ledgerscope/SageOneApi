@@ -7,7 +7,7 @@ trigger:
   batch: True
 
 variables:
-  BuildConfiguration: 'Release'
+  buildConfiguration: 'Release'
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
 
