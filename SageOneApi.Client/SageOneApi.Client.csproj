@@ -21,11 +21,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Compilers" Version="3.11.0" />
-		<PackageReference Include="Microsoft.Net.Compilers" Version="3.11.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="System.Text.Json" Version="5.0.2" />
 	</ItemGroup>
 
