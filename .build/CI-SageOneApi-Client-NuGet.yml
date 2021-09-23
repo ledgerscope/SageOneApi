@@ -10,7 +10,7 @@ trigger: none
 name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:rrr)
 
 variables:
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
   packageVersion: $(Build.BuildNumber)
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
@@ -67,7 +67,7 @@ jobs:
     inputs:
       command: 'build'
       projects: 'SageOneApi.sln'
-      arguments: '-c release'
+      arguments: '-c $(buildConfiguration)'
 
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
