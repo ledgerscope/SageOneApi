@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SageOneApi.Client
 {
-	internal abstract class SageOneApiClientBaseHandler : ISageOneApiClientHandler
+	internal class SageOneApiClientBaseHandler : ISageOneApiClientHandler
 	{
 		private readonly ISageOneApiClientHandler _apiClient;
 		protected readonly SageOneApiClientConfig _config;
