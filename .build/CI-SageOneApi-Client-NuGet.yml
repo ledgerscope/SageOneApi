@@ -62,12 +62,12 @@ jobs:
       solution: SageOneApi.sln
       searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
 
-  - task: DotNetCoreCLI@2
-    displayName: 'build all'
+  - task: VSBuild@1
+    name: VSBuild2
+    displayName: Build solution SageOneApi.sln
     inputs:
-      command: 'build'
-      projects: 'SageOneApi.sln'
-      arguments: '-c $(buildConfiguration)'
+      solution: SageOneApi.sln
+      configuration: '$(buildConfiguration)'
 
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
