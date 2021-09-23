@@ -67,7 +67,7 @@ jobs:
     inputs:
       command: 'build'
       projects: 'SageOneApi.sln'
-      configuration: $(BuildConfiguration)
+      arguments: '-c release'
 
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
