@@ -1,5 +1,6 @@
 # Pipeline for building our SageOneApi.Client NuGet
 
+trigger: none
 # trigger:
 #  branches:
 #    include:
