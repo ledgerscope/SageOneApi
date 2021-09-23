@@ -73,7 +73,7 @@ jobs:
   - task: PublishPipelineArtifact@1
     displayName: 'Publish Artifacts'
     inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)\Published'
+      targetPath: '$(Build.StagingDirectory)\Published'
       artifactName: SageOneApiPipelineArtifacts
     condition: succeededOrFailed()
 
