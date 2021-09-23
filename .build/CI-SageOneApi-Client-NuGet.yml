@@ -74,7 +74,7 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy to artifacts'
     inputs:
-      SourceFolder: 'SageOneApi.Client/bin/$(BuildConfiguration)/netstandard2.0'
+      SourceFolder: 'SageOneApi.Client/bin/$(BuildConfiguration)'
       Contents: '*.*'
       TargetFolder: '$(Build.ArtifactStagingDirectory)\mybin'
     continueOnError: true
@@ -94,6 +94,6 @@ jobs:
     displayName: NuGet push
     inputs:
       command: push
-      searchPatternPush: '$(Build.ArtifactStagingDirectory)\Published\*.nupkg'
+      searchPatternPush: '$(Build.ArtifactStagingDirectory)\**\SageOneApi*.nupkg'
       feedPublish: aeaa4311-673f-4791-a14d-d19ad82f0603
 ...
