@@ -11,18 +11,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="TestHelpers\SampleFiles\SalesInvoices.json" />
+		<None Remove="TestHelpers\SampleFiles\SalesInvoices.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="TestHelpers\SampleFiles\SalesInvoices.json" />
+		<EmbeddedResource Include="TestHelpers\SampleFiles\SalesInvoices.json" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.Compilers" Version="4.0.0-4.final" />
 		<PackageReference Include="Microsoft.Net.Compilers" Version="4.0.0-4.final">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="System.Text.Json" Version="6.0.0-rc.1.21451.13" />
 	</ItemGroup>
@@ -53,10 +53,6 @@
 			<PropertyGroup>
 				<AnalysisLevel>latest</AnalysisLevel>
 			</PropertyGroup>
-			<PropertyGroup>
-				<DebugType>full</DebugType>
-				<DebugSymbols>true</DebugSymbols>
-			</PropertyGroup>
 		</When>
 		<Otherwise>
 			<PropertyGroup>
@@ -65,10 +61,6 @@
 			<ItemGroup>
 				<Compile Remove="**\?*.tests*.cs" />
 			</ItemGroup>
-			<PropertyGroup>
-				<DebugType>portable</DebugType>
-				<DebugSymbols>true</DebugSymbols>
-			</PropertyGroup>
 		</Otherwise>
 	</Choose>
 
