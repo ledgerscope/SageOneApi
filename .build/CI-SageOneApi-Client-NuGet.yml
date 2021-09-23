@@ -21,6 +21,11 @@ jobs:
     vmImage: windows-2019
   steps:
 
+  - bash: |
+      echo 'Right, off we go then'
+      echo 'BuildNumber: $(Build.BuildName)'
+      echo 'BuildNumber: $(Build.BuildNumber)'
+
   - checkout: self
 
   - task: DownloadSecureFile@1
