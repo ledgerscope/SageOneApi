@@ -1,13 +1,15 @@
 # Pipeline for building our SageOneApi.Client NuGet
 
-# Variable 'PasswordForPFXfile' was defined in the Variables tab
-# Variable 'PFXHash' was defined in the Variables tab
-
 trigger:
   branches:
     include:
     - refs/heads/master
   batch: True
+
+variables:
+  BuildConfiguration: 'Release'
+# Variable 'PFXHash' is defined in the Variables tab
+# Variable 'PasswordForPFXfile' is defined in the Variables tab
 
 jobs:
 
