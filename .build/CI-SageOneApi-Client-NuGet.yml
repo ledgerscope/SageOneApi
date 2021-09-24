@@ -18,7 +18,7 @@ variables:
 jobs:
 
 - job: Phase_1
-  displayName: Phase 1
+  displayName: Build and deploy
   cancelTimeoutInMinutes: 1
   pool:
     vmImage: windows-2019
@@ -52,13 +52,13 @@ jobs:
         Import-PfxCertificate -FilePath "$(Agent.WorkFolder)\_temp\LS Code 2019.pfx" -CertStoreLocation Cert:\CurrentUser\My -Password $password
 
   - task: NuGetToolInstaller@1
-    displayName: Use NuGet.
+    displayName: Use NuGet
     inputs:
       checkLatest: true
 
   - task: NuGetCommand@2
     name: NuGetCommand1
-    displayName: Do NuGet restores.
+    displayName: Do NuGet restores
     inputs:
       solution: SageOneApi.sln
       searchPatternPush: $(Build.ArtifactStagingDirectory)/*.nupkg
@@ -73,7 +73,7 @@ jobs:
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
 
   - task: CopyFiles@2
-    displayName: Copy the emitted package to our artifacts folder.
+    displayName: Copy the emitted package to our artifacts folder
     inputs:
       SourceFolder: 'SageOneApi.Client/bin/$(BuildConfiguration)'
       Contents: '*.*'
@@ -82,20 +82,20 @@ jobs:
     enabled: true
 
   - powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
-    displayName: Debug print environment variables.
+    displayName: Debug print environment variables
 
   - powershell: Get-ChildItem -Path $env:PIPELINE_WORKSPACE -recurse | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/directory-structure.txt
-    displayName: Debug print directory structure and files.
+    displayName: Debug print directory structure and files
 
   - task: PublishBuildArtifacts@1
-    displayName: Publish 'drop' artifacts.
+    displayName: Publish 'drop' artifacts
     inputs:
       pathToPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: drop
 
   - task: NuGetCommand@2
     name: NuGetCommand4
-    displayName: Push package to our NuGet feed.
+    displayName: Push package to our NuGet feed
     inputs:
       command: push
       searchPatternPush: '$(Build.ArtifactStagingDirectory)\**\SageOneApi*.nupkg'
