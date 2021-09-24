@@ -1,0 +1,34 @@
+﻿{
+  "$path": "/financial_settings",
+  "year_end_date": "2021-12-31",
+  "year_end_lockdown_date": null,
+  "accounting_type": "accrual",
+  "accounts_start_date": null,
+  "base_currency": {
+    "id": "GBP",
+    "displayed_as": "Pound Sterling (GBP)",
+    "$path": "/currencies/GBP"
+  },
+  "multi_currency_enabled": false,
+  "use_live_exchange_rates": true,
+  "mtd_activation_status": "mtd_unavailable",
+  "mtd_connected": false,
+  "mtd_authenticated_date": "",
+  "tax_scheme": {
+    "id": "NOT_REGISTERED",
+    "displayed_as": "Not Registered",
+    "$path": "/tax_schemes/NOT_REGISTERED"
+  },
+  "tax_return_frequency": null,
+  "tax_number": null,
+  "general_tax_number": "",
+  "tax_office": null,
+  "default_irpf_rate": "0.0",
+  "flat_rate_tax_percentage": null,
+  "recoverable_percentage": null,
+  "sales_tax_calculation": null,
+  "purchase_tax_calculation": null,
+  "updated_at": "2021-09-09T14:27:06Z",
+  "postponed_accounting": false,
+  "destination_vat": false
+}

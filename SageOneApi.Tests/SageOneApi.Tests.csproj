@@ -6,10 +6,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="TestHelpers\SampleFiles\FinancialSettings.json" />
 	  <None Remove="TestHelpers\SampleFiles\SalesInvoices.json" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="TestHelpers\SampleFiles\FinancialSettings.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\SalesInvoices.json" />
 	</ItemGroup>
 

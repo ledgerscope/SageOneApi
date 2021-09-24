@@ -7,7 +7,7 @@ using SageOneApi.Client;
 
 namespace SageOneApi.Tests
 {
-	public class SageOneApiClientTransferHandler
+	public class SageOneApiClientTransferHandlerTests
 	{
 		[TestClass]
 		public class UnitTests
