@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace SageOneApi.Client
 {
+#if DEBUG
+	// Making it non-abstract in the debug version makes it easier to step into the embedded PDB code when debugging it when used as a Nuget (a VS quirk).
 	internal class SageOneApiClientBaseHandler : ISageOneApiClientHandler
+#else
+	internal abstract class SageOneApiClientBaseHandler : ISageOneApiClientHandler
+#endif
 	{
 		private readonly ISageOneApiClientHandler _apiClient;
 		protected readonly SageOneApiClientConfig _config;

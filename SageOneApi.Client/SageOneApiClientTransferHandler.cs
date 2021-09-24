@@ -16,7 +16,7 @@ using System.Text.Json;
 
 namespace SageOneApi.Client
 {
-	public partial class SageOneApiClientTransferHandler : ISageOneApiClientHandler
+	public class SageOneApiClientTransferHandler : ISageOneApiClientHandler
 	{
 		private const string itemsPerPageKey = "items_per_page";
 
@@ -46,7 +46,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = deserializeObject<T>(jsonResponse);
+			var response = JsonDeserializer.DeserializeObject<T>(jsonResponse);
 
 			return response;
 		}
@@ -57,7 +57,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = deserializeObject<T>(jsonResponse);
+			var response = JsonDeserializer.DeserializeObject<T>(jsonResponse);
 
 			return response;
 		}
@@ -68,7 +68,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = deserializeObject<T>(jsonResponse);
+			var response = JsonDeserializer.DeserializeObject<T>(jsonResponse);
 
 			return response;
 		}
@@ -79,7 +79,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = deserializeObject<T[]>(jsonResponse);
+			var response = JsonDeserializer.DeserializeObject<T[]>(jsonResponse);
 
 			return response;
 		}
@@ -90,7 +90,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			var response = deserializeObjects<T>(jsonResponse);
+			var response = JsonDeserializer.DeserializeObjects<T>(jsonResponse);
 
 			var entities = new List<T>();
 
@@ -108,7 +108,7 @@ namespace SageOneApi.Client
 
 			var jsonResponse = await getResponse(uri, cancellationToken);
 
-			return deserializeObjects<T>(jsonResponse);
+			return JsonDeserializer.DeserializeObjects<T>(jsonResponse);
 		}
 
 		public void RenewRefreshAndAccessToken()
@@ -217,16 +217,6 @@ namespace SageOneApi.Client
 			var targetEntity = getTargetEntityPathFrom(typeof(T));
 
 			return $"{_baseUri}/{targetEntity}";
-		}
-
-		private static T deserializeObject<T>(string json)
-		{
-			return JsonSerializer.Deserialize<T>(json);
-		}
-
-		private static GetAllResponse<T> deserializeObjects<T>(string json)
-		{
-			return JsonSerializer.Deserialize<GetAllResponse<T>>(json);
 		}
 
 		private string getTargetEntityPathFrom(Type type)
