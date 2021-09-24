@@ -65,7 +65,7 @@ jobs:
 
   - task: VSBuild@1
     name: VSBuild2
-    displayName: Build solution SageOneApi.sln
+    displayName: Build SageOneApi.sln solution
     inputs:
       solution: SageOneApi.sln
       configuration: '$(buildConfiguration)'
