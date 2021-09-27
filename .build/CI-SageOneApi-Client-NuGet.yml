@@ -75,6 +75,8 @@ jobs:
   - task: VSTest@2
     displayName: Run tests
     inputs:
+      testSelector: testAssemblies
+      testAssemblyVer2: '**\SageOneApi.Tests.dll'
       minimumExpectedTests: '1'
 
   - task: CopyFiles@2
