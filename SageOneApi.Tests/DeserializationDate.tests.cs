@@ -35,7 +35,7 @@ namespace SageOneApi.Tests
 				// Assert.AreEqual("2021-09-09 14:36:01Z", b.Value.ToString("u"));
 
 				// This test works all of the time, because it shows as universal time (UTC/GMT)
-				Assert.AreEqual("xxx 2021-09-09 14:36:01Z", b.Value.ToUniversalTime().ToString("u"));
+				Assert.AreEqual("2021-09-09 14:36:01Z", b.Value.ToUniversalTime().ToString("u"));
 			}
 
 			[TestMethod]
