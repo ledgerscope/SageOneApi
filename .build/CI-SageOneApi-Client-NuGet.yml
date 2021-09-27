@@ -18,7 +18,7 @@ variables:
 jobs:
 
 - job: Phase_1
-  displayName: Build and deploy
+  displayName: Build, test, and deploy
   cancelTimeoutInMinutes: 1
   pool:
     vmImage: windows-2019
