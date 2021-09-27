@@ -28,7 +28,7 @@
 		<ProjectReference Include="..\SageOneApi.Client\SageOneApi.Client.csproj" />
 	</ItemGroup>
 
-	<!-- Remove tests classes for Release (because some things under test are not public in the release version).  -->
+	<!-- Remove tests classes for Release (because some things we try to test in the SageOneApi.Client project are not public in the release version).  -->
 	<Choose>
 		<When Condition="'$(Configuration)' == 'Release'">
 			<ItemGroup>
