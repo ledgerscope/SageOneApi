@@ -36,7 +36,7 @@ namespace SageOneApi.Client
 			public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				string sval = reader.GetString();
-				if (string.IsNullOrEmpty(sval))
+				if (string.IsNullOrWhiteSpace(sval))
 					return null;
 				else
 					return DateTime.Parse(sval);

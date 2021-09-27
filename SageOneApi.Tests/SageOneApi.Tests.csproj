@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
@@ -6,13 +6,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="TestHelpers\SampleFiles\DaysOfChristmas.json" />
+	  <None Remove="TestHelpers\SampleFiles\DatesTestData.json" />
 	  <None Remove="TestHelpers\SampleFiles\FinancialSettings.json" />
 	  <None Remove="TestHelpers\SampleFiles\SalesInvoices.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="TestHelpers\SampleFiles\DaysOfChristmas.json" />
+	  <EmbeddedResource Include="TestHelpers\SampleFiles\DatesTestData.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\FinancialSettings.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\SalesInvoices.json" />
 	</ItemGroup>
