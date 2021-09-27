@@ -1,11 +1,11 @@
 # Pipeline for building our SageOneApi.Client NuGet
 
-trigger: none
-# trigger:
-#  branches:
-#    include:
-#    - refs/heads/master
-#  batch: True
+#trigger: none
+trigger:
+  branches:
+    include:
+    - refs/heads/master
+  batch: True
 
 name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:rrr)
 
@@ -71,6 +71,11 @@ jobs:
       configuration: '$(buildConfiguration)'
 
 # Having set GeneratePackageOnBuild in the project config, there's no need for a separate NuGet build step.
+
+  - task: VSTest@2
+    displayName: Run tests
+    inputs:
+      minimumExpectedTests: '1' # Optional
 
   - task: CopyFiles@2
     displayName: Copy the emitted package to our artifacts folder
