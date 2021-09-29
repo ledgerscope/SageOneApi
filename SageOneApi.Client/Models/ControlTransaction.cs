@@ -19,7 +19,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("notes")]
 		public string Notes { get; set; }
 		[JsonPropertyName("total_quantity")]
-		public double? TotalQuantity { get; set; }
+		public decimal? TotalQuantity { get; set; }
 		[JsonPropertyName("net_amount")]
 		public decimal? NetAmount { get; set; }
 		[JsonPropertyName("tax_amount")]

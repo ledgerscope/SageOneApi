@@ -11,7 +11,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("invoice_lines")]
 		public List<PurchaseTransactionLine> InvoiceLines { get; set; }
 		[JsonPropertyName("withholding_tax_rate")]
-		public double? WithholdingTaxRate { get; set; }
+		public decimal? WithholdingTaxRate { get; set; }
 		[JsonPropertyName("withholding_tax_amount")]
 		public decimal? WithholdingTaxAmount { get; set; }
 		[JsonPropertyName("base_currency_withholding_tax_amount")]

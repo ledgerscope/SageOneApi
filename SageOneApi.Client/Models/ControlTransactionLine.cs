@@ -18,7 +18,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("ledger_account")]
 		public LedgerAccount LedgerAccount { get; set; }
 		[JsonPropertyName("quantity")]
-		public double Quantity { get; set; }
+		public decimal Quantity { get; set; }
 		[JsonPropertyName("unit_price")]
 		public decimal UnitPrice { get; set; }
 		[JsonPropertyName("net_amount")]

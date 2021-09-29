@@ -29,7 +29,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("deletable")]
 		public bool Deletable { get; set; }
 		[JsonPropertyName("withholding_tax_rate")]
-		public double? WithholdingTaxRate { get; set; }
+		public decimal? WithholdingTaxRate { get; set; }
 		[JsonPropertyName("withholding_tax_amount")]
 		public decimal? WithholdingTaxAmount { get; set; }
 	}
