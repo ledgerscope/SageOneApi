@@ -2,7 +2,6 @@
 using SageOneApi.Client.Responses;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using SageOneApi.Client.Converters;
 
 namespace SageOneApi.Client
 {
@@ -18,10 +17,10 @@ namespace SageOneApi.Client
 		private static JsonSerializerOptions getOptions()
 		{
 			var options = new JsonSerializerOptions(JsonSerializerDefaults.General);
+
+			options.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 			
 			options.Converters.Add(new NullableDateTimeConverter());
-			options.Converters.Add(new StringDecimalConverter());
-			options.Converters.Add(new StringIntConverter());
 
 			return options;
 		}
