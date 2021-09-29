@@ -1,0 +1,239 @@
+﻿{
+  "$total": 5,
+  "$page": 1,
+  "$next": null,
+  "$back": null,
+  "$itemsPerPage": 50,
+  "$items": [
+    {
+      "id": "65ce2b7e2c3040508338b150b98712dd",
+      "displayed_as": "woodside snooker (0600)",
+      "$path": "/bank_accounts/65ce2b7e2c3040508338b150b98712dd",
+      "created_at": "2018-12-24T08:33:47Z",
+      "updated_at": "2018-12-24T08:35:27Z",
+      "bank_account_details": {
+        "account_name": "woodside snooker",
+        "account_number": "123456789",
+        "sort_code": "070407",
+        "bic": "HLFXGB21F08",
+        "iban": "GB29 NWBK 6016 1331 9268 19"
+      },
+      "ledger_account": {
+        "id": "ad2ad828c2df464e99f1e3ded1caa323",
+        "displayed_as": "woodside snooker (0600)",
+        "$path": "/ledger_accounts/ad2ad828c2df464e99f1e3ded1caa323"
+      },
+      "bank_account_type": {
+        "id": "CHECKING",
+        "displayed_as": "Current",
+        "$path": "/bank_account_types/CHECKING"
+      },
+      "balance": "-430035.84",
+      "main_address": {
+        "id": "86b0ae54458e4b76bfd7b1f3202a6e95",
+        "displayed_as": "United Kingdom",
+        "$path": "/addresses/86b0ae54458e4b76bfd7b1f3202a6e95"
+      },
+      "main_contact_person": {
+        "id": "d81be9f443c0494782e23571febae223",
+        "displayed_as": "Main Contact",
+        "$path": "/contact_persons/d81be9f443c0494782e23571febae223"
+      },
+      "nominal_code": null,
+      "editable": true,
+      "deletable": false,
+      "journal_code": null,
+      "default_payment_method": {
+        "id": "CREDIT_DEBIT",
+        "displayed_as": "Credit/Debit Card",
+        "$path": "/payment_methods/CREDIT_DEBIT"
+      },
+      "gifi_code": null,
+      "is_active": true
+    },
+    {
+      "id": "0ffbc27fd07c4abbbaa198389694f86f",
+      "displayed_as": "Cash (0604)",
+      "$path": "/bank_accounts/0ffbc27fd07c4abbbaa198389694f86f",
+      "created_at": "2018-12-24T08:33:47Z",
+      "updated_at": "2018-12-24T08:33:47Z",
+      "bank_account_details": {
+        "account_name": "Cash",
+        "account_number": null,
+        "sort_code": null,
+        "bic": null,
+        "iban": null
+      },
+      "ledger_account": {
+        "id": "fec66e9158f84299a41affbd9224aa46",
+        "displayed_as": "Cash (0604)",
+        "$path": "/ledger_accounts/fec66e9158f84299a41affbd9224aa46"
+      },
+      "bank_account_type": {
+        "id": "CASH_IN_HAND",
+        "displayed_as": "Cash in Hand",
+        "$path": "/bank_account_types/CASH_IN_HAND"
+      },
+      "balance": "0.0",
+      "main_address": {
+        "id": "636d45fc62294a81b62e9c82235c529a",
+        "displayed_as": "United Kingdom",
+        "$path": "/addresses/636d45fc62294a81b62e9c82235c529a"
+      },
+      "main_contact_person": {
+        "id": "f58cac9a81af4a4891cdf8bf288690de",
+        "displayed_as": "Main Contact",
+        "$path": "/contact_persons/f58cac9a81af4a4891cdf8bf288690de"
+      },
+      "nominal_code": null,
+      "editable": true,
+      "deletable": false,
+      "journal_code": null,
+      "default_payment_method": {
+        "id": "CASH",
+        "displayed_as": "Cash",
+        "$path": "/payment_methods/CASH"
+      },
+      "gifi_code": null,
+      "is_active": true
+    },
+    {
+      "id": "27579f820ad5489a90cad1588ea69f40",
+      "displayed_as": "Petty cash (0602)",
+      "$path": "/bank_accounts/27579f820ad5489a90cad1588ea69f40",
+      "created_at": "2018-12-24T08:49:27Z",
+      "updated_at": "2018-12-24T08:49:27Z",
+      "bank_account_details": {
+        "account_name": "Petty cash",
+        "account_number": "123456789",
+        "sort_code": "070407",
+        "bic": "HLFXGB21F08",
+        "iban": "GB29 NWBK 6016 1331 9268 19"
+      },
+      "ledger_account": {
+        "id": "eb9de939faca4a248b72bde0f4f0b0f1",
+        "displayed_as": "Petty cash (0602)",
+        "$path": "/ledger_accounts/eb9de939faca4a248b72bde0f4f0b0f1"
+      },
+      "bank_account_type": {
+        "id": "CHECKING",
+        "displayed_as": "Current",
+        "$path": "/bank_account_types/CHECKING"
+      },
+      "balance": "1532.21",
+      "main_address": {
+        "id": "e3209b401be2471aa130e724bacb11e8",
+        "displayed_as": "United Kingdom",
+        "$path": "/addresses/e3209b401be2471aa130e724bacb11e8"
+      },
+      "main_contact_person": {
+        "id": "332a443607064498996ced6d3aa13804",
+        "displayed_as": "Main Contact",
+        "$path": "/contact_persons/332a443607064498996ced6d3aa13804"
+      },
+      "nominal_code": null,
+      "editable": true,
+      "deletable": false,
+      "journal_code": null,
+      "default_payment_method": {
+        "id": "CREDIT_DEBIT",
+        "displayed_as": "Credit/Debit Card",
+        "$path": "/payment_methods/CREDIT_DEBIT"
+      },
+      "gifi_code": null,
+      "is_active": true
+    },
+    {
+      "id": "1dd0711faab74dc7b5e9da455ab5dbbf",
+      "displayed_as": "Woodside Snooker Centre Ltd (0601)",
+      "$path": "/bank_accounts/1dd0711faab74dc7b5e9da455ab5dbbf",
+      "created_at": "2018-12-24T08:49:27Z",
+      "updated_at": "2018-12-24T08:49:27Z",
+      "bank_account_details": {
+        "account_name": "Woodside Snooker Centre Ltd",
+        "account_number": "123456789",
+        "sort_code": "070407",
+        "bic": "HLFXGB21F08",
+        "iban": "GB29 NWBK 6016 1331 9268 19"
+      },
+      "ledger_account": {
+        "id": "4e0b970e2c244258ba1b635db8088228",
+        "displayed_as": "Woodside Snooker Centre Ltd (0601)",
+        "$path": "/ledger_accounts/4e0b970e2c244258ba1b635db8088228"
+      },
+      "bank_account_type": {
+        "id": "CHECKING",
+        "displayed_as": "Current",
+        "$path": "/bank_account_types/CHECKING"
+      },
+      "balance": "434321.08",
+      "main_address": {
+        "id": "9b4b25cb504c44deb180a3d02df8a287",
+        "displayed_as": "United Kingdom",
+        "$path": "/addresses/9b4b25cb504c44deb180a3d02df8a287"
+      },
+      "main_contact_person": {
+        "id": "09e9694eb0614808919d02794a14b5ad",
+        "displayed_as": "Main Contact",
+        "$path": "/contact_persons/09e9694eb0614808919d02794a14b5ad"
+      },
+      "nominal_code": null,
+      "editable": true,
+      "deletable": false,
+      "journal_code": null,
+      "default_payment_method": {
+        "id": "CREDIT_DEBIT",
+        "displayed_as": "Credit/Debit Card",
+        "$path": "/payment_methods/CREDIT_DEBIT"
+      },
+      "gifi_code": null,
+      "is_active": true
+    },
+    {
+      "id": "ea955059ee32471ab5ef49f3dc5bab87",
+      "displayed_as": "Business credit card (0603)",
+      "$path": "/bank_accounts/ea955059ee32471ab5ef49f3dc5bab87",
+      "created_at": "2018-12-24T08:49:27Z",
+      "updated_at": "2018-12-24T08:49:27Z",
+      "bank_account_details": {
+        "account_name": "Business credit card",
+        "account_number": "123456789",
+        "sort_code": "070407",
+        "bic": "HLFXGB21F08",
+        "iban": "GB29 NWBK 6016 1331 9268 19"
+      },
+      "ledger_account": {
+        "id": "2a643a94b7db448090c94ad0a3a43a66",
+        "displayed_as": "Business credit card (0603)",
+        "$path": "/ledger_accounts/2a643a94b7db448090c94ad0a3a43a66"
+      },
+      "bank_account_type": {
+        "id": "CHECKING",
+        "displayed_as": "Current",
+        "$path": "/bank_account_types/CHECKING"
+      },
+      "balance": "8932.62",
+      "main_address": {
+        "id": "5fd2361fc7534fd5a1ac6b8b1995da80",
+        "displayed_as": "United Kingdom",
+        "$path": "/addresses/5fd2361fc7534fd5a1ac6b8b1995da80"
+      },
+      "main_contact_person": {
+        "id": "615e16ba72eb41be9858b91802cad89c",
+        "displayed_as": "Main Contact",
+        "$path": "/contact_persons/615e16ba72eb41be9858b91802cad89c"
+      },
+      "nominal_code": null,
+      "editable": true,
+      "deletable": false,
+      "journal_code": null,
+      "default_payment_method": {
+        "id": "CREDIT_DEBIT",
+        "displayed_as": "Credit/Debit Card",
+        "$path": "/payment_methods/CREDIT_DEBIT"
+      },
+      "gifi_code": null,
+      "is_active": true
+    }
+  ]
+}

@@ -11,7 +11,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("bank_account_type")]
 		public PropertyValueWithPath BankAccountType { get; set; }
 		[JsonPropertyName("balance")]
-		public decimal Balance { get; set; }
+		public decimal? Balance { get; set; }
 		[JsonPropertyName("main_address")]
 		public Address MainAddress { get; set; }
 		[JsonPropertyName("main_contact_person")]
