@@ -12,7 +12,7 @@ namespace SageOneApi.Client
 #endif
 	static class JsonDeserializer
 	{
-		private static Lazy<JsonSerializerOptions> _lazyOptions = new Lazy<JsonSerializerOptions>(() => getOptions());
+		private static readonly JsonSerializerOptions _options = getOptions();
 
 		private static JsonSerializerOptions getOptions()
 		{
@@ -23,12 +23,12 @@ namespace SageOneApi.Client
 
 		public static T DeserializeObject<T>(string json)
 		{
-			return JsonSerializer.Deserialize<T>(json, _lazyOptions.Value);
+			return JsonSerializer.Deserialize<T>(json, _options);
 		}
 
 		public static GetAllResponse<T> DeserializeObjects<T>(string json)
 		{
-			return JsonSerializer.Deserialize<GetAllResponse<T>>(json, _lazyOptions.Value);
+			return JsonSerializer.Deserialize<GetAllResponse<T>>(json, _options);
 		}
 
 		private class NullableDateTimeConverter : JsonConverter<DateTime?>
