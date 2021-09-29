@@ -16,7 +16,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("origin")]
 		public Artefact Origin { get; set; }
 		[JsonPropertyName("audit_trail_id")]
-		public string AuditTrailId { get; set; }
+		public int AuditTrailId { get; set; } //Documentation says this is a string, but API returns numbers
 		[JsonPropertyName("number_of_attachments")]
 		public int NumberOfAttachments { get; set; }
 	}
