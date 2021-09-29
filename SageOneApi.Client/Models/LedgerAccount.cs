@@ -15,7 +15,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("included_in_chart")]
 		public bool? IncludedInChart { get; set; }
 		[JsonPropertyName("nominal_code")]
-		public string NominalCode { get; set; }
+		public int NominalCode { get; set; }
 		[JsonPropertyName("ledger_account_type")]
 		public PropertyValueWithPath LedgerAccountType { get; set; }
 		[JsonPropertyName("ledger_account_classification")]

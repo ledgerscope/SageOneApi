@@ -17,7 +17,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("main_contact_person")]
 		public ContactPerson MainContactPerson { get; set; }
 		[JsonPropertyName("nominal_code")]
-		public string NominalCode { get; set; }
+		public int? NominalCode { get; set; }
 		[JsonPropertyName("editable")]
 		public bool Editable { get; set; }
 		[JsonPropertyName("deletable")]
