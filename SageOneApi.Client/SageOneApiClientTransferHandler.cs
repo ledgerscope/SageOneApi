@@ -160,7 +160,7 @@ namespace SageOneApi.Client
 					{
 						isItemsPerPageAdded = true;
 					}
-					sb.Append("&").Append(item.Key).Append("=").Append(item.Value);
+					sb.Append('&').Append(item.Key).Append('=').Append(item.Value);
 				}
 			}
 
@@ -193,16 +193,16 @@ namespace SageOneApi.Client
 		{
 			var sb = new StringBuilder()
 				.Append(createBaseUriPath<T>())
-				.Append("/")
+				.Append('/')
 				.Append(entityId);
 
 			if (queryParameters != null && queryParameters.Any())
 			{
-				sb.Append("?");
+				sb.Append('?');
 
 				foreach (var item in queryParameters)
 				{
-					sb.Append(item.Key).Append("=").Append(item.Value).Append("&");
+					sb.Append(item.Key).Append('=').Append(item.Value).Append('&');
 				}
 			}
 
