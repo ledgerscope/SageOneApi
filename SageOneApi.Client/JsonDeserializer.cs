@@ -18,8 +18,11 @@ namespace SageOneApi.Client
 		private static JsonSerializerOptions getOptions()
 		{
 			var options = new JsonSerializerOptions(JsonSerializerDefaults.General);
+			
 			options.Converters.Add(new NullableDateTimeConverter());
 			options.Converters.Add(new StringDecimalConverter());
+			options.Converters.Add(new StringIntConverter());
+
 			return options;
 		}
 
