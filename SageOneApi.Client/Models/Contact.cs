@@ -35,9 +35,9 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("bank_account_details")]
 		public BankAccountDetails BankAccountDetails { get; set; }
 		[JsonPropertyName("credit_limit")]
-		public string CreditLimit { get; set; }
+		public decimal? CreditLimit { get; set; }
 		[JsonPropertyName("credit_days")]
-		public string CreditDays { get; set; }
+		public int? CreditDays { get; set; }
 		[JsonPropertyName("credit_terms_and_conditions")]
 		public string CreditTermsAndConditions { get; set; }
 		[JsonPropertyName("product_sales_price_type")]
