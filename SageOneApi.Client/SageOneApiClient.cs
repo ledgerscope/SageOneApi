@@ -57,6 +57,11 @@ namespace SageOneApi.Client
 			return _sageOneApiClientHandler.GetAll<T>(queryParameters, cancellationToken);
 		}
 
+		public Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters, int? pageLimit) where T : SageOneAccountingEntity
+		{
+			return _sageOneApiClientHandler.GetAll<T>(queryParameters, pageLimit, cancellationToken);
+		}
+
 		public Task<IEnumerable<T>> GetAllCore<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity
 		{
 			return _sageOneApiClientHandler.GetAllCore<T>(queryParameters, cancellationToken);

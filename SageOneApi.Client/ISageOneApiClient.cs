@@ -32,6 +32,12 @@ namespace SageOneApi.Client
 		Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity;
 
 		/// <summary>
+		/// Retrieve <see cref="SageOneAccountingEntity"/> items where there could be multiple items per company, and limit to n number of pages.
+		/// </summary>
+		/// <param name="pageLimit">Max number of pages of results to return.</param>
+		Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters, int? pageLimit) where T : SageOneAccountingEntity;
+
+		/// <summary>
 		/// Retrieve <see cref="SageOneCoreEntity"/> items where there could be multiple items per company.
 		/// </summary>
 		Task<IEnumerable<T>> GetAllCore<T>(CancellationToken cancellationToken = default, Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity;
