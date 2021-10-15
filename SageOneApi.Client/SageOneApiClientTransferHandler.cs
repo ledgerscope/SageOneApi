@@ -102,6 +102,11 @@ namespace SageOneApi.Client
 			return entities;
 		}
 
+		public Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, int? pageLimit, CancellationToken cancellationToken) where T : SageOneAccountingEntity
+		{
+			throw new NotImplementedException();
+		}
+
 		public async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
 		{
 			var uri = createWebRequestUriForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);

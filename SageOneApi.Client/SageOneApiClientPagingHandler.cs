@@ -20,14 +20,19 @@ namespace SageOneApi.Client
 
 		public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
+			return await GetAll<T>(queryParameters, null, cancellationToken);
+		}
+
+		public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, int? pageLimit, CancellationToken cancellationToken)
+		{
 			var pageNumber = 1;
 			var itemsDownloaded = 0;
 			var isDownloadRequired = true;
 			var entities = new List<T>();
 
-			while (isDownloadRequired)
+			while (isDownloadRequired && pageNumber <= pageLimit)
 			{
-				GetAllResponse<T> summaryResponse = null;
+				GetAllResponse<T> summaryResponse;
 
 				try
 				{
