@@ -34,7 +34,7 @@ namespace SageOneApi.Client
 		/// <summary>
 		/// Retrieve <see cref="SageOneAccountingEntity"/> items where there could be multiple items per company, and limit to n number of pages.
 		/// </summary>
-		/// <param name="pageLimit">Max number of pages of results to return.</param>
+		/// <param name="pageLimit">Max number of pages of results to get.</param>
 		Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters, int? pageLimit) where T : SageOneAccountingEntity;
 
 		/// <summary>
