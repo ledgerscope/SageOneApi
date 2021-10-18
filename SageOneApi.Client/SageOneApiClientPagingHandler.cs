@@ -30,7 +30,7 @@ namespace SageOneApi.Client
 			var isDownloadRequired = true;
 			var entities = new List<T>();
 
-			while (isDownloadRequired && pageNumber <= pageLimit)
+			while (isDownloadRequired && (pageLimit is null || pageNumber <= pageLimit))
 			{
 				GetAllResponse<T> summaryResponse;
 
