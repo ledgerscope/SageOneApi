@@ -49,6 +49,15 @@ namespace SageOneApi.Client
             return response;
         }
 
+        public async Task<byte[]> GetAttachmentFile(string attachmentId, CancellationToken cancellationToken)
+        {
+            var uri = createWebRequestUriForAttachmentFile(attachmentId);
+
+            var binaryResponse = await getBinaryResponse(uri, cancellationToken);
+
+            return binaryResponse;
+        }
+
         public async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneSingleAccountingEntity
         {
             var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
@@ -131,6 +140,18 @@ namespace SageOneApi.Client
             return requestMessage;
         }
 
+        private HttpRequestMessage buildGetBinaryRequestMessage(Uri uri)
+        {
+            var requestMessage = new HttpRequestMessage { Method = HttpMethod.Get, RequestUri = uri };
+
+            requestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/octet-stream"));
+
+            requestMessage.Headers.Add("X-Business", _resourceOwnerId);
+            requestMessage.Headers.Add("Authorization", $"Bearer {_accessToken}");
+
+            return requestMessage;
+        }
+
         private async Task<string> getResponse(Uri uri, CancellationToken cancellationToken)
         {
             string responseContent;
@@ -145,6 +166,27 @@ namespace SageOneApi.Client
             }
 
             return responseContent;
+        }
+
+        private async Task<byte[]> getBinaryResponse(Uri uri, CancellationToken cancellationToken)
+        {
+            byte[] binaryResponseContent;
+            var message = buildGetBinaryRequestMessage(uri);
+
+            using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    binaryResponseContent = await response.Content.ReadAsByteArrayAsync();
+                }
+                else
+                {
+                    var msg = await response.Content.ReadAsStringAsync();
+                    throw new SageOneApiRequestFailedException(response, msg);
+                }
+            }
+
+            return binaryResponseContent;
         }
 
         private Uri createWebRequestUriForAllEntities<T>(int pageNumber,
@@ -208,6 +250,20 @@ namespace SageOneApi.Client
                     sb.Append(item.Key).Append('=').Append(item.Value).Append('&');
                 }
             }
+
+            var uriPath = sb.ToString();
+            var uri = new Uri(uriPath);
+
+            return uri;
+        }
+
+        private Uri createWebRequestUriForAttachmentFile(string attachmentId)
+        {
+            var sb = new StringBuilder()
+                .Append(createBaseUriPath<Attachment>())
+                .Append('/')
+                .Append(attachmentId)
+                .Append("/file");
 
             var uriPath = sb.ToString();
             var uri = new Uri(uriPath);
