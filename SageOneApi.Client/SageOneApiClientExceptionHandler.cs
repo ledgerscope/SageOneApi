@@ -146,11 +146,13 @@ namespace SageOneApi.Client
 				//Check for 429 before retryLimit as it could be due to the amount of data
 				if (response.StatusCode.ToString() == "429")
 				{
-					response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues);
+					int seconds = 5;
+					if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
+					{
+						seconds = (int.Parse(retryAfterHeaderValues.First()) + 1) * (retryNumber + 1);
+					}
 
-					var seconds = (int.Parse(retryAfterHeaderValues.First()) + 1) * (retryNumber + 1);
-
-					Thread.Sleep(TimeSpan.FromSeconds(seconds));
+					await Task.Delay(TimeSpan.FromSeconds(seconds));
 
 					return await retry();
 				}
