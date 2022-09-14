@@ -23,7 +23,5 @@ namespace SageOneApi.Client.Models
 		public bool IsPreferredContact { get; set; }
 		[JsonPropertyName("address")]
 		public Address Address { get; set; }
-		[JsonPropertyName("deleted_at")]
-		public DateTime? DeletedAt { get; set; }
 	}
 }
