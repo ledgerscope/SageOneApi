@@ -28,6 +28,6 @@ namespace SageOneApi.Client.Models
         [JsonPropertyName("attachment_context")]
         public PropertyValueWithPath AttachmentContext { get; set; }
         [JsonPropertyName("is_public")]
-        public bool IsPublic { get; set; }
+        public bool? IsPublic { get; set; }
     }
 }
