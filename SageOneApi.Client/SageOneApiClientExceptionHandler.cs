@@ -48,7 +48,25 @@ namespace SageOneApi.Client
 			return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
 		}
 
-		private async Task<T> get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
+        public override async Task<byte[]> GetAttachmentFile(string attachmentId, CancellationToken cancellationToken)
+		{
+			return await getAttachmentFile(attachmentId, cancellationToken);
+		}
+
+        private async Task<byte[]> getAttachmentFile(string attachmentId, CancellationToken cancellationToken, int retryNumber = 0)
+        {
+            try
+            {
+                return await base.GetAttachmentFile(attachmentId, cancellationToken);
+            }
+            catch (SageOneApiRequestFailedException ex)
+            {
+                retryNumber++;
+                return await handleKnownExceptions(ex, () => getAttachmentFile(attachmentId, cancellationToken, retryNumber), retryNumber);
+            }
+        }
+
+        private async Task<T> get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
 		{
 			try
 			{

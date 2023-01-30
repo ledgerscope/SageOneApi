@@ -28,7 +28,7 @@ namespace SageOneApi.Client
             return _apiClient.Get<T>(id, queryParameters, cancellationToken);
         }
 
-        public Task<byte[]> GetAttachmentFile(string attachmentId, CancellationToken cancellationToken)
+        public virtual Task<byte[]> GetAttachmentFile(string attachmentId, CancellationToken cancellationToken)
         {
             return _apiClient.GetAttachmentFile(attachmentId, cancellationToken);
         }
