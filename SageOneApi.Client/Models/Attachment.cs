@@ -5,8 +5,6 @@ namespace SageOneApi.Client.Models
 {
     public class Attachment : SageOneAccountingEntity
     {
-        [JsonPropertyName("deleted_at")]
-        public DateTime? DeletedAt { get; set; }
         [JsonPropertyName("file")]
         public string File { get; set; }
         [JsonPropertyName("mime_type")]
