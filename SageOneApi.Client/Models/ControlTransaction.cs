@@ -33,7 +33,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("total_paid")]
 		public decimal? TotalPaid { get; set; }
 		[JsonPropertyName("outstanding_amount")]
-		public decimal OutstandingAmount { get; set; }
+		public decimal? OutstandingAmount { get; set; }
 		[JsonPropertyName("currency")]
 		public PropertyValueWithPath Currency { get; set; }
 		[JsonPropertyName("exchange_rate")]
@@ -47,7 +47,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("base_currency_total_amount")]
 		public decimal BaseCurrencyTotalAmount { get; set; }
 		[JsonPropertyName("base_currency_outstanding_amount")]
-		public decimal BaseCurrencyOutstandingAmount { get; set; }
+		public decimal? BaseCurrencyOutstandingAmount { get; set; }
 		[JsonPropertyName("status")]
 		public PropertyValueWithPath Status { get; set; }
 		[JsonPropertyName("void_reason")]
