@@ -57,7 +57,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("last_paid")]
 		public string LastPaid { get; set; }
 		[JsonPropertyName("tax_address_region")]
-		public object TaxAddressRegion { get; set; }
+		public PropertyValueWithPath TaxAddressRegion { get; set; }
 		[JsonPropertyName("tax_reconciled")]
 		public bool TaxReconciled { get; set; }
 		[JsonPropertyName("migrated")]

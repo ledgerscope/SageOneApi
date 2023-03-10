@@ -13,7 +13,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("bank_account")]
 		public BankAccount bank_account { get; set; }
 		[JsonPropertyName("tax_address_region")]
-		public string TaxAddressRegion { get; set; }
+		public PropertyValueWithPath TaxAddressRegion { get; set; }
 		[JsonPropertyName("net_amount")]
 		public decimal NetAmount { get; set; }
 		[JsonPropertyName("tax_amount")]
