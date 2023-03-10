@@ -23,7 +23,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("deletable")]
 		public bool Deletable { get; set; }
 		[JsonPropertyName("journal_code")]
-		public string JournalCode { get; set; }
+		public PropertyValueWithPath JournalCode { get; set; }
 		[JsonPropertyName("default_payment_method")]
 		public PropertyValueWithPath DefaultPaymentMethod { get; set; }
 	}

@@ -301,6 +301,7 @@ namespace SageOneApi.Client
             { typeof(OtherPayment) , "other_payments" },
             { typeof(BankTransfer) , "bank_transfers" },
             { typeof(Journal) , "journals" },
+            { typeof(JournalCode) , "journal_codes" },
             { typeof(ContactAllocation) , "contact_allocations" },
             { typeof(TaxRate) , "tax_rates" },
             { typeof(BankAccount) , "bank_accounts"},

@@ -13,7 +13,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("total")]
 		public decimal Total { get; set; }
 		[JsonPropertyName("journal_code")]
-		public string JournalCode { get; set; }
+		public PropertyValueWithPath JournalCode { get; set; }
 		[JsonPropertyName("journal_lines")]
 		public List<JournalLine> JournalLines { get; set; }
 	}
