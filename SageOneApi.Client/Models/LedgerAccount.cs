@@ -19,7 +19,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("ledger_account_type")]
 		public PropertyValueWithPath LedgerAccountType { get; set; }
 		[JsonPropertyName("ledger_account_classification")]
-		public string LedgerAccountClassification { get; set; }
+		public PropertyValueWithPath LedgerAccountClassification { get; set; }
 		[JsonPropertyName("tax_rate")]
 		public TaxRate TaxRate { get; set; }
 		[JsonPropertyName("fixed_tax_rate")]
