@@ -15,5 +15,7 @@
 		public const string FutureLiability = "FUTURE_LIABILITY";
 		public const string Equity = "EQUITY";
 		public const string LineOfCredit = "LINE_OF_CREDIT";
-	}
+		public const string Taxes = "TAXES";
+		public const string Special = "SPECIAL";
+    }
 }
