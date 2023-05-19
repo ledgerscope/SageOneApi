@@ -43,5 +43,7 @@ namespace SageOneApi.Client.Models
 		public decimal BaseCurrencyTotalAmount { get; set; }
 		[JsonPropertyName("eu_goods_services_type")]
 		public PropertyValueWithPath EuGoodsServicesType { get; set; }
-	}
+        [JsonPropertyName("analysis_type_categories")]
+        public List<PropertyValueWithPath> AnalysisTypeCategories { get; set; }
+    }
 }

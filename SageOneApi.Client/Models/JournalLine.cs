@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
@@ -14,5 +15,7 @@ namespace SageOneApi.Client.Models
 		public decimal Credit { get; set; }
 		[JsonPropertyName("include_on_tax_return")]
 		public bool IncludeOnTaxReturn { get; set; }
-	}
+        [JsonPropertyName("analysis_type_categories")]
+        public List<PropertyValueWithPath> AnalysisTypeCategories { get; set; }
+    }
 }

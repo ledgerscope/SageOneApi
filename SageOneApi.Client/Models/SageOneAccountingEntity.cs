@@ -20,7 +20,7 @@ namespace SageOneApi.Client.Models
 
 		[JsonPropertyName("updated_at")]
 		public DateTime? UpdatedAt { get; set; }
-		
+
 		[JsonPropertyName("deleted_at")]
 		public DateTime? DeletedAt { get; set; }
 	}

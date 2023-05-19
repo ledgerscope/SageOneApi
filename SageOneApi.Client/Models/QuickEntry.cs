@@ -19,5 +19,7 @@ namespace SageOneApi.Client.Models
 		public List<Tax> BaseCurrencyTaxBreakdown { get; set; }
 		[JsonPropertyName("trade_of_asset")]
 		public bool TradeOfAsset { get; set; }
-	}
+        [JsonPropertyName("analysis_type_categories")]
+        public List<PropertyValueWithPath> AnalysisTypeCategories { get; set; }
+    }
 }

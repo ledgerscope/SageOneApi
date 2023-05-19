@@ -25,5 +25,7 @@ namespace SageOneApi.Client.Models
 		public List<Tax> TaxBreakdown { get; set; }
 		[JsonPropertyName("is_purchase_for_resale")]
 		public bool IsPurchaseForResale { get; set; }
-	}
+        [JsonPropertyName("analysis_type_categories")]
+        public List<PropertyValueWithPath> AnalysisTypeCategories { get; set; }
+    }
 }
