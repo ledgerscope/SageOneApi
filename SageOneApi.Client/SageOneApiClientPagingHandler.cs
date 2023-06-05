@@ -44,14 +44,33 @@ namespace SageOneApi.Client
 				}
 				catch (SageOneApiRequestFailedException ex)
 				{
-					if (ex.Response.StatusCode != HttpStatusCode.InternalServerError) throw;
-					if (!queryParameters.ContainsKey("attributes")) throw;
+					if (ex.Response.StatusCode == HttpStatusCode.InternalServerError)
+					{
+						//Sometimes Sage returns this if there was a problem
+					}
+					else if (ex.Response.StatusCode == HttpStatusCode.GatewayTimeout)
+					{
+
+					}
+                    else if (ex.Response.StatusCode == HttpStatusCode.BadGateway)
+                    {
+						//We might time out, so request less data and try again
+                    }
+					else
+					{
+						throw;
+					}
+
+					if (!queryParameters.TryGetValue("attributes", out var attributeValue))
+					{
+						throw;
+					}
 
 					queryParameters.Remove("attributes");
 
 					summaryResponse = await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
 
-					queryParameters.Add("attributes", "all");
+					queryParameters.Add("attributes", attributeValue);
 
 					foreach (var item in summaryResponse.Items)
 					{
