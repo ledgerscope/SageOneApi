@@ -45,7 +45,41 @@ namespace SageOneApi.Client
 
 		public override async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
-			return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
+			try
+			{
+				return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
+			}
+			catch (SageOneApiRequestFailedException)
+			{
+				var originalPageSize = _config.PageSize;
+
+				if (queryParameters.TryGetValue(SageOneApiClientTransferHandler.ItemsPerPageKey, out var pageSizeStr))
+				{
+					originalPageSize = int.Parse(pageSizeStr);
+				}
+
+				queryParameters[SageOneApiClientTransferHandler.ItemsPerPageKey] = "1";
+
+				var offset = pageNumber * originalPageSize;
+
+				var items = new List<T>(originalPageSize);
+
+				for (int i = 0; i < originalPageSize; i++)
+				{
+					var individualResponse = await getAllSummary<T>(offset + i, queryParameters, cancellationToken);
+					items.AddRange(individualResponse.Items);
+				}
+
+                var response = new GetAllResponse<T>()
+                {
+                    ItemsPerPage = originalPageSize,
+                    Page = pageNumber,
+					Total = items.Count,
+					Items = items.ToArray(),
+                };
+
+				return response;
+            }
 		}
 
         public override async Task<byte[]> GetAttachmentFile(string attachmentId, CancellationToken cancellationToken)

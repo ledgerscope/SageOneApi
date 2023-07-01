@@ -16,7 +16,7 @@ namespace SageOneApi.Client
 {
     public class SageOneApiClientTransferHandler : ISageOneApiClientHandler
     {
-        private const string itemsPerPageKey = "items_per_page";
+        internal const string ItemsPerPageKey = "items_per_page";
 
         private readonly Uri _baseUri;
         private string _accessToken;
@@ -201,7 +201,7 @@ namespace SageOneApi.Client
             {
                 foreach (var item in queryParameters)
                 {
-                    if (item.Key.Equals(itemsPerPageKey, StringComparison.InvariantCultureIgnoreCase))
+                    if (item.Key.Equals(ItemsPerPageKey, StringComparison.InvariantCultureIgnoreCase))
                     {
                         isItemsPerPageAdded = true;
                     }
@@ -211,7 +211,7 @@ namespace SageOneApi.Client
 
             if (!isItemsPerPageAdded)
             {
-                sb.Append($"&{itemsPerPageKey}={_config.PageSize}");
+                sb.Append($"&{ItemsPerPageKey}={_config.PageSize}");
             }
 
             var uriPath = sb.ToString();
@@ -222,7 +222,7 @@ namespace SageOneApi.Client
 
         private int getPageSize(Dictionary<string, string> queryParameters)
         {
-            if (queryParameters.TryGetValue(itemsPerPageKey, out string strItemsPerPage))
+            if (queryParameters.TryGetValue(ItemsPerPageKey, out string strItemsPerPage))
             {
                 if (int.TryParse(strItemsPerPage, out int itemsPerPage))
                 {
