@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace SageOneApi.Client.Exceptions
 {
 	public class SageOneApiRequestFailedException : Exception
 	{
-		public SageOneApiRequestFailedException(HttpResponseMessage response, string responseContent)
+		public SageOneApiRequestFailedException(HttpStatusCode statusCode, HttpResponseHeaders headers, string responseContent)
 		{
-			Response = response;
-			ResponseContent = responseContent;
+            StatusCode = statusCode;
+            Headers = headers;
+            ResponseContent = responseContent;
 		}
 
-		public HttpResponseMessage Response { get; set; }
-
-		public string ResponseContent { get; set; }
+        public HttpStatusCode StatusCode { get; }
+        public HttpResponseHeaders Headers { get; }
+        public string ResponseContent { get; }
 	}
 }

@@ -11,10 +11,10 @@ namespace SageOneApi.Client.Responses
 		public int Page { get; set; }
 
 		[JsonPropertyName("$next")]
-		public object Next { get; set; }
+		public string Next { get; set; }
 
 		[JsonPropertyName("$back")]
-		public object Back { get; set; }
+		public string Back { get; set; }
 
 		[JsonPropertyName("$itemsPerPage")]
 		public int ItemsPerPage { get; set; }

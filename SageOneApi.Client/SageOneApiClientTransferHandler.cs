@@ -162,7 +162,7 @@ namespace SageOneApi.Client
                 responseContent = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
-                    throw new SageOneApiRequestFailedException(response, responseContent);
+                    throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, responseContent);
             }
 
             return responseContent;
@@ -182,7 +182,7 @@ namespace SageOneApi.Client
                 else
                 {
                     var msg = await response.Content.ReadAsStringAsync();
-                    throw new SageOneApiRequestFailedException(response, msg);
+                    throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, msg);
                 }
             }
 

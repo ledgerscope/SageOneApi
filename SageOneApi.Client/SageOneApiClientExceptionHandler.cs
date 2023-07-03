@@ -13,79 +13,45 @@ using System.Threading.Tasks;
 
 namespace SageOneApi.Client
 {
-	internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
-	{
-		private const int _retryLimit = 3;
+    internal class SageOneApiClientExceptionHandler : SageOneApiClientBaseHandler
+    {
+        private const int _retryLimit = 3;
 
-		public SageOneApiClientExceptionHandler(
-			SageOneApiClientConfig config,
-			ISageOneApiClientHandler apiClient) : base(apiClient, config)
-		{
-		}
+        public SageOneApiClientExceptionHandler(
+            SageOneApiClientConfig config,
+            ISageOneApiClientHandler apiClient) : base(apiClient, config)
+        {
+        }
 
-		public override async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
-		{
-			return await get<T>(id, queryParameters, cancellationToken);
-		}
+        public override async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        {
+            return await get<T>(id, queryParameters, cancellationToken);
+        }
 
-		public override async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
-		{
-			return await getSingle<T>(queryParameters, cancellationToken);
-		}
+        public override async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        {
+            return await getSingle<T>(queryParameters, cancellationToken);
+        }
 
-		public override async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
-		{
-			return await getCore<T>(queryParameters, cancellationToken);
-		}
+        public override async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        {
+            return await getCore<T>(queryParameters, cancellationToken);
+        }
 
-		public override async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
-		{
-			return await getAllCore<T>(queryParameters, cancellationToken);
-		}
+        public override async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        {
+            return await getAllCore<T>(queryParameters, cancellationToken);
+        }
 
-		public override async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
-		{
-			try
-			{
-				return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
-			}
-			catch (SageOneApiRequestFailedException)
-			{
-				var originalPageSize = _config.PageSize;
-
-				if (queryParameters.TryGetValue(SageOneApiClientTransferHandler.ItemsPerPageKey, out var pageSizeStr))
-				{
-					originalPageSize = int.Parse(pageSizeStr);
-				}
-
-				queryParameters[SageOneApiClientTransferHandler.ItemsPerPageKey] = "1";
-
-				var offset = pageNumber * originalPageSize;
-
-				var items = new List<T>(originalPageSize);
-
-				for (int i = 0; i < originalPageSize; i++)
-				{
-					var individualResponse = await getAllSummary<T>(offset + i, queryParameters, cancellationToken);
-					items.AddRange(individualResponse.Items);
-				}
-
-                var response = new GetAllResponse<T>()
-                {
-                    ItemsPerPage = originalPageSize,
-                    Page = pageNumber,
-					Total = items.Count,
-					Items = items.ToArray(),
-                };
-
-				return response;
-            }
-		}
+        public override async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
+        {
+            return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
+        }
 
         public override async Task<byte[]> GetAttachmentFile(string attachmentId, CancellationToken cancellationToken)
-		{
-			return await getAttachmentFile(attachmentId, cancellationToken);
-		}
+        {
+            return await getAttachmentFile(attachmentId, cancellationToken);
+        }
 
         private async Task<byte[]> getAttachmentFile(string attachmentId, CancellationToken cancellationToken, int retryNumber = 0)
         {
@@ -101,152 +67,190 @@ namespace SageOneApi.Client
         }
 
         private async Task<T> get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
-		{
-			try
-			{
-				return await base.Get<T>(id, queryParameters, cancellationToken);
-			}
-			catch (SageOneApiRequestFailedException ex)
-			{
-				retryNumber++;
-				return await handleKnownExceptions(ex, () => get<T>(id, queryParameters, cancellationToken, retryNumber), retryNumber);
-			}
-		}
+        {
+            try
+            {
+                return await base.Get<T>(id, queryParameters, cancellationToken);
+            }
+            catch (SageOneApiRequestFailedException ex)
+            {
+                retryNumber++;
+                return await handleKnownExceptions(ex, () => get<T>(id, queryParameters, cancellationToken, retryNumber), retryNumber);
+            }
+        }
 
-		private async Task<T> getSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneSingleAccountingEntity
-		{
-			try
-			{
-				return await base.GetSingle<T>(queryParameters, cancellationToken);
-			}
-			catch (SageOneApiRequestFailedException ex)
-			{
-				retryNumber++;
+        private async Task<T> getSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneSingleAccountingEntity
+        {
+            try
+            {
+                return await base.GetSingle<T>(queryParameters, cancellationToken);
+            }
+            catch (SageOneApiRequestFailedException ex)
+            {
+                retryNumber++;
 
-				return await handleKnownExceptions(ex, () => getSingle<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
-			}
-		}
+                return await handleKnownExceptions(ex, () => getSingle<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
+            }
+        }
 
-		private async Task<T> getCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneCoreEntity
-		{
-			try
-			{
-				return await base.GetCore<T>(queryParameters, cancellationToken);
-			}
-			catch (SageOneApiRequestFailedException ex)
-			{
-				retryNumber++;
+        private async Task<T> getCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneCoreEntity
+        {
+            try
+            {
+                return await base.GetCore<T>(queryParameters, cancellationToken);
+            }
+            catch (SageOneApiRequestFailedException ex)
+            {
+                retryNumber++;
 
-				return await handleKnownExceptions(ex, () => getCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
-			}
-		}
+                return await handleKnownExceptions(ex, () => getCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
+            }
+        }
 
-		private async Task<IEnumerable<T>> getAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneCoreEntity
-		{
-			try
-			{
-				return await base.GetAllCore<T>(queryParameters, cancellationToken);
-			}
-			catch (SageOneApiRequestFailedException ex)
-			{
-				retryNumber++;
+        private async Task<IEnumerable<T>> getAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneCoreEntity
+        {
+            try
+            {
+                return await base.GetAllCore<T>(queryParameters, cancellationToken);
+            }
+            catch (SageOneApiRequestFailedException ex)
+            {
+                retryNumber++;
 
-				return await handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
-			}
-		}
+                return await handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
+            }
+        }
 
-		private async Task<GetAllResponse<T>> getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
-		{
-			try
-			{
-				return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
-			}
-			catch (SageOneApiRequestFailedException ex)
-			{
-				retryNumber++;
+        private async Task<GetAllResponse<T>> getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
+        {
+            try
+            {
+                return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+            }
+            catch (SageOneApiRequestFailedException ex) when (getPageSize(queryParameters) != 1 && ex.StatusCode == HttpStatusCode.GatewayTimeout)
+            {
+                int originalPageSize = getPageSize(queryParameters);
 
-				return await handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, cancellationToken, retryNumber), retryNumber);
-			}
-		}
+                queryParameters[SageOneApiClientTransferHandler.ItemsPerPageKey] = "1";
 
-		private Task<bool> renewRefreshAndAccessToken(int retryNumber = 0)
-		{
-			try
-			{
-				base.RenewRefreshAndAccessToken();
+                var offset = (pageNumber -1) * originalPageSize;
 
-				return Task.FromResult(true);
-			}
-			catch (SageOneApiRequestFailedException ex)
-			{
-				retryNumber++;
+                var items = new List<T>(originalPageSize);
+                var total = -1;
+                string? next = null;
 
-				return handleKnownExceptions(ex, () => renewRefreshAndAccessToken(retryNumber), retryNumber);
-			}
-		}
+                for (int i = 0; i < originalPageSize; i++)
+                {
+                    var individualResponse = await getAllSummary<T>(offset + i, queryParameters, cancellationToken);
+                    items.AddRange(individualResponse.Items);
+                    total = individualResponse.Total;
+                    next = individualResponse.Next;
+                }
 
-		private async Task<T> handleKnownExceptions<T>(SageOneApiRequestFailedException ex, Func<Task<T>> retry, int retryNumber)
-		{
-			if (ex.Response == null)
-			{
-				throw new ApiException("No Response Received", ex);
-			}
-			else
-			{
-				var response = ex.Response;
+                queryParameters[SageOneApiClientTransferHandler.ItemsPerPageKey] = originalPageSize.ToString();
 
-				//Check for 429 before retryLimit as it could be due to the amount of data
-				if (response.StatusCode.ToString() == "429")
-				{
-					int seconds = 5;
-					if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
-					{
-						seconds = (int.Parse(retryAfterHeaderValues.First()) + 1) * (retryNumber + 1);
-					}
+                var response = new GetAllResponse<T>()
+                {
+                    ItemsPerPage = originalPageSize,
+                    Page = pageNumber,
+                    Total = total,
+                    Items = items.ToArray(),
+                    Next = next,
+                };
 
-					await Task.Delay(TimeSpan.FromSeconds(seconds));
+                return response;
+            }
+            catch (SageOneApiRequestFailedException ex)
+            {
+                retryNumber++;
 
-					return await retry();
-				}
-				else if (retryNumber >= _retryLimit)
-				{
-					respondToExceptionMessage(ex, (responseTxt) => throw new ApiException(responseTxt, ex));
-				}
-				else if (response.StatusCode == HttpStatusCode.Unauthorized)
-				{
-					respondToExceptionMessage(ex, (responseTxt) =>
-					{
-						if (responseTxt.Contains(ApiMessage.NoActiveSubscription))
-						{
-							throw new IncompatibleEditionException("Incompatible Edition to use endpoint", ex);
-						}
-					});
+                return await handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, cancellationToken, retryNumber), retryNumber);
+            }
+        }
 
-					await renewRefreshAndAccessToken();
+        private int getPageSize(Dictionary<string, string> queryParameters)
+        {
+            var originalPageSize = _config.PageSize;
 
-					return await retry();
-				}
-				// too many requests or too much data
-				else if (response.StatusCode == HttpStatusCode.GatewayTimeout
-					|| response.StatusCode == HttpStatusCode.ServiceUnavailable
-					|| response.StatusCode.ToString() == "525")
-				{
-					Thread.Sleep(TimeSpan.FromSeconds(5));
+            if (queryParameters.TryGetValue(SageOneApiClientTransferHandler.ItemsPerPageKey, out var pageSizeStr))
+            {
+                originalPageSize = int.Parse(pageSizeStr);
+            }
 
-					return await retry();
-				}
-				else if (response.StatusCode == HttpStatusCode.Forbidden)
-				{
-					throw new InsufficientUserPermissionException("Insufficient User Permission to access endpoint", ex);
-				}
-			}
+            return originalPageSize;
+        }
 
-			throw ex;
-		}
+        private Task<bool> renewRefreshAndAccessToken(int retryNumber = 0)
+        {
+            try
+            {
+                base.RenewRefreshAndAccessToken();
 
-		private void respondToExceptionMessage(SageOneApiRequestFailedException ex, Action<string> responseAction)
-		{
-			responseAction(ex.ResponseContent);
-		}
-	}
+                return Task.FromResult(true);
+            }
+            catch (SageOneApiRequestFailedException ex)
+            {
+                retryNumber++;
+
+                return handleKnownExceptions(ex, () => renewRefreshAndAccessToken(retryNumber), retryNumber);
+            }
+        }
+
+        private async Task<T> handleKnownExceptions<T>(SageOneApiRequestFailedException ex, Func<Task<T>> retry, int retryNumber)
+        {
+            var response = ex;
+
+            //Check for 429 before retryLimit as it could be due to the amount of data
+            if (response.StatusCode.ToString() == "429")
+            {
+                int seconds = 5;
+                if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
+                {
+                    seconds = (int.Parse(retryAfterHeaderValues.First()) + 1) * (retryNumber + 1);
+                }
+
+                await Task.Delay(TimeSpan.FromSeconds(seconds));
+
+                return await retry();
+            }
+            else if (retryNumber >= _retryLimit)
+            {
+                respondToExceptionMessage(ex, (responseTxt) => throw new ApiException(responseTxt, ex));
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                respondToExceptionMessage(ex, (responseTxt) =>
+                {
+                    if (responseTxt.Contains(ApiMessage.NoActiveSubscription))
+                    {
+                        throw new IncompatibleEditionException("Incompatible Edition to use endpoint", ex);
+                    }
+                });
+
+                await renewRefreshAndAccessToken();
+
+                return await retry();
+            }
+            // too many requests or too much data
+            else if (response.StatusCode == HttpStatusCode.GatewayTimeout
+                || response.StatusCode == HttpStatusCode.ServiceUnavailable
+                || response.StatusCode.ToString() == "525")
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(5));
+
+                return await retry();
+            }
+            else if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                throw new InsufficientUserPermissionException("Insufficient User Permission to access endpoint", ex);
+            }
+
+            throw ex;
+        }
+
+        private void respondToExceptionMessage(SageOneApiRequestFailedException ex, Action<string> responseAction)
+        {
+            responseAction(ex.ResponseContent);
+        }
+    }
 }

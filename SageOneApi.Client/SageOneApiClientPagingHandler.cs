@@ -44,15 +44,15 @@ namespace SageOneApi.Client
 				}
 				catch (SageOneApiRequestFailedException ex)
 				{
-					if (ex.Response.StatusCode == HttpStatusCode.InternalServerError)
+					if (ex.StatusCode == HttpStatusCode.InternalServerError)
 					{
 						//Sometimes Sage returns this if there was a problem
 					}
-					else if (ex.Response.StatusCode == HttpStatusCode.GatewayTimeout)
+					else if (ex.StatusCode == HttpStatusCode.GatewayTimeout)
 					{
 
 					}
-                    else if (ex.Response.StatusCode == HttpStatusCode.BadGateway)
+                    else if (ex.StatusCode == HttpStatusCode.BadGateway)
                     {
 						//We might time out, so request less data and try again
                     }
@@ -84,7 +84,7 @@ namespace SageOneApi.Client
 						}
 						catch (SageOneApiRequestFailedException ex1)
 						{
-							if (ex1.Response.StatusCode == HttpStatusCode.InternalServerError)
+							if (ex1.StatusCode == HttpStatusCode.InternalServerError)
 							{
 								_progressUpdate.Report(new ProgressUpdate($"Failed to download {typeof(T).Name} record ({item.Id})"));
 
@@ -106,7 +106,8 @@ namespace SageOneApi.Client
 					summaryResponse.Total,
 					typeof(T).Name));
 
-				isDownloadRequired = summaryResponse.Next != null;
+				//Next URL isn't guaranteed to be populated
+				isDownloadRequired = summaryResponse.Total > itemsDownloaded;
 
 				pageNumber++;
 			}
