@@ -159,7 +159,8 @@ namespace SageOneApi.Client
 
             using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
             {
-                responseContent = await response.Content.ReadAsStringAsync();
+                using (var content = response.Content)
+                    responseContent = await content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
                     throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, responseContent);
@@ -175,14 +176,17 @@ namespace SageOneApi.Client
 
             using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
             {
-                if (response.IsSuccessStatusCode)
+                using (var content = response.Content)
                 {
-                    binaryResponseContent = await response.Content.ReadAsByteArrayAsync();
-                }
-                else
-                {
-                    var msg = await response.Content.ReadAsStringAsync();
-                    throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, msg);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        binaryResponseContent = await content.ReadAsByteArrayAsync();
+                    }
+                    else
+                    {
+                        var msg = await content.ReadAsStringAsync();
+                        throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, msg);
+                    }
                 }
             }
 

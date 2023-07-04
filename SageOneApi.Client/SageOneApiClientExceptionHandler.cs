@@ -127,13 +127,34 @@ namespace SageOneApi.Client
             {
                 return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
             }
+            catch (SageOneApiRequestFailedException ex) when (queryParameters.ContainsKey("attributes") && ex.StatusCode == HttpStatusCode.GatewayTimeout)
+            {
+                var attributeValue = queryParameters["attributes"];
+
+                queryParameters.Remove("attributes");
+
+                var summaryResponse = await GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+
+                queryParameters.Add("attributes", attributeValue);
+
+                for (int i = 0; i < summaryResponse.Items.Length; i++)
+                {
+                    var item = summaryResponse.Items[i];
+
+                    var fullItem = await Get<T>(item.Id, queryParameters, cancellationToken);
+
+                    summaryResponse.Items[i] = fullItem;
+                }
+
+                return summaryResponse;
+            }
             catch (SageOneApiRequestFailedException ex) when (getPageSize(queryParameters) != 1 && ex.StatusCode == HttpStatusCode.GatewayTimeout)
             {
                 int originalPageSize = getPageSize(queryParameters);
 
                 queryParameters[SageOneApiClientTransferHandler.ItemsPerPageKey] = "1";
 
-                var offset = (pageNumber -1) * originalPageSize;
+                var offset = (pageNumber - 1) * originalPageSize;
 
                 var items = new List<T>(originalPageSize);
                 var total = -1;
