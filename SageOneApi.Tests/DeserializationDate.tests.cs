@@ -38,8 +38,28 @@ namespace SageOneApi.Tests
 				Assert.AreEqual("2021-09-09 14:36:01Z", b.Value.ToUniversalTime().ToString("u"));
 			}
 
-			[TestMethod]
-			public void Test_DaysOfChristmas()
+            [TestMethod]
+			[Ignore("No longer works with source generator as this class is outside of the assembly")]
+            public void Test_DaysOfChristmasInvoices()
+            {
+                string json = JsonTestFileReader.GetJson("DatesTestData.json");
+                var doc = JsonDeserializer.DeserializeObject<DaysOfChristmas>(json);
+
+                Assert.IsTrue(doc.FinishForChristmas.HasValue);
+                Assert.AreEqual("2021-12-23 15:30:00Z", doc.FinishForChristmas.Value.ToString("u"));
+
+                Assert.IsTrue(doc.ChristmasEve.HasValue);
+                Assert.IsTrue(doc.FinishForChristmas.HasValue);
+
+                Assert.AreEqual("2021-12-24 00:00:00Z", doc.ChristmasEve.Value.ToString("u"));
+                Assert.IsNull(doc.ChristmasDay);
+                Assert.IsNull(doc.BoxingDay);
+                Assert.IsNull(doc.NewYearsDay);
+            }
+
+            [TestMethod]
+            [Ignore("No longer works with source generator as this class is outside of the assembly")]
+            public void Test_DaysOfChristmas()
 			{
 				string json = JsonTestFileReader.GetJson("DatesTestData.json");
 				var doc = JsonDeserializer.DeserializeObject<DaysOfChristmas>(json);

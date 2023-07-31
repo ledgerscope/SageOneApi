@@ -2,6 +2,7 @@
 using SageOneApi.Client.Responses;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace SageOneApi.Client
 {
@@ -13,8 +14,9 @@ namespace SageOneApi.Client
 	static class JsonDeserializer
 	{
 		private static readonly JsonSerializerOptions _options = getOptions();
+		private static readonly SourceGenerationContext _sourceGenerationContext = new SourceGenerationContext(getOptions());
 
-		private static JsonSerializerOptions getOptions()
+        private static JsonSerializerOptions getOptions()
 		{
 			var options = new JsonSerializerOptions(JsonSerializerDefaults.General);
 
@@ -27,13 +29,13 @@ namespace SageOneApi.Client
 
 		public static T DeserializeObject<T>(string json)
 		{
-			return JsonSerializer.Deserialize<T>(json, _options);
+			return JsonSerializer.Deserialize(json, (JsonTypeInfo<T>)_sourceGenerationContext.GetTypeInfo(typeof(T)));
 		}
 
 		public static GetAllResponse<T> DeserializeObjects<T>(string json)
 		{
-			return JsonSerializer.Deserialize<GetAllResponse<T>>(json, _options);
-		}
+			return JsonSerializer.Deserialize(json, (JsonTypeInfo<GetAllResponse<T>>)_sourceGenerationContext.GetTypeInfo(typeof(GetAllResponse<T>)));
+        }
 
 		private class NullableDateTimeConverter : JsonConverter<DateTime?>
 		{
