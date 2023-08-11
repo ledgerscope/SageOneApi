@@ -42,9 +42,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(id, queryParameters);
 
-            var jsonResponse = await getResponse(uri, cancellationToken);
-
-            var response = JsonDeserializer.DeserializeObject<T>(jsonResponse);
+            var response = await getResponse<T>(uri, cancellationToken);
 
             return response;
         }
@@ -62,9 +60,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
 
-            var jsonResponse = await getResponse(uri, cancellationToken);
-
-            var response = JsonDeserializer.DeserializeObject<T>(jsonResponse);
+            var response = await getResponse<T>(uri, cancellationToken);
 
             return response;
         }
@@ -73,9 +69,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
 
-            var jsonResponse = await getResponse(uri, cancellationToken);
-
-            var response = JsonDeserializer.DeserializeObject<T>(jsonResponse);
+            var response = await getResponse<T>(uri, cancellationToken);
 
             return response;
         }
@@ -84,9 +78,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
 
-            var jsonResponse = await getResponse(uri, cancellationToken);
-
-            var response = JsonDeserializer.DeserializeObject<T[]>(jsonResponse);
+            var response = await getResponse<T[]>(uri, cancellationToken);
 
             return response;
         }
@@ -95,9 +87,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
 
-            var jsonResponse = await getResponse(uri, cancellationToken);
-
-            var response = JsonDeserializer.DeserializeObjects<T>(jsonResponse);
+            var response = await getResponse<GetAllResponse<T>>(uri, cancellationToken);
 
             var entities = new List<T>();
 
@@ -118,9 +108,9 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
 
-            var jsonResponse = await getResponse(uri, cancellationToken);
+            var jsonResponse = await getResponse<GetAllResponse<T>>(uri, cancellationToken);
 
-            return JsonDeserializer.DeserializeObjects<T>(jsonResponse);
+            return jsonResponse;
         }
 
         public void RenewRefreshAndAccessToken()
@@ -152,18 +142,28 @@ namespace SageOneApi.Client
             return requestMessage;
         }
 
-        private async Task<string> getResponse(Uri uri, CancellationToken cancellationToken)
+        private async Task<T> getResponse<T>(Uri uri, CancellationToken cancellationToken)
         {
-            string responseContent;
+            T responseContent;
             var message = buildGetRequestMessage(uri);
 
             using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
             {
                 using (var content = response.Content)
-                    responseContent = await content.ReadAsStringAsync();
-
-                if (!response.IsSuccessStatusCode)
-                    throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, responseContent);
+                {
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var responseString = await content.ReadAsStringAsync();
+                        throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, responseString);
+                    }
+                    else
+                    {
+                        using (var stream = await response.Content.ReadAsStreamAsync())
+                        {
+                            responseContent = JsonDeserializer.DeserializeObject<T>(stream);
+                        }
+                    }
+                }
             }
 
             return responseContent;

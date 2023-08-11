@@ -3,6 +3,7 @@ using SageOneApi.Client.Responses;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
+using System.IO;
 
 namespace SageOneApi.Client
 {
@@ -32,7 +33,12 @@ namespace SageOneApi.Client
 			return JsonSerializer.Deserialize(json, (JsonTypeInfo<T>)_sourceGenerationContext.GetTypeInfo(typeof(T)));
 		}
 
-		public static GetAllResponse<T> DeserializeObjects<T>(string json)
+        public static T DeserializeObject<T>(Stream stream)
+        {
+            return JsonSerializer.Deserialize(stream, (JsonTypeInfo<T>)_sourceGenerationContext.GetTypeInfo(typeof(T)));
+        }
+
+        public static GetAllResponse<T> DeserializeObjects<T>(string json)
 		{
 			return JsonSerializer.Deserialize(json, (JsonTypeInfo<GetAllResponse<T>>)_sourceGenerationContext.GetTypeInfo(typeof(GetAllResponse<T>)));
         }
