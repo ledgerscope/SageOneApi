@@ -194,7 +194,7 @@ namespace SageOneApi.Client
         }
 
         private Uri createWebRequestUriForAllEntities<T>(int pageNumber,
-            Dictionary<string, string> queryParameters = null) where T : SageOneAccountingEntity
+            Dictionary<string, string>? queryParameters = null) where T : SageOneAccountingEntity
         {
             var sb = new StringBuilder()
                 .Append(createBaseUriPath<T>())
@@ -237,7 +237,7 @@ namespace SageOneApi.Client
             return _config.PageSize;
         }
 
-        private Uri createWebRequestUriForSingleEntity<T>(string entityId = null, Dictionary<string, string> queryParameters = null)
+        private Uri createWebRequestUriForSingleEntity<T>(string? entityId = null, Dictionary<string, string>? queryParameters = null)
             where T : class
         {
             var sb = new StringBuilder()

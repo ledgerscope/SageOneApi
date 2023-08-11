@@ -12,15 +12,15 @@ namespace SageOneApi.Client
     {
         private readonly ISageOneApiClientHandler _sageOneApiClientHandler;
 
-        public IProgress<ProgressUpdate> ProgressUpdate { get; set; }
+        public IProgress<ProgressUpdate>? ProgressUpdate { get; set; }
 
         public SageOneApiClient(
             Uri baseUri,
             string accessToken,
             string resourceOwnerId,
             Func<string> renewRefreshAndAccessToken,
-            IProgress<ProgressUpdate> progressUpdate = null,
-            SageOneApiClientConfig sageOneApiClientConfig = null)
+            IProgress<ProgressUpdate>? progressUpdate = null,
+            SageOneApiClientConfig? sageOneApiClientConfig = null)
         {
             sageOneApiClientConfig = sageOneApiClientConfig ?? SageOneApiClientConfig.Default;
 
@@ -67,7 +67,7 @@ namespace SageOneApi.Client
             return _sageOneApiClientHandler.GetAll<T>(queryParameters, pageLimit, cancellationToken);
         }
 
-        public Task<IEnumerable<T>> GetAllCore<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters = null) where T : SageOneCoreEntity
+        public Task<IEnumerable<T>> GetAllCore<T>(CancellationToken cancellationToken, Dictionary<string, string>? queryParameters = null) where T : SageOneCoreEntity
         {
             return _sageOneApiClientHandler.GetAllCore<T>(queryParameters, cancellationToken);
         }
