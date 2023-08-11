@@ -37,7 +37,7 @@ namespace SageOneApi.Client
                            new SageOneApiClientTransferHandler(baseUri, accessToken, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig))));
         }
 
-        public Task<T> Get<T>(string id, CancellationToken cancellationToken, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
         {
             return _sageOneApiClientHandler.Get<T>(id, queryParameters, cancellationToken);
         }
@@ -47,27 +47,27 @@ namespace SageOneApi.Client
             return _sageOneApiClientHandler.GetAttachmentFile(attachmentId, cancellationToken);
         }
 
-        public Task<T> GetSingle<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters) where T : SageOneSingleAccountingEntity
+        public Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneSingleAccountingEntity
         {
             return _sageOneApiClientHandler.GetSingle<T>(queryParameters, cancellationToken);
         }
 
-        public Task<T> GetCore<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters) where T : SageOneCoreEntity
+        public Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneCoreEntity
         {
             return _sageOneApiClientHandler.GetCore<T>(queryParameters, cancellationToken);
         }
 
-        public Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters) where T : SageOneAccountingEntity
+        public Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
         {
             return _sageOneApiClientHandler.GetAll<T>(queryParameters, cancellationToken);
         }
 
-        public Task<IEnumerable<T>> GetAll<T>(CancellationToken cancellationToken, Dictionary<string, string> queryParameters, int? pageLimit) where T : SageOneAccountingEntity
+        public Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, int? pageLimit, CancellationToken cancellationToken) where T : SageOneAccountingEntity
         {
             return _sageOneApiClientHandler.GetAll<T>(queryParameters, pageLimit, cancellationToken);
         }
 
-        public Task<IEnumerable<T>> GetAllCore<T>(CancellationToken cancellationToken, Dictionary<string, string>? queryParameters = null) where T : SageOneCoreEntity
+        public Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string>? queryParameters, CancellationToken cancellationToken) where T : SageOneCoreEntity
         {
             return _sageOneApiClientHandler.GetAllCore<T>(queryParameters, cancellationToken);
         }
