@@ -42,7 +42,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(id, queryParameters);
 
-            var response = await getResponse<T>(uri, cancellationToken);
+            var response = await getResponse<T>(uri, cancellationToken).ConfigureAwait(false);
 
             return response;
         }
@@ -51,7 +51,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForAttachmentFile(attachmentId);
 
-            var binaryResponse = await getBinaryResponse(uri, cancellationToken);
+            var binaryResponse = await getBinaryResponse(uri, cancellationToken).ConfigureAwait(false);
 
             return binaryResponse;
         }
@@ -60,7 +60,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
 
-            var response = await getResponse<T>(uri, cancellationToken);
+            var response = await getResponse<T>(uri, cancellationToken).ConfigureAwait(false);
 
             return response;
         }
@@ -69,7 +69,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
 
-            var response = await getResponse<T>(uri, cancellationToken);
+            var response = await getResponse<T>(uri, cancellationToken).ConfigureAwait(false);
 
             return response;
         }
@@ -78,7 +78,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForSingleEntity<T>(queryParameters: queryParameters);
 
-            var response = await getResponse<T[]>(uri, cancellationToken);
+            var response = await getResponse<T[]>(uri, cancellationToken).ConfigureAwait(false);
 
             return response;
         }
@@ -87,13 +87,13 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForAllEntities<T>(pageNumber: 1, queryParameters: queryParameters);
 
-            var response = await getResponse<GetAllResponse<T>>(uri, cancellationToken);
+            var response = await getResponse<GetAllResponse<T>>(uri, cancellationToken).ConfigureAwait(false);
 
             var entities = new List<T>();
 
             foreach (var item in response.Items)
             {
-                entities.Add(await Get<T>(item.Id, queryParameters, cancellationToken));
+                entities.Add(await Get<T>(item.Id, queryParameters, cancellationToken).ConfigureAwait(false));
             }
 
             return entities;
@@ -108,7 +108,7 @@ namespace SageOneApi.Client
         {
             var uri = createWebRequestUriForAllEntities<T>(pageNumber: pageNumber, queryParameters: queryParameters);
 
-            var jsonResponse = await getResponse<GetAllResponse<T>>(uri, cancellationToken);
+            var jsonResponse = await getResponse<GetAllResponse<T>>(uri, cancellationToken).ConfigureAwait(false);
 
             return jsonResponse;
         }
@@ -147,18 +147,18 @@ namespace SageOneApi.Client
             T responseContent;
             var message = buildGetRequestMessage(uri);
 
-            using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
+            using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken).ConfigureAwait(false))
             {
                 using (var content = response.Content)
                 {
                     if (!response.IsSuccessStatusCode)
                     {
-                        var responseString = await content.ReadAsStringAsync();
+                        var responseString = await content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, responseString);
                     }
                     else
                     {
-                        using (var stream = await response.Content.ReadAsStreamAsync())
+                        using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
                         {
                             responseContent = JsonDeserializer.DeserializeObject<T>(stream);
                         }
@@ -174,17 +174,17 @@ namespace SageOneApi.Client
             byte[] binaryResponseContent;
             var message = buildGetBinaryRequestMessage(uri);
 
-            using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken))
+            using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken).ConfigureAwait(false))
             {
                 using (var content = response.Content)
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        binaryResponseContent = await content.ReadAsByteArrayAsync();
+                        binaryResponseContent = await content.ReadAsByteArrayAsync().ConfigureAwait(false);
                     }
                     else
                     {
-                        var msg = await content.ReadAsStringAsync();
+                        var msg = await content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, msg);
                     }
                 }

@@ -25,44 +25,44 @@ namespace SageOneApi.Client
 
         public override async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await get<T>(id, queryParameters, cancellationToken);
+            return await get<T>(id, queryParameters, cancellationToken).ConfigureAwait(false);
         }
 
         public override async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getSingle<T>(queryParameters, cancellationToken);
+            return await getSingle<T>(queryParameters, cancellationToken).ConfigureAwait(false);
         }
 
         public override async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getCore<T>(queryParameters, cancellationToken);
+            return await getCore<T>(queryParameters, cancellationToken).ConfigureAwait(false);
         }
 
         public override async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getAllCore<T>(queryParameters, cancellationToken);
+            return await getAllCore<T>(queryParameters, cancellationToken).ConfigureAwait(false);
         }
 
         public override async Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken);
+            return await getAllSummary<T>(pageNumber, queryParameters, cancellationToken).ConfigureAwait(false);
         }
 
         public override async Task<byte[]> GetAttachmentFile(string attachmentId, CancellationToken cancellationToken)
         {
-            return await getAttachmentFile(attachmentId, cancellationToken);
+            return await getAttachmentFile(attachmentId, cancellationToken).ConfigureAwait(false);
         }
 
         private async Task<byte[]> getAttachmentFile(string attachmentId, CancellationToken cancellationToken, int retryNumber = 0)
         {
             try
             {
-                return await base.GetAttachmentFile(attachmentId, cancellationToken);
+                return await base.GetAttachmentFile(attachmentId, cancellationToken).ConfigureAwait(false);
             }
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
-                return await handleKnownExceptions(ex, () => getAttachmentFile(attachmentId, cancellationToken, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getAttachmentFile(attachmentId, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
             }
         }
 
@@ -70,12 +70,12 @@ namespace SageOneApi.Client
         {
             try
             {
-                return await base.Get<T>(id, queryParameters, cancellationToken);
+                return await base.Get<T>(id, queryParameters, cancellationToken).ConfigureAwait(false);
             }
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
-                return await handleKnownExceptions(ex, () => get<T>(id, queryParameters, cancellationToken, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => get<T>(id, queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
             }
         }
 
@@ -83,13 +83,13 @@ namespace SageOneApi.Client
         {
             try
             {
-                return await base.GetSingle<T>(queryParameters, cancellationToken);
+                return await base.GetSingle<T>(queryParameters, cancellationToken).ConfigureAwait(false);
             }
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getSingle<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getSingle<T>(queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
             }
         }
 
@@ -97,13 +97,13 @@ namespace SageOneApi.Client
         {
             try
             {
-                return await base.GetCore<T>(queryParameters, cancellationToken);
+                return await base.GetCore<T>(queryParameters, cancellationToken).ConfigureAwait(false);
             }
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
             }
         }
 
@@ -111,13 +111,13 @@ namespace SageOneApi.Client
         {
             try
             {
-                return await base.GetAllCore<T>(queryParameters, cancellationToken);
+                return await base.GetAllCore<T>(queryParameters, cancellationToken).ConfigureAwait(false);
             }
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
             }
         }
 
@@ -125,7 +125,7 @@ namespace SageOneApi.Client
         {
             try
             {
-                return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+                return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken).ConfigureAwait(false);
             }
             catch (SageOneApiRequestFailedException ex) when (queryParameters.ContainsKey("attributes") && ex.StatusCode == HttpStatusCode.GatewayTimeout)
             {
@@ -133,7 +133,7 @@ namespace SageOneApi.Client
 
                 queryParameters.Remove("attributes");
 
-                var summaryResponse = await GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+                var summaryResponse = await GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken).ConfigureAwait(false);
 
                 queryParameters.Add("attributes", attributeValue);
 
@@ -141,7 +141,7 @@ namespace SageOneApi.Client
                 {
                     var item = summaryResponse.Items[i];
 
-                    var fullItem = await Get<T>(item.Id, queryParameters, cancellationToken);
+                    var fullItem = await Get<T>(item.Id, queryParameters, cancellationToken).ConfigureAwait(false);
 
                     summaryResponse.Items[i] = fullItem;
                 }
@@ -162,7 +162,7 @@ namespace SageOneApi.Client
 
                 for (int i = 0; i < originalPageSize; i++)
                 {
-                    var individualResponse = await getAllSummary<T>(offset + i, queryParameters, cancellationToken);
+                    var individualResponse = await getAllSummary<T>(offset + i, queryParameters, cancellationToken).ConfigureAwait(false);
                     items.AddRange(individualResponse.Items);
                     total = individualResponse.Total;
                     next = individualResponse.Next;
@@ -185,7 +185,7 @@ namespace SageOneApi.Client
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, cancellationToken, retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
             }
         }
 
@@ -230,9 +230,9 @@ namespace SageOneApi.Client
                     seconds = (int.Parse(retryAfterHeaderValues.First()) + 1) * (retryNumber + 1);
                 }
 
-                await Task.Delay(TimeSpan.FromSeconds(seconds));
+                await Task.Delay(TimeSpan.FromSeconds(seconds)).ConfigureAwait(false);
 
-                return await retry();
+                return await retry().ConfigureAwait(false);
             }
             else if (retryNumber >= _retryLimit)
             {
@@ -248,9 +248,9 @@ namespace SageOneApi.Client
                     }
                 });
 
-                await renewRefreshAndAccessToken();
+                await renewRefreshAndAccessToken().ConfigureAwait(false);
 
-                return await retry();
+                return await retry().ConfigureAwait(false);
             }
             // too many requests or too much data
             else if (response.StatusCode == HttpStatusCode.GatewayTimeout
@@ -259,7 +259,7 @@ namespace SageOneApi.Client
             {
                 Thread.Sleep(TimeSpan.FromSeconds(5));
 
-                return await retry();
+                return await retry().ConfigureAwait(false);
             }
             else if (response.StatusCode == HttpStatusCode.Forbidden)
             {

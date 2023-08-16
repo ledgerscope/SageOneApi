@@ -17,7 +17,7 @@ namespace SageOneApi.Client
 
 		public override async Task<T> GetSingle<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
-			var result = await base.GetSingle<T>(queryParameters, cancellationToken);
+			var result = await base.GetSingle<T>(queryParameters, cancellationToken).ConfigureAwait(false);
 
 			logDownloadMessage<T>();
 
@@ -26,7 +26,7 @@ namespace SageOneApi.Client
 
 		public override async Task<T> GetCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
-			var result = await base.GetCore<T>(queryParameters, cancellationToken);
+			var result = await base.GetCore<T>(queryParameters, cancellationToken).ConfigureAwait(false);
 
 			logDownloadMessage<T>();
 
@@ -35,7 +35,7 @@ namespace SageOneApi.Client
 
 		public override async Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
 		{
-			var result = await base.GetAllCore<T>(queryParameters, cancellationToken);
+			var result = await base.GetAllCore<T>(queryParameters, cancellationToken).ConfigureAwait(false);
 
 			logDownloadMessage<T>();
 

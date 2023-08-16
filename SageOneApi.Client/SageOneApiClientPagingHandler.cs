@@ -20,7 +20,7 @@ namespace SageOneApi.Client
 
         public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken)
         {
-            return await GetAll<T>(queryParameters, null, cancellationToken);
+            return await GetAll<T>(queryParameters, null, cancellationToken).ConfigureAwait(false);
         }
 
         public override async Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, int? pageLimit, CancellationToken cancellationToken)
@@ -32,7 +32,7 @@ namespace SageOneApi.Client
 
             while (isDownloadRequired && (pageLimit is null || pageNumber <= pageLimit))
             {
-                var summaryResponse = await GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken);
+                var summaryResponse = await GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken).ConfigureAwait(false);
 
                 entities.AddRange(summaryResponse.Items);
 
