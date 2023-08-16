@@ -14,7 +14,6 @@ namespace SageOneApi.Client
 #endif
 	static class JsonDeserializer
 	{
-		private static readonly JsonSerializerOptions _options = getOptions();
 		private static readonly SourceGenerationContext _sourceGenerationContext = new SourceGenerationContext(getOptions());
 
         private static JsonSerializerOptions getOptions()
@@ -47,7 +46,7 @@ namespace SageOneApi.Client
 		{
 			public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
-				string sval = reader.GetString();
+				var sval = reader.GetString();
 				if (string.IsNullOrWhiteSpace(sval))
 					return null;
 				else

@@ -2,6 +2,6 @@
 {
 	public static class ApiMessage
 	{
-		public static string NoActiveSubscription = "No active subscription";
+		public const string NoActiveSubscription = "No active subscription";
 	}
 }
