@@ -153,12 +153,12 @@ namespace SageOneApi.Client
                 {
                     if (!response.IsSuccessStatusCode)
                     {
-                        var responseString = await content.ReadAsStringAsync().ConfigureAwait(false);
+                        var responseString = await content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                         throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, responseString);
                     }
                     else
                     {
-                        using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+                        using (var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
                         {
                             responseContent = JsonDeserializer.DeserializeObject<T>(stream);
                         }
@@ -180,11 +180,11 @@ namespace SageOneApi.Client
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        binaryResponseContent = await content.ReadAsByteArrayAsync().ConfigureAwait(false);
+                        binaryResponseContent = await content.ReadAsByteArrayAsync(cancellationToken).ConfigureAwait(false);
                     }
                     else
                     {
-                        var msg = await content.ReadAsStringAsync().ConfigureAwait(false);
+                        var msg = await content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                         throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, msg);
                     }
                 }
