@@ -145,8 +145,8 @@ namespace SageOneApi.Client
         private async Task<T> getResponse<T>(Uri uri, CancellationToken cancellationToken)
         {
             T responseContent;
-            var message = buildGetRequestMessage(uri);
-
+            
+            using (var message = buildGetRequestMessage(uri))
             using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken).ConfigureAwait(false))
             {
                 using (var content = response.Content)
@@ -172,8 +172,8 @@ namespace SageOneApi.Client
         private async Task<byte[]> getBinaryResponse(Uri uri, CancellationToken cancellationToken)
         {
             byte[] binaryResponseContent;
-            var message = buildGetBinaryRequestMessage(uri);
 
+            using (var message = buildGetBinaryRequestMessage(uri))
             using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken).ConfigureAwait(false))
             {
                 using (var content = response.Content)
