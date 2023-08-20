@@ -17,6 +17,6 @@ namespace SageOneApi.Client
         Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity;
         Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, int? pageLimit, CancellationToken cancellationToken) where T : SageOneAccountingEntity;
         Task<GetAllResponse<T>> GetAllFromPage<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity;
-        void RenewRefreshAndAccessToken();
+        Task RenewRefreshAndAccessToken(CancellationToken cancellationToken);
     }
 }

@@ -63,9 +63,9 @@ namespace SageOneApi.Client
             return _apiClient.GetSingle<T>(queryParameters, cancellationToken);
         }
 
-        public virtual void RenewRefreshAndAccessToken()
+        public virtual Task RenewRefreshAndAccessToken(CancellationToken cancellationToken)
         {
-            _apiClient.RenewRefreshAndAccessToken();
+            return _apiClient.RenewRefreshAndAccessToken(cancellationToken);
         }
     }
 }

@@ -201,19 +201,19 @@ namespace SageOneApi.Client
             return originalPageSize;
         }
 
-        private Task<bool> renewRefreshAndAccessToken(int retryNumber = 0)
+        private async Task<bool> renewRefreshAndAccessToken(int retryNumber = 0)
         {
             try
             {
-                base.RenewRefreshAndAccessToken();
+                await base.RenewRefreshAndAccessToken(default);
 
-                return Task.FromResult(true);
+                return true;
             }
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
 
-                return handleKnownExceptions(ex, () => renewRefreshAndAccessToken(retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => renewRefreshAndAccessToken(retryNumber), retryNumber);
             }
         }
 

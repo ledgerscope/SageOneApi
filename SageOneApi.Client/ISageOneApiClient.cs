@@ -21,28 +21,28 @@ namespace SageOneApi.Client
         /// <summary>
         /// Retrieve <see cref="SageOneSingleAccountingEntity"/> item where there is only ever one of them per company.
         /// </summary>
-        Task<T> GetSingle<T>(Dictionary<string, string>? queryParameters, CancellationToken cancellationToken = default) where T : SageOneSingleAccountingEntity;
+        Task<T> GetSingle<T>(Dictionary<string, string>? queryParameters = null, CancellationToken cancellationToken = default) where T : SageOneSingleAccountingEntity;
 
         /// <summary>
         /// Retrieve <see cref="SageOneCoreEntity"/> item where there is only ever one of them per company.
         /// </summary>
-        Task<T> GetCore<T>(Dictionary<string, string>? queryParameters, CancellationToken cancellationToken = default) where T : SageOneCoreEntity;
+        Task<T> GetCore<T>(Dictionary<string, string>? queryParameters = null, CancellationToken cancellationToken = default) where T : SageOneCoreEntity;
 
         /// <summary>
         /// Retrieve <see cref="SageOneAccountingEntity"/> items where there could be multiple items per company.
         /// </summary>
-        Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string>? queryParameters, CancellationToken cancellationToken = default) where T : SageOneAccountingEntity;
+        Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string>? queryParameters = null, CancellationToken cancellationToken = default) where T : SageOneAccountingEntity;
 
         /// <summary>
         /// Retrieve <see cref="SageOneAccountingEntity"/> items where there could be multiple items per company, and limit to n number of pages.
         /// </summary>
         /// <param name="pageLimit">Max number of pages of results to get.</param>
-        Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string> queryParameters, int? pageLimit, CancellationToken cancellationToken) where T : SageOneAccountingEntity;
+        Task<IEnumerable<T>> GetAll<T>(Dictionary<string, string>? queryParameters = null, int? pageLimit = null, CancellationToken cancellationToken = default) where T : SageOneAccountingEntity;
 
         /// <summary>
         /// Retrieve <see cref="SageOneCoreEntity"/> items where there could be multiple items per company.
         /// </summary>
-        Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string>? queryParameters, CancellationToken cancellationToken = default) where T : SageOneCoreEntity;
+        Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string>? queryParameters = null, CancellationToken cancellationToken = default) where T : SageOneCoreEntity;
 
         IProgress<ProgressUpdate> ProgressUpdate { get; set; }
     }

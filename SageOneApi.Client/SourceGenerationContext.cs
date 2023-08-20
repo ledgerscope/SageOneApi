@@ -117,6 +117,9 @@ namespace SageOneApi.Client
     [JsonSerializable(typeof(TaxRate))]
     [JsonSerializable(typeof(TaxTreatment))]
     [JsonSerializable(typeof(Transaction))]
+
+    [JsonSerializable(typeof(OAuth2TokenResponse))]
+
     public partial class SourceGenerationContext : JsonSerializerContext
     { }
 }

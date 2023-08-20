@@ -1,5 +1,6 @@
 ﻿using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
+using SageOneApi.Client.Responses;
 using SageOneApi.Client.Utils;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,10 @@ namespace SageOneApi.Client
         public IProgress<ProgressUpdate>? ProgressUpdate { get; set; }
 
         public SageOneApiClient(
-            Uri baseUri,
             string accessToken,
+            string refreshToken,
             string resourceOwnerId,
-            Func<string> renewRefreshAndAccessToken,
+            Func<Func<string, Task<OAuth2TokenResponse>>, Task<string>> renewRefreshAndAccessToken,
             IProgress<ProgressUpdate>? progressUpdate = null,
             SageOneApiClientConfig? sageOneApiClientConfig = null)
         {
@@ -34,7 +35,7 @@ namespace SageOneApi.Client
                 new SageOneApiClientLoggingHandler(progressUpdater, sageOneApiClientConfig,
                    new SageOneApiClientPagingHandler(progressUpdater, sageOneApiClientConfig,
                        new SageOneApiClientExceptionHandler(sageOneApiClientConfig,
-                           new SageOneApiClientTransferHandler(baseUri, accessToken, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig))));
+                           new SageOneApiClientTransferHandler(accessToken, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig))));
         }
 
         public Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity

@@ -1,4 +1,5 @@
-﻿using SageOneApi.Client.Exceptions;
+﻿using SageOneApi.Client.Constants;
+using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
@@ -18,20 +19,18 @@ namespace SageOneApi.Client
     {
         internal const string ItemsPerPageKey = "items_per_page";
 
-        private readonly Uri _baseUri;
         private string _accessToken;
+
         private readonly string _resourceOwnerId;
-        private readonly Func<string> _renewRefreshAndAccessToken;
+        private readonly Func<Func<string, Task<OAuth2TokenResponse>>, Task<string>> _renewRefreshAndAccessToken;
         private readonly SageOneApiClientConfig _config;
 
         public SageOneApiClientTransferHandler(
-            Uri baseUri,
             string accessToken,
             string resourceOwnerId,
-            Func<string> renewRefreshAndAccessToken,
+            Func<Func<string, Task<OAuth2TokenResponse>>, Task<string>> renewRefreshAndAccessToken,
             SageOneApiClientConfig config)
         {
-            _baseUri = baseUri;
             _accessToken = accessToken;
             _resourceOwnerId = resourceOwnerId;
             _renewRefreshAndAccessToken = renewRefreshAndAccessToken;
@@ -113,9 +112,45 @@ namespace SageOneApi.Client
             return jsonResponse;
         }
 
-        public void RenewRefreshAndAccessToken()
+        public async Task RenewRefreshAndAccessToken(CancellationToken cancellationToken)
         {
-            _accessToken = _renewRefreshAndAccessToken();
+            _accessToken = await _renewRefreshAndAccessToken(a => RenewRefreshAndAccessToken(a, cancellationToken)).ConfigureAwait(false);
+        }
+
+        public async Task<OAuth2TokenResponse> RenewRefreshAndAccessToken(string refreshToken, CancellationToken cancellationToken)
+        {
+            ArgumentNullException.ThrowIfNull(_config.ClientId, nameof(_config.ClientId));
+            ArgumentNullException.ThrowIfNull(_config.ClientSecret, nameof(_config.ClientSecret));
+
+            using (var request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = _config.AccessTokenUri,
+                Content = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { AuthRequestParams.RefreshToken, refreshToken },
+                    { AuthRequestParams.GrantType, AuthRequestParams.RefreshToken },
+                    { AuthRequestParams.ClientId, _config.ClientId },
+                    { AuthRequestParams.ClientSecret, _config.ClientSecret }
+                })
+            })
+            using (var response = await HttpClientFactory.Create().SendAsync(request, cancellationToken).ConfigureAwait(false))
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    throw new SageOneApiRequestFailedException(response.StatusCode, response.Headers, responseString);
+                }
+                else
+                {
+                    using (var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
+                    {
+                        var tokenResponse = JsonDeserializer.DeserializeObject<OAuth2TokenResponse>(stream);
+
+                        return tokenResponse;
+                    }
+                }
+            }
         }
 
         private HttpRequestMessage buildGetRequestMessage(Uri uri)
@@ -145,7 +180,7 @@ namespace SageOneApi.Client
         private async Task<T> getResponse<T>(Uri uri, CancellationToken cancellationToken)
         {
             T responseContent;
-            
+
             using (var message = buildGetRequestMessage(uri))
             using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken).ConfigureAwait(false))
             {
@@ -158,7 +193,7 @@ namespace SageOneApi.Client
                     }
                     else
                     {
-                        using (var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
+                        using (var stream = await content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
                         {
                             responseContent = JsonDeserializer.DeserializeObject<T>(stream);
                         }
@@ -279,7 +314,7 @@ namespace SageOneApi.Client
         {
             var targetEntity = getTargetEntityPathFrom(typeof(T));
 
-            return $"{_baseUri}/{targetEntity}";
+            return _config.BaseUri + "/" + targetEntity;
         }
 
         private string getTargetEntityPathFrom(Type type)
