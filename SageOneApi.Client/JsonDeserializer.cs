@@ -18,26 +18,34 @@ namespace SageOneApi.Client
 
         private static JsonSerializerOptions getOptions()
 		{
-			var options = new JsonSerializerOptions(JsonSerializerDefaults.General);
-
-			options.NumberHandling = JsonNumberHandling.AllowReadingFromString;
-			
-			options.Converters.Add(new NullableDateTimeConverter());
+			var options = new JsonSerializerOptions(JsonSerializerDefaults.General)
+			{
+				NumberHandling = JsonNumberHandling.AllowReadingFromString,
+				Converters = 
+				{
+					new NullableDateTimeConverter() 
+				}
+            };
 
 			return options;
 		}
 
-		public static T DeserializeObject<T>(string json)
+		public static T? DeserializeObject<T>(string json)
 		{
 			return JsonSerializer.Deserialize(json, (JsonTypeInfo<T>)_sourceGenerationContext.GetTypeInfo(typeof(T)));
 		}
 
-        public static T DeserializeObject<T>(Stream stream)
+        public static T? DeserializeObject<T>(Stream stream)
         {
             return JsonSerializer.Deserialize(stream, (JsonTypeInfo<T>)_sourceGenerationContext.GetTypeInfo(typeof(T)));
         }
 
-        public static GetAllResponse<T> DeserializeObjects<T>(string json)
+		public static string SerializeObject<T>(T obj)
+		{
+			return JsonSerializer.Serialize(obj, (JsonTypeInfo<T>)_sourceGenerationContext.GetTypeInfo(typeof(T)));
+		}
+
+        public static GetAllResponse<T>? DeserializeObjects<T>(string json)
 		{
 			return JsonSerializer.Deserialize(json, (JsonTypeInfo<GetAllResponse<T>>)_sourceGenerationContext.GetTypeInfo(typeof(GetAllResponse<T>)));
         }
