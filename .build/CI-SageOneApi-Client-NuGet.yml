@@ -7,11 +7,9 @@ trigger:
     - refs/heads/master
   batch: True
 
-name: 0.2.0-CI-$(Date:yyyyMMdd)-$(Rev:rrr)
-
 variables:
   buildConfiguration: 'Debug'
-  packageVersion: $(Build.BuildNumber)
+  packageVersion: 1.0.$(Build.BuildId)
 # Variable 'PFXHash' is defined in the Variables tab
 # Variable 'PasswordForPFXfile' is defined in the Variables tab
 
@@ -107,4 +105,3 @@ jobs:
       command: push
       searchPatternPush: '$(Build.ArtifactStagingDirectory)\**\SageOneApi*.nupkg'
       feedPublish: aeaa4311-673f-4791-a14d-d19ad82f0603
-...
