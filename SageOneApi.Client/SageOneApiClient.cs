@@ -17,9 +17,8 @@ namespace SageOneApi.Client
 
         public SageOneApiClient(
             string accessToken,
-            string refreshToken,
             string resourceOwnerId,
-            Func<Func<string, Task<OAuth2TokenResponse>>, Task<string>> renewRefreshAndAccessToken,
+            Func<Task<string>> renewRefreshAndAccessToken,
             IProgress<ProgressUpdate>? progressUpdate = null,
             SageOneApiClientConfig? sageOneApiClientConfig = null)
         {
