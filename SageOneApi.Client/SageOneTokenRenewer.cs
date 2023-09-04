@@ -11,30 +11,28 @@ namespace SageOneApi.Client
 {
     public class SageOneTokenRenewer
     {
-        private readonly SageOneApiClientConfig _config;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public SageOneTokenRenewer(SageOneApiClientConfig config, IHttpClientFactory httpClientFactory)
+        public SageOneTokenRenewer(IHttpClientFactory httpClientFactory)
         {
-            _config = config;
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<OAuth2TokenResponse> RenewRefreshAndAccessToken(string refreshToken, CancellationToken cancellationToken)
+        public async Task<OAuth2TokenResponse> RenewRefreshAndAccessToken(string refreshToken, SageOneApiClientConfig config, CancellationToken cancellationToken)
         {
-            ArgumentNullException.ThrowIfNull(_config.ClientId, nameof(_config.ClientId));
-            ArgumentNullException.ThrowIfNull(_config.ClientSecret, nameof(_config.ClientSecret));
+            ArgumentNullException.ThrowIfNull(config.ClientId, nameof(config.ClientId));
+            ArgumentNullException.ThrowIfNull(config.ClientSecret, nameof(config.ClientSecret));
 
             using (var request = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = _config.AccessTokenUri,
+                RequestUri = config.AccessTokenUri,
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
                     { AuthRequestParams.RefreshToken, refreshToken },
                     { AuthRequestParams.GrantType, AuthRequestParams.RefreshToken },
-                    { AuthRequestParams.ClientId, _config.ClientId },
-                    { AuthRequestParams.ClientSecret, _config.ClientSecret }
+                    { AuthRequestParams.ClientId, config.ClientId },
+                    { AuthRequestParams.ClientSecret, config.ClientSecret }
                 })
             })
             using (var response = await _httpClientFactory.CreateClient().SendAsync(request, cancellationToken).ConfigureAwait(false))

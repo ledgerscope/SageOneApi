@@ -28,6 +28,12 @@ namespace SageOneApi.Client
 			ClientSecret = clientSecret;
 		}
 
+		public SageOneApiClientConfig With(int? pageSize = null, Uri? baseUri = null, Uri? accessTokenUri = null, string? clientId = null, string? clientSecret = null)
+		{
+			return new SageOneApiClientConfig(pageSize ?? PageSize, baseUri ?? BaseUri, accessTokenUri ?? AccessTokenUri, clientId ?? ClientId, clientSecret ?? ClientSecret);
+		}
+
+
 		public static SageOneApiClientConfig Default => new SageOneApiClientConfig();
 	}
 }
