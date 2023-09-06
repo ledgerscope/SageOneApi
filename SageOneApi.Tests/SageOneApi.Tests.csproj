@@ -6,17 +6,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="TestHelpers\SampleFiles\BankAccounts.json" />
 	  <None Remove="TestHelpers\SampleFiles\DatesTestData.json" />
 	  <None Remove="TestHelpers\SampleFiles\FinancialSettings.json" />
-	  <None Remove="TestHelpers\SampleFiles\SalesInvoices.json" />
+	  <None Remove="TestHelpers\SampleFiles\GetAll_BankAccount.json" />
+	  <None Remove="TestHelpers\SampleFiles\GetAll_Business.json" />
+	  <None Remove="TestHelpers\SampleFiles\GetAll_SalesInvoice.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="TestHelpers\SampleFiles\BankAccounts.json" />
+	  <EmbeddedResource Include="TestHelpers\SampleFiles\GetAll_BankAccount.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\DatesTestData.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\FinancialSettings.json" />
-	  <EmbeddedResource Include="TestHelpers\SampleFiles\SalesInvoices.json" />
+	  <EmbeddedResource Include="TestHelpers\SampleFiles\GetAll_Business.json" />
+	  <EmbeddedResource Include="TestHelpers\SampleFiles\GetAll_SalesInvoice.json" />
 	</ItemGroup>
 
 	<ItemGroup>

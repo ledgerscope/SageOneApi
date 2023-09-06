@@ -1,13 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SageOneApi.Client;
 using SageOneApi.Client.Models;
-using SageOneApi.Client.Responses;
+using SageOneApi.Client.Models.Core;
 using SageOneApi.Tests.TestHelpers.SampleFiles;
 using System;
 
 namespace SageOneApi.Tests
 {
-	public class BankAccountssTests
+	public class BusinessTests
 	{
 		[TestClass]
 		public class UnitTests
@@ -15,9 +15,9 @@ namespace SageOneApi.Tests
 			[TestMethod]
 			public void Test_Deserialization_GetAll()
 			{
-				string json = JsonTestFileReader.GetJson("GetAll_BankAccount.json");
+				string json = JsonTestFileReader.GetJson("GetAll_Business.json");
 
-				var bankAccounts = JsonDeserializer.DeserializeObjects<BankAccount>(json);			
+				var businesses = JsonDeserializer.DeserializeObjects<Business>(json);
 			}
 		}
 	}
