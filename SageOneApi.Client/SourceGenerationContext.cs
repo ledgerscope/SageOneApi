@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
-using SageOneApi.Client.Models;
+﻿using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
+using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client
 {
@@ -64,6 +61,7 @@ namespace SageOneApi.Client
     [JsonSerializable(typeof(GetAllResponse<TaxRate>))]
     [JsonSerializable(typeof(GetAllResponse<TaxTreatment>))]
     [JsonSerializable(typeof(GetAllResponse<Transaction>))]
+    [JsonSerializable(typeof(GetAllResponse<TransactionType>))]
 
     [JsonSerializable(typeof(Business))]
     [JsonSerializable(typeof(Me))]
@@ -124,6 +122,7 @@ namespace SageOneApi.Client
     [JsonSerializable(typeof(TaxRate))]
     [JsonSerializable(typeof(TaxTreatment))]
     [JsonSerializable(typeof(Transaction))]
+    [JsonSerializable(typeof(TransactionType))]
 
     [JsonSerializable(typeof(OAuth2TokenResponse))]
 
