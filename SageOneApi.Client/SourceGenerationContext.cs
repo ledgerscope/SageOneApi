@@ -23,6 +23,7 @@ namespace SageOneApi.Client
     [JsonSerializable(typeof(GetAllResponse<BankAccountDetails>))]
     [JsonSerializable(typeof(GetAllResponse<BankReconciliation>))]
     [JsonSerializable(typeof(GetAllResponse<BankTransfer>))]
+    [JsonSerializable(typeof(GetAllResponse<Business>))]
     [JsonSerializable(typeof(GetAllResponse<BusinessSettings>))]
     [JsonSerializable(typeof(GetAllResponse<Contact>))]
     [JsonSerializable(typeof(GetAllResponse<ContactAllocation>))]

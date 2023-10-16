@@ -3,7 +3,6 @@ using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
-using SageOneApi.Client.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,13 +120,20 @@ namespace SageOneApi.Client
             }
         }
 
+        private static readonly HashSet<HttpStatusCode> _retryCodes = new HashSet<HttpStatusCode>()
+        {
+            HttpStatusCode.InternalServerError,
+            HttpStatusCode.BadGateway,
+            HttpStatusCode.GatewayTimeout,
+        };
+
         private async Task<GetAllResponse<T>> getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
         {
             try
             {
                 return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken).ConfigureAwait(false);
             }
-            catch (SageOneApiRequestFailedException ex) when (queryParameters.ContainsKey("attributes") && ex.StatusCode == HttpStatusCode.GatewayTimeout)
+            catch (SageOneApiRequestFailedException ex) when (queryParameters.ContainsKey("attributes") && _retryCodes.Contains(ex.StatusCode))
             {
                 var attributeValue = queryParameters["attributes"];
 
@@ -141,14 +147,22 @@ namespace SageOneApi.Client
                 {
                     var item = summaryResponse.Items[i];
 
-                    var fullItem = await Get<T>(item.Id, queryParameters, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var fullItem = await Get<T>(item.Id, queryParameters, cancellationToken).ConfigureAwait(false);
 
-                    summaryResponse.Items[i] = fullItem;
+                        summaryResponse.Items[i] = fullItem;
+                    }
+                    catch (Exception)
+                    {
+                        //TODO: Log
+                        summaryResponse.Items[i] = item;
+                    }
                 }
 
                 return summaryResponse;
             }
-            catch (SageOneApiRequestFailedException ex) when (getPageSize(queryParameters) != 1 && ex.StatusCode == HttpStatusCode.GatewayTimeout)
+            catch (SageOneApiRequestFailedException ex) when (getPageSize(queryParameters) != 1 && _retryCodes.Contains(ex.StatusCode))
             {
                 int originalPageSize = getPageSize(queryParameters);
 
