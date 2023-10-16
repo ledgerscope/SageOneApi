@@ -311,6 +311,7 @@ namespace SageOneApi.Client
             { typeof(BusinessSettings) , "business_settings" },
             { typeof(FinancialSettings) , "financial_settings" },
             { typeof(Transaction) , "transactions" },
+            { typeof(TransactionType) , "transaction_types" },
             { typeof(BankReconciliation) , "bank_reconciliations" },
             { typeof(AnalysisType) , "analysis_types" },
             { typeof(Attachment) , "attachments" },
