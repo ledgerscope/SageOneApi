@@ -1,6 +1,6 @@
 ﻿namespace SageOneApi.Client.Constants
 {
-	public static class TransactionType
+	public static class TransactionTypes
 	{
 		public const string GeneralLedgerOpeningBalance = "GENERAL_LEDGER_OPENING_BALANCE";
 		public const string BankOpeningBalance = "BANK_OPENING_BALANCE";
