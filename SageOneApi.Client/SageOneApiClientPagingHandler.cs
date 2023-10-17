@@ -32,9 +32,12 @@ namespace SageOneApi.Client
 
             var msgFormat = "Downloaded {0}/{1} {2} records";
 
-            if (queryParameters.TryGetValue("transaction_type_id", out var transactionTypeId))
+            if (queryParameters != null)
             {
-                msgFormat += $" for transaction type {transactionTypeId}";
+                if (queryParameters.TryGetValue("transaction_type_id", out var transactionTypeId))
+                {
+                    msgFormat += $" for transaction type {transactionTypeId}";
+                } 
             }
 
             while (isDownloadRequired && (pageLimit is null || pageNumber <= pageLimit))
