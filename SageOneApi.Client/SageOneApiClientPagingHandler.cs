@@ -30,6 +30,13 @@ namespace SageOneApi.Client
             var isDownloadRequired = true;
             var entities = new List<T>();
 
+            var msgFormat = "Downloaded {0}/{1} {2} records";
+
+            if (queryParameters.TryGetValue("transaction_type_id", out var transactionTypeId))
+            {
+                msgFormat += $" for transaction type {transactionTypeId}";
+            }
+
             while (isDownloadRequired && (pageLimit is null || pageNumber <= pageLimit))
             {
                 var summaryResponse = await GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken).ConfigureAwait(false);
@@ -39,7 +46,7 @@ namespace SageOneApi.Client
                 itemsDownloaded += summaryResponse.Items.Length;
 
                 _progressUpdate.Report(new ProgressUpdate(
-                    $"Downloaded {itemsDownloaded}/{summaryResponse.Total} {typeof(T).Name} records",
+                    string.Format(msgFormat, itemsDownloaded, summaryResponse.Total, typeof(T).Name),
                     itemsDownloaded,
                     summaryResponse.Total,
                     typeof(T).Name));
