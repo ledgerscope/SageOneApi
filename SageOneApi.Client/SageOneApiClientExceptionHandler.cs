@@ -174,7 +174,7 @@ namespace SageOneApi.Client
                 var total = -1;
                 string? next = null;
 
-                for (int i = 0; i < originalPageSize; i++)
+                for (int i = 1; i <= originalPageSize; i++)
                 {
                     var individualResponse = await getAllSummary<T>(offset + i, queryParameters, cancellationToken).ConfigureAwait(false);
                     items.AddRange(individualResponse.Items);
