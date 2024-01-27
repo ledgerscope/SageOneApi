@@ -15,23 +15,31 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("bank_account")]
 		public BankAccount BankAccount { get; set; }
 		[JsonPropertyName("net_amount")]
-		public decimal NetAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal NetAmount { get; set; }
 		[JsonPropertyName("tax_amount")]
-		public decimal? TaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? TaxAmount { get; set; }
 		[JsonPropertyName("total_amount")]
-		public decimal TotalAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal TotalAmount { get; set; }
 		[JsonPropertyName("currency")]
 		public PropertyValueWithPath Currency { get; set; }
 		[JsonPropertyName("exchange_rate")]
-		public decimal ExchangeRate { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal ExchangeRate { get; set; }
 		[JsonPropertyName("base_currency_net_amount")]
-		public decimal BaseCurrencyNetAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal BaseCurrencyNetAmount { get; set; }
 		[JsonPropertyName("base_currency_tax_amount")]
-		public decimal BaseCurrencyTaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal BaseCurrencyTaxAmount { get; set; }
 		[JsonPropertyName("base_currency_total_amount")]
-		public decimal BaseCurrencyTotalAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal BaseCurrencyTotalAmount { get; set; }
 		[JsonPropertyName("base_currency_currency_charge")]
-		public decimal BaseCurrencyCurrencyCharge { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal BaseCurrencyCurrencyCharge { get; set; }
 		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
 		[JsonPropertyName("allocated_artefacts")]

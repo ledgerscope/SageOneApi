@@ -10,13 +10,16 @@ namespace SageOneApi.Client.Models
 	public class BalanceDetails
 	{
 		[JsonPropertyName("balance")]
-		public decimal Balance { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Balance { get; set; }
 		[JsonPropertyName("credit_or_debit")]
 		public string CreditOrDebit { get; set; }
 		[JsonPropertyName("credits")]
-		public decimal Credits { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Credits { get; set; }
 		[JsonPropertyName("debits")]
-		public decimal Debits { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Debits { get; set; }
 		[JsonPropertyName("from_date")]
 		public string FromDate { get; set; }
 		[JsonPropertyName("to_date")]

@@ -9,8 +9,10 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("artefact")]
 		public Artefact Artefact { get; set; }
 		[JsonPropertyName("amount")]
-		public decimal Amount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Amount { get; set; }
 		[JsonPropertyName("discount")]
-		public decimal? Discount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? Discount { get; set; }
 	}
 }

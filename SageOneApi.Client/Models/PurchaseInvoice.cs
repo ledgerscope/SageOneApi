@@ -11,10 +11,13 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("invoice_lines")]
 		public List<PurchaseTransactionLine> InvoiceLines { get; set; }
 		[JsonPropertyName("withholding_tax_rate")]
-		public decimal? WithholdingTaxRate { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? WithholdingTaxRate { get; set; }
 		[JsonPropertyName("withholding_tax_amount")]
-		public decimal? WithholdingTaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? WithholdingTaxAmount { get; set; }
 		[JsonPropertyName("base_currency_withholding_tax_amount")]
-		public decimal? BaseCurrencyWithholdingTaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? BaseCurrencyWithholdingTaxAmount { get; set; }
 	}
 }

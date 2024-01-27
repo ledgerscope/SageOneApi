@@ -11,7 +11,8 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("agency")]
 		public string Agency { get; set; }
 		[JsonPropertyName("percentage")]
-		public decimal? Percentage { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? Percentage { get; set; }
 		[JsonPropertyName("percentages")]
 		public List<TaxPercentage> Percentages { get; set; }
 		[JsonPropertyName("is_visible")]

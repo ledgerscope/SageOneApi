@@ -35,6 +35,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("bank_account_details")]
 		public BankAccountDetails BankAccountDetails { get; set; }
 		[JsonPropertyName("credit_limit")]
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
 		public decimal? CreditLimit { get; set; }
 		[JsonPropertyName("credit_days")]
 		public int? CreditDays { get; set; }
@@ -57,8 +58,9 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("gdpr_obfuscated")]
 		public bool GdprObfuscated { get; set; }
 		[JsonPropertyName("balance")]
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
 		public decimal? Balance { get; set; }
-		[JsonPropertyName("balance_details")]
+        [JsonPropertyName("balance_details")]
 		public BalanceDetails BalanceDetails { get; set; }
 	}
 }

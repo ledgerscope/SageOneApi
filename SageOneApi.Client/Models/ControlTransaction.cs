@@ -19,35 +19,49 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("notes")]
 		public string Notes { get; set; }
 		[JsonPropertyName("total_quantity")]
-		public decimal? TotalQuantity { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? TotalQuantity { get; set; }
 		[JsonPropertyName("net_amount")]
-		public decimal? NetAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? NetAmount { get; set; }
 		[JsonPropertyName("tax_amount")]
-		public decimal? TaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? TaxAmount { get; set; }
 		[JsonPropertyName("total_amount")]
-		public decimal? TotalAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? TotalAmount { get; set; }
 		[JsonPropertyName("payments_allocations_total_amount")]
-		public decimal? PaymentsAllocationsTotalAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? PaymentsAllocationsTotalAmount { get; set; }
 		[JsonPropertyName("payments_allocations_total_discount")]
-		public decimal? PaymentsAllocationsTotalDiscount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? PaymentsAllocationsTotalDiscount { get; set; }
 		[JsonPropertyName("total_paid")]
-		public decimal? TotalPaid { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? TotalPaid { get; set; }
 		[JsonPropertyName("outstanding_amount")]
-		public decimal? OutstandingAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? OutstandingAmount { get; set; }
 		[JsonPropertyName("currency")]
 		public PropertyValueWithPath Currency { get; set; }
 		[JsonPropertyName("exchange_rate")]
-		public decimal ExchangeRate { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal ExchangeRate { get; set; }
 		[JsonPropertyName("inverse_exchange_rate")]
-		public decimal InverseExchangeRate { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal InverseExchangeRate { get; set; }
 		[JsonPropertyName("base_currency_net_amount")]
-		public decimal BaseCurrencyNetAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal BaseCurrencyNetAmount { get; set; }
 		[JsonPropertyName("base_currency_tax_amount")]
-		public decimal BaseCurrencyTaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal BaseCurrencyTaxAmount { get; set; }
 		[JsonPropertyName("base_currency_total_amount")]
-		public decimal BaseCurrencyTotalAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal BaseCurrencyTotalAmount { get; set; }
 		[JsonPropertyName("base_currency_outstanding_amount")]
-		public decimal? BaseCurrencyOutstandingAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? BaseCurrencyOutstandingAmount { get; set; }
 		[JsonPropertyName("status")]
 		public PropertyValueWithPath Status { get; set; }
 		[JsonPropertyName("void_reason")]

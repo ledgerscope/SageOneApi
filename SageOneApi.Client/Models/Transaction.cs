@@ -10,7 +10,8 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("deleted")]
 		public bool Deleted { get; set; }
 		[JsonPropertyName("total")]
-		public decimal? Total { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? Total { get; set; }
 		[JsonPropertyName("contact")]
 		public Contact Contact { get; set; }
 		[JsonPropertyName("origin")]

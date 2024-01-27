@@ -11,7 +11,8 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("description")]
 		public string Description { get; set; }
 		[JsonPropertyName("total")]
-		public decimal Total { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Total { get; set; }
 		[JsonPropertyName("journal_code")]
 		public PropertyValueWithPath JournalCode { get; set; }
 		[JsonPropertyName("journal_lines")]

@@ -12,7 +12,8 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
 		[JsonPropertyName("amount")]
-		public decimal Amount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Amount { get; set; }
 		[JsonPropertyName("description")]
 		public string Description { get; set; }
 	}

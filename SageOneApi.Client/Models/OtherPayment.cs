@@ -15,11 +15,14 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("tax_address_region")]
 		public PropertyValueWithPath TaxAddressRegion { get; set; }
 		[JsonPropertyName("net_amount")]
-		public decimal NetAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal NetAmount { get; set; }
 		[JsonPropertyName("tax_amount")]
-		public decimal? TaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? TaxAmount { get; set; }
 		[JsonPropertyName("total_amount")]
-		public decimal TotalAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal TotalAmount { get; set; }
 		[JsonPropertyName("reference")]
 		public string Reference { get; set; }
 		[JsonPropertyName("payment_lines")]
@@ -29,8 +32,10 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("deletable")]
 		public bool Deletable { get; set; }
 		[JsonPropertyName("withholding_tax_rate")]
-		public decimal? WithholdingTaxRate { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? WithholdingTaxRate { get; set; }
 		[JsonPropertyName("withholding_tax_amount")]
-		public decimal? WithholdingTaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal? WithholdingTaxAmount { get; set; }
 	}
 }

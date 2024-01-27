@@ -7,14 +7,19 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("tax_rate")]
 		public TaxRate TaxRate { get; set; }
 		[JsonPropertyName("net_amount")]
-		public decimal NetAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal NetAmount { get; set; }
 		[JsonPropertyName("tax_amount")]
-		public decimal TaxAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal TaxAmount { get; set; }
 		[JsonPropertyName("total_amount")]
-		public decimal TotalAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal TotalAmount { get; set; }
 		[JsonPropertyName("goods_amount")]
-		public decimal GoodsAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal GoodsAmount { get; set; }
 		[JsonPropertyName("service_amount")]
-		public decimal ServiceAmount { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal ServiceAmount { get; set; }
 	}
 }

@@ -8,9 +8,11 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("description")]
 		public string Description { get; set; }
 		[JsonPropertyName("debit")]
-		public decimal Debit { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Debit { get; set; }
 		[JsonPropertyName("credit")]
-		public decimal Credit { get; set; }
+		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Credit { get; set; }
 		[JsonPropertyName("tax_rate")]
 		public TaxRate TaxRate { get; set; }
 		[JsonPropertyName("ledger_account")]
