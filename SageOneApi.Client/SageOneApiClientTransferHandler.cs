@@ -314,8 +314,10 @@ namespace SageOneApi.Client
             { typeof(TransactionType) , "transaction_types" },
             { typeof(BankReconciliation) , "bank_reconciliations" },
             { typeof(AnalysisType) , "analysis_types" },
-            { typeof(Attachment) , "attachments" },
             { typeof(StockItem) , "stock_items" },
+            { typeof(Product) , "products" },
+            { typeof(Service) , "services" },
+            { typeof(Attachment) , "attachments" },
 
             { typeof(Business), "businesses" },
             { typeof(Me), "me" },
