@@ -281,7 +281,7 @@ namespace SageOneApi.Client
             return _config.BaseUri + "/" + targetEntity;
         }
 
-        private string getTargetEntityPathFrom(Type type)
+        private static string getTargetEntityPathFrom(Type type)
         {
             if (targetEntityPathByType.TryGetValue(type, out var retVal))
                 return retVal;
@@ -315,6 +315,7 @@ namespace SageOneApi.Client
             { typeof(BankReconciliation) , "bank_reconciliations" },
             { typeof(AnalysisType) , "analysis_types" },
             { typeof(Attachment) , "attachments" },
+            { typeof(StockItem) , "stock_items" },
 
             { typeof(Business), "businesses" },
             { typeof(Me), "me" },
