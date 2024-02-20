@@ -27,7 +27,8 @@ namespace SageOneApi.Client.Models
         [JsonPropertyName("purchase_tax_rate")]
         public PropertyValueWithPath PurchaseTaxRate { get; set; }
         [JsonPropertyName("cost_price")]
-        public string CostPrice { get; set; }
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal CostPrice { get; set; }
         [JsonPropertyName("source_guid")]
         public string SourceGuid { get; set; }
         [JsonPropertyName("purchase_description")]
