@@ -9,7 +9,8 @@ namespace SageOneApi.Client.Models
         [JsonPropertyName("sales_prices")]
         public List<ProductSalesPrice> SalesPrices { get; set; }
         [JsonPropertyName("reorder_level")]
-        public decimal? ReorderLevel { get; set; }
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal ReorderLevel { get; set; }
         [JsonPropertyName("reorder_quantity")]
         public decimal? ReorderQuantity { get; set; }
         [JsonPropertyName("location")]
