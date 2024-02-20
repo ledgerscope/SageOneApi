@@ -12,6 +12,7 @@ namespace SageOneApi.Client.Models
         [JsonPropertyName("price_name")]
         public string PriceName { get; set; }
         [JsonPropertyName("price")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public decimal Price { get; set; }
         [JsonPropertyName("price_includes_tax")]
         public bool PriceIncludesTax { get; set; }
