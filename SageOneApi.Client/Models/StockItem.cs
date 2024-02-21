@@ -34,6 +34,7 @@ namespace SageOneApi.Client.Models
         [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public decimal LastCostPrice { get; set; }
         [JsonPropertyName("last_cost_price_stock_value")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public decimal LastCostPriceStockValue { get; set; }
         [JsonPropertyName("average_cost_price")]
         public decimal AverageCostPrice { get; set; }
