@@ -21,7 +21,8 @@ namespace SageOneApi.Client.Models
         [JsonPropertyName("supplier_part_number")]
         public string SupplierPartNumber { get; set; }
         [JsonPropertyName("weight")]
-        public decimal? Weight { get; set; }
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal Weight { get; set; }
         [JsonPropertyName("measurement_unit")]
         public string MeasurementUnit { get; set; }
         [JsonPropertyName("weight_converted")]
