@@ -12,6 +12,7 @@ namespace SageOneApi.Client.Models
         [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public decimal ReorderLevel { get; set; }
         [JsonPropertyName("reorder_quantity")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public decimal? ReorderQuantity { get; set; }
         [JsonPropertyName("location")]
         public string Location { get; set; }
