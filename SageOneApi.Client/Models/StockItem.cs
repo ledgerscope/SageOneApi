@@ -25,7 +25,8 @@ namespace SageOneApi.Client.Models
         [JsonPropertyName("measurement_unit")]
         public string MeasurementUnit { get; set; }
         [JsonPropertyName("weight_converted")]
-        public decimal? WeightConverted { get; set; }
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        public decimal WeightConverted { get; set; }
         [JsonPropertyName("quantity_in_stock")]
         public decimal QuantityInStock { get; set; }
         [JsonPropertyName("last_cost_price")]
