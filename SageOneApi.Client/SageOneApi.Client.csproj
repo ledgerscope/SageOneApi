@@ -14,7 +14,6 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageVersion>$(packageVersion)</PackageVersion>
 		<AnalysisLevel>latest</AnalysisLevel>
-		<LangVersion>9</LangVersion>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 

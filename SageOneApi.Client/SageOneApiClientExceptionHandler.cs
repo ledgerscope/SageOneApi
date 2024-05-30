@@ -189,7 +189,7 @@ namespace SageOneApi.Client
                     ItemsPerPage = originalPageSize,
                     Page = pageNumber,
                     Total = total,
-                    Items = items.ToArray(),
+                    Items = [.. items],
                     Next = next,
                 };
 
