@@ -271,7 +271,7 @@ namespace SageOneApi.Client
                 || response.StatusCode == HttpStatusCode.ServiceUnavailable
                 || response.StatusCode.ToString() == "525")
             {
-                Thread.Sleep(TimeSpan.FromSeconds(5));
+                await Task.Delay(TimeSpan.FromSeconds(5));
 
                 return await retry().ConfigureAwait(false);
             }
