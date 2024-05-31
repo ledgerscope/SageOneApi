@@ -133,7 +133,7 @@ namespace SageOneApi.Client
             {
                 return await base.GetAllFromPage<T>(pageNumber, queryParameters, cancellationToken).ConfigureAwait(false);
             }
-            catch (SageOneApiRequestFailedException ex) when (queryParameters.ContainsKey("attributes") && _retryCodes.Contains(ex.StatusCode))
+            catch (SageOneApiRequestFailedException ex) when (queryParameters?.ContainsKey("attributes") is true && _retryCodes.Contains(ex.StatusCode))
             {
                 var attributeValue = queryParameters["attributes"];
 
@@ -207,7 +207,7 @@ namespace SageOneApi.Client
         {
             var originalPageSize = _config.PageSize;
 
-            if (queryParameters.TryGetValue(SageOneApiClientTransferHandler.ItemsPerPageKey, out var pageSizeStr))
+            if (queryParameters?.TryGetValue(SageOneApiClientTransferHandler.ItemsPerPageKey, out var pageSizeStr) is true)
             {
                 originalPageSize = int.Parse(pageSizeStr);
             }
