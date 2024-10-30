@@ -1,6 +1,5 @@
 ﻿using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
-using SageOneApi.Client.Responses;
 using SageOneApi.Client.Utils;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace SageOneApi.Client
         {
             sageOneApiClientConfig = sageOneApiClientConfig ?? SageOneApiClientConfig.Default;
 
-            var progressUpdater = new Progress<ProgressUpdate>((a) =>
+            var progressUpdater = new SynchronousProgressHandler<ProgressUpdate>((a) =>
             {
                 ProgressUpdate?.Report(a);
                 progressUpdate?.Report(a);
