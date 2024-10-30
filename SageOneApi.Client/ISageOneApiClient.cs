@@ -44,6 +44,15 @@ namespace SageOneApi.Client
         /// </summary>
         Task<IEnumerable<T>> GetAllCore<T>(Dictionary<string, string>? queryParameters = null, CancellationToken cancellationToken = default) where T : SageOneCoreEntity;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="queryParameters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<int> Count<T>(Dictionary<string, string>? queryParameters = null, CancellationToken cancellationToken = default) where T : SageOneAccountingEntity;
+
         IProgress<ProgressUpdate> ProgressUpdate { get; set; }
     }
 }

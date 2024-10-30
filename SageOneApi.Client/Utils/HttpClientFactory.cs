@@ -8,7 +8,7 @@ namespace SageOneApi.Client.Utils
 
 		public static HttpClient Create()
 		{
-			return _httpClient ?? (_httpClient = new HttpClient());
+			return _httpClient ??= new HttpClient();
 		}
 	}
 }

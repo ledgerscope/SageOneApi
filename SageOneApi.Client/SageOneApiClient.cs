@@ -70,5 +70,10 @@ namespace SageOneApi.Client
         {
             return _sageOneApiClientHandler.GetAllCore<T>(queryParameters, cancellationToken);
         }
+
+        public Task<int> Count<T>(Dictionary<string, string>? queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
+        {
+            return _sageOneApiClientHandler.Count<T>(queryParameters, cancellationToken);
+        }
     }
 }
