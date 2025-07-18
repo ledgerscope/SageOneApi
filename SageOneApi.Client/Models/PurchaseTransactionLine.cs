@@ -6,5 +6,14 @@ namespace SageOneApi.Client.Models
 	{
 		[JsonPropertyName("is_purchase_for_resale")]
 		public bool IsPurchaseForResale { get; set; }
-	}
+
+		[JsonPropertyName("pst_amount")]
+        public decimal? PstAmount { get; set; }
+
+        [JsonPropertyName("gst_amount")]
+        public decimal? GstAmount { get; set; }
+
+		[JsonPropertyName("tax_recoverable")]
+        public bool? TaxRecoverable { get; set; }
+    }
 }
