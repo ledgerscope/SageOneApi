@@ -6,3 +6,6 @@ packages/
 
 # Temporary files from dotnet installation
 dotnet-install.sh
+
+# Package files
+*.deb
