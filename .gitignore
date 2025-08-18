@@ -3,3 +3,6 @@ bin
 obj
 *.user
 packages/
+
+# Temporary files from dotnet installation
+dotnet-install.sh

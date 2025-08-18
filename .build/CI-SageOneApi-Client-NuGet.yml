@@ -1,3 +1,7 @@
+# DEPRECATED: This Azure Pipeline has been migrated to GitHub Actions
+# See .github/workflows/build.yml for the current CI/CD configuration
+# This file is kept for reference but is no longer actively used
+
 # Pipeline for building our SageOneApi.Client NuGet
 
 #trigger: none
