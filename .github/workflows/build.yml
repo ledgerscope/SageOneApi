@@ -1,0 +1,99 @@
+name: Build, Test and Deploy SageOneApi.Client
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  BUILD_CONFIGURATION: Debug
+  DOTNET_VERSION: '9.0.x'
+
+jobs:
+  build-test-deploy:
+    name: Build, test, and deploy
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Debug print variables
+      run: |
+        echo "Build Configuration: ${{ env.BUILD_CONFIGURATION }}"
+        echo "Package Version: 1.0.${{ github.run_number }}"
+        echo "GitHub Workspace: ${{ github.workspace }}"
+        echo "Runner OS: ${{ runner.os }}"
+        
+    - name: Install PFX Certificate
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      shell: pwsh
+      run: |
+        if ("${{ secrets.PFX_BASE64 }}" -ne "" -and "${{ secrets.PFX_PASSWORD }}" -ne "") {
+          $pfxBytes = [System.Convert]::FromBase64String("${{ secrets.PFX_BASE64 }}")
+          $pfxPath = Join-Path $env:RUNNER_TEMP "certificate.pfx"
+          [System.IO.File]::WriteAllBytes($pfxPath, $pfxBytes)
+          $password = "${{ secrets.PFX_PASSWORD }}" | ConvertTo-SecureString -AsPlainText -Force
+          Import-PfxCertificate -FilePath $pfxPath -CertStoreLocation Cert:\CurrentUser\My -Password $password
+          echo "Certificate installed successfully"
+        } else {
+          echo "Certificate secrets not available, skipping signing"
+        }
+      
+    - name: Restore dependencies
+      run: dotnet restore SageOneApi.sln
+      
+    - name: Build solution
+      run: dotnet build SageOneApi.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore -p:PackageVersion=1.0.${{ github.run_number }}
+      
+    - name: Run tests
+      run: dotnet test SageOneApi.Tests/SageOneApi.Tests.csproj --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --verbosity normal --logger trx --results-directory test-results
+      
+    - name: Publish test results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Test Results
+        path: test-results/*.trx
+        reporter: dotnet-trx
+        
+    - name: Copy build artifacts
+      run: |
+        New-Item -ItemType Directory -Force -Path artifacts/mybin
+        Copy-Item -Path "SageOneApi.Client/bin/${{ env.BUILD_CONFIGURATION }}/*" -Destination "artifacts/mybin/" -Recurse
+      shell: pwsh
+      
+    - name: Debug environment variables
+      run: Get-ChildItem env: | Sort-Object Name | Format-Table -AutoSize | Out-File artifacts/environment-variables.txt
+      shell: pwsh
+      
+    - name: Debug directory structure
+      run: Get-ChildItem -Path . -Recurse | Out-File artifacts/directory-structure.txt
+      shell: pwsh
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: artifacts/
+        retention-days: 30
+        
+    - name: Publish to NuGet feed
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: |
+        $packages = Get-ChildItem -Path "artifacts" -Filter "SageOneApi*.nupkg" -Recurse
+        foreach ($package in $packages) {
+          if ("${{ secrets.NUGET_FEED_URL }}" -ne "" -and "${{ secrets.NUGET_API_KEY }}" -ne "") {
+            dotnet nuget push $package.FullName --source "${{ secrets.NUGET_FEED_URL }}" --api-key "${{ secrets.NUGET_API_KEY }}" --skip-duplicate
+          } else {
+            echo "NuGet feed secrets not configured, skipping package publish"
+            echo "Would publish: $($package.FullName)"
+          }
+        }
+      shell: pwsh
