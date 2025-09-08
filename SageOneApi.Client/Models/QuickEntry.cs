@@ -8,7 +8,7 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("quick_entry_type")]
 		public PropertyValueWithPath QuickEntryType { get; set; }
 		[JsonPropertyName("ledger_account")]
-		public LedgerAccount LedgerAccount { get; set; }
+		public LedgerAccount? LedgerAccount { get; set; }
 		[JsonPropertyName("details")]
 		public string Details { get; set; }
 		[JsonPropertyName("tax_rate")]
