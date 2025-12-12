@@ -14,12 +14,12 @@ namespace SageOneApi.Tests
 			public void TestDateTime_Parse()
 			{
 				// by default this doesn't work, but with our custom deserializer we have custom DateTime handlers so that it does (see tests later in this class)
-				Assert.ThrowsException<ArgumentNullException>(() => DateTime.Parse(null));
-				Assert.ThrowsException<FormatException>(() => DateTime.Parse(""));
-				Assert.ThrowsException<FormatException>(() => DateTime.Parse("     "));
+				Assert.Throws<ArgumentNullException>(() => DateTime.Parse(null));
+				Assert.Throws<FormatException>(() => DateTime.Parse(""));
+				Assert.Throws<FormatException>(() => DateTime.Parse("     "));
 
 				// this is never going to work
-				Assert.ThrowsException<FormatException>(() => DateTime.Parse("gin o'clock"));
+				Assert.Throws<FormatException>(() => DateTime.Parse("gin o'clock"));
 
 				Assert.AreEqual("2015-02-19 00:00:00Z", DateTime.Parse("2015-02-19").ToString("u"));
 
