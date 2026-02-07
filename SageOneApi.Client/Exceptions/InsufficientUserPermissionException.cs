@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Net;
 
 namespace SageOneApi.Client.Exceptions
 {
-	public class InsufficientUserPermissionException : WebException
+	public class InsufficientUserPermissionException : Exception
 	{
 		public InsufficientUserPermissionException(string message, Exception innerException) : base(message, innerException)
 		{
