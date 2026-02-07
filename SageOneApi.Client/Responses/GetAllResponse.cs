@@ -11,7 +11,7 @@ namespace SageOneApi.Client.Responses
 		public int Page { get; set; }
 
 		[JsonPropertyName("$next")]
-		public string Next { get; set; }
+		public string? Next { get; set; }
 
 		[JsonPropertyName("$back")]
 		public string Back { get; set; }

@@ -1,9 +1,7 @@
-﻿using SageOneApi.Client.Constants;
-using SageOneApi.Client.Exceptions;
+﻿using SageOneApi.Client.Exceptions;
 using SageOneApi.Client.Models;
 using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Responses;
-using SageOneApi.Client.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,17 +22,20 @@ namespace SageOneApi.Client
         private readonly string _resourceOwnerId;
         private readonly Func<Task<string>> _renewRefreshAndAccessToken;
         private readonly SageOneApiClientConfig _config;
+        private readonly IHttpClientFactory _httpClientFactory;
 
         public SageOneApiClientTransferHandler(
             string accessToken,
             string resourceOwnerId,
             Func<Task<string>> renewRefreshAndAccessToken,
-            SageOneApiClientConfig config)
+            SageOneApiClientConfig config,
+            IHttpClientFactory httpClientFactory)
         {
             _accessToken = accessToken;
             _resourceOwnerId = resourceOwnerId;
             _renewRefreshAndAccessToken = renewRefreshAndAccessToken;
             _config = config;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
@@ -146,7 +147,7 @@ namespace SageOneApi.Client
             T responseContent;
 
             using (var message = buildGetRequestMessage(uri))
-            using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken).ConfigureAwait(false))
+            using (var response = await _httpClientFactory.CreateClient().SendAsync(message, cancellationToken).ConfigureAwait(false))
             {
                 using (var content = response.Content)
                 {
@@ -173,7 +174,7 @@ namespace SageOneApi.Client
             byte[] binaryResponseContent;
 
             using (var message = buildGetBinaryRequestMessage(uri))
-            using (var response = await HttpClientFactory.Create().SendAsync(message, cancellationToken).ConfigureAwait(false))
+            using (var response = await _httpClientFactory.CreateClient().SendAsync(message, cancellationToken).ConfigureAwait(false))
             {
                 using (var content = response.Content)
                 {
@@ -247,11 +248,7 @@ namespace SageOneApi.Client
             if (queryParameters != null && queryParameters.Any())
             {
                 sb.Append('?');
-
-                foreach (var item in queryParameters)
-                {
-                    sb.Append(item.Key).Append('=').Append(item.Value).Append('&');
-                }
+                sb.Append(string.Join("&", queryParameters.Select(item => $"{item.Key}={item.Value}")));
             }
 
             var uriPath = sb.ToString();

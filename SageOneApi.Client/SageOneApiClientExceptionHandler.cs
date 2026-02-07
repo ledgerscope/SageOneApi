@@ -61,7 +61,7 @@ namespace SageOneApi.Client
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
-                return await handleKnownExceptions(ex, () => getAttachmentFile(attachmentId, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
+                return await handleKnownExceptions(ex, () => getAttachmentFile(attachmentId, cancellationToken, retryNumber), retryNumber, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -74,7 +74,7 @@ namespace SageOneApi.Client
             catch (SageOneApiRequestFailedException ex)
             {
                 retryNumber++;
-                return await handleKnownExceptions(ex, () => get<T>(id, queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
+                return await handleKnownExceptions(ex, () => get<T>(id, queryParameters, cancellationToken, retryNumber), retryNumber, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -88,7 +88,7 @@ namespace SageOneApi.Client
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getSingle<T>(queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
+                return await handleKnownExceptions(ex, () => getSingle<T>(queryParameters, cancellationToken, retryNumber), retryNumber, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -102,7 +102,7 @@ namespace SageOneApi.Client
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
+                return await handleKnownExceptions(ex, () => getCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -116,16 +116,16 @@ namespace SageOneApi.Client
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
+                return await handleKnownExceptions(ex, () => getAllCore<T>(queryParameters, cancellationToken, retryNumber), retryNumber, cancellationToken).ConfigureAwait(false);
             }
         }
 
-        private static readonly HashSet<HttpStatusCode> _retryCodes = new HashSet<HttpStatusCode>()
-        {
+        private static readonly HashSet<HttpStatusCode> _retryCodes =
+        [
             HttpStatusCode.InternalServerError,
             HttpStatusCode.BadGateway,
             HttpStatusCode.GatewayTimeout,
-        };
+        ];
 
         private async Task<GetAllResponse<T>> getAllSummary<T>(int pageNumber, Dictionary<string, string> queryParameters, CancellationToken cancellationToken, int retryNumber = 0) where T : SageOneAccountingEntity
         {
@@ -199,7 +199,7 @@ namespace SageOneApi.Client
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, cancellationToken, retryNumber), retryNumber).ConfigureAwait(false);
+                return await handleKnownExceptions(ex, () => getAllSummary<T>(pageNumber, queryParameters, cancellationToken, retryNumber), retryNumber, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -227,16 +227,16 @@ namespace SageOneApi.Client
             {
                 retryNumber++;
 
-                return await handleKnownExceptions(ex, () => renewRefreshAndAccessToken(retryNumber), retryNumber);
+                return await handleKnownExceptions(ex, () => renewRefreshAndAccessToken(retryNumber), retryNumber, default);
             }
         }
 
-        private async Task<T> handleKnownExceptions<T>(SageOneApiRequestFailedException ex, Func<Task<T>> retry, int retryNumber)
+        private async Task<T> handleKnownExceptions<T>(SageOneApiRequestFailedException ex, Func<Task<T>> retry, int retryNumber, CancellationToken cancellationToken)
         {
             var response = ex;
 
             //Check for 429 before retryLimit as it could be due to the amount of data
-            if (response.StatusCode.ToString() == "429")
+            if (response.StatusCode == HttpStatusCode.TooManyRequests)
             {
                 int seconds = 5;
                 if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
@@ -244,7 +244,7 @@ namespace SageOneApi.Client
                     seconds = (int.Parse(retryAfterHeaderValues.First()) + 1) * (retryNumber + 1);
                 }
 
-                await Task.Delay(TimeSpan.FromSeconds(seconds)).ConfigureAwait(false);
+                await Task.Delay(TimeSpan.FromSeconds(seconds), cancellationToken).ConfigureAwait(false);
 
                 return await retry().ConfigureAwait(false);
             }
@@ -271,7 +271,7 @@ namespace SageOneApi.Client
                 || response.StatusCode == HttpStatusCode.ServiceUnavailable
                 || response.StatusCode.ToString() == "525")
             {
-                await Task.Delay(TimeSpan.FromSeconds(5));
+                await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken).ConfigureAwait(false);
 
                 return await retry().ConfigureAwait(false);
             }

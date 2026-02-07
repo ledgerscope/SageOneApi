@@ -3,6 +3,7 @@ using SageOneApi.Client.Models.Core;
 using SageOneApi.Client.Utils;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace SageOneApi.Client
             string accessToken,
             string resourceOwnerId,
             Func<Task<string>> renewRefreshAndAccessToken,
+            IHttpClientFactory httpClientFactory,
             IProgress<ProgressUpdate>? progressUpdate = null,
             SageOneApiClientConfig? sageOneApiClientConfig = null)
         {
@@ -33,7 +35,7 @@ namespace SageOneApi.Client
                 new SageOneApiClientLoggingHandler(progressUpdater, sageOneApiClientConfig,
                    new SageOneApiClientPagingHandler(progressUpdater, sageOneApiClientConfig,
                        new SageOneApiClientExceptionHandler(sageOneApiClientConfig,
-                           new SageOneApiClientTransferHandler(accessToken, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig))));
+                           new SageOneApiClientTransferHandler(accessToken, resourceOwnerId, renewRefreshAndAccessToken, sageOneApiClientConfig, httpClientFactory))));
         }
 
         public Task<T> Get<T>(string id, Dictionary<string, string> queryParameters, CancellationToken cancellationToken) where T : SageOneAccountingEntity
