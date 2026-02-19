@@ -13,7 +13,11 @@ namespace SageOneApi.Client.Models
 		[JsonPropertyName("balance")]
 		[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public decimal? Balance { get; set; }
-		[JsonPropertyName("main_address")]
+        [JsonPropertyName("currency")]
+        public PropertyValueWithPath Currency { get; set; }
+        [JsonPropertyName("gifi_code")]
+        public int? GifiCode { get; set; }
+        [JsonPropertyName("main_address")]
 		public Address MainAddress { get; set; }
 		[JsonPropertyName("main_contact_person")]
 		public ContactPerson MainContactPerson { get; set; }
