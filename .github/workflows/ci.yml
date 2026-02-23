@@ -1,0 +1,34 @@
+name: CI - SageOneApi.Client NuGet
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-test-deploy:
+    name: Build, test, and deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore SageOneApi.sln
+
+      - name: Build
+        run: dotnet build SageOneApi.sln --configuration Debug --no-restore -p:packageVersion=1.1.${{ github.run_number }}
+
+      - name: Test
+        run: dotnet test SageOneApi.sln --configuration Debug --no-build
+
+      - name: Push to GitHub Packages
+        run: dotnet nuget push SageOneApi.Client/bin/Debug/*.nupkg --source "https://nuget.pkg.github.com/ledgerscope/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
