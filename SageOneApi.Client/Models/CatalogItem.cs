@@ -34,6 +34,6 @@ namespace SageOneApi.Client.Models
         [JsonPropertyName("purchase_description")]
         public string PurchaseDescription { get; set; }
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
     }
 }

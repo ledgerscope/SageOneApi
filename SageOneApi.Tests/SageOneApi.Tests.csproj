@@ -14,6 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="TestHelpers\SampleFiles\GetAll_Product.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\GetAll_BankAccount.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\DatesTestData.json" />
 	  <EmbeddedResource Include="TestHelpers\SampleFiles\FinancialSettings.json" />

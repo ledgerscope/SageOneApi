@@ -1,0 +1,291 @@
+﻿{
+  "$total": 56,
+  "$page": 1,
+  "$next": "/products?page=2\u0026items_per_page=50\u0026attributes=all",
+  "$back": null,
+  "$itemsPerPage": 50,
+  "$items": [
+    {
+      "id": "f5b204826ba843d2aa1109b6454d194a",
+      "displayed_as": "Oak Wood Frame",
+      "$path": "/products/f5b204826ba843d2aa1109b6454d194a",
+      "created_at": "2025-12-23T11:12:23Z",
+      "updated_at": "2025-12-23T11:12:23Z",
+      "links": [
+        {
+          "href": "https://accounts-extra.sageone.com/advanced_uk/products_services/20801145",
+          "rel": "alternate",
+          "type": "text/html"
+        }
+      ],
+      "deletable": true,
+      "deactivatable": true,
+      "used_on_recurring_invoice": false,
+      "item_code": "OWF",
+      "description": "Oak Wood Frame",
+      "notes": "",
+      "sales_ledger_account": {
+        "id": "c2346f67df3f11f0950f02d597097be3",
+        "displayed_as": "Sales - Products (4000)",
+        "$path": "/ledger_accounts/c2346f67df3f11f0950f02d597097be3"
+      },
+      "sales_tax_rate": {
+        "id": "GB_STANDARD",
+        "displayed_as": "Standard 20.00%",
+        "$path": "/tax_rates/GB_STANDARD"
+      },
+      "purchase_ledger_account": {
+        "id": "c2364816df3f11f0950f02d597097be3",
+        "displayed_as": "Cost of Sales - Goods (5000)",
+        "$path": "/ledger_accounts/c2364816df3f11f0950f02d597097be3"
+      },
+      "usual_supplier": null,
+      "purchase_tax_rate": {
+        "id": "GB_STANDARD",
+        "displayed_as": "Standard 20.00%",
+        "$path": "/tax_rates/GB_STANDARD"
+      },
+      "cost_price": "10.0",
+      "sales_prices": [
+        {
+          "id": "81d6dee41f30476db9a1b12da1795247",
+          "displayed_as": "Sales Price",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Sales Price",
+          "price": "30.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "548a4606054d41aa8252e630292950ec",
+            "displayed_as": "Sales Price",
+            "$path": "/product_sales_price_types/548a4606054d41aa8252e630292950ec"
+          }
+        },
+        {
+          "id": "2b449ccb8a0e4b60a39685c314502be1",
+          "displayed_as": "Trade",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Trade",
+          "price": "0.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "9c1edd84c1d5488892cdf49c10a7e6e1",
+            "displayed_as": "Trade",
+            "$path": "/product_sales_price_types/9c1edd84c1d5488892cdf49c10a7e6e1"
+          }
+        },
+        {
+          "id": "b4b1aaf791594661b833d9a07716736c",
+          "displayed_as": "Wholesale",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Wholesale",
+          "price": "0.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "0f000752a8ca4b919cde3d95c1bd94fe",
+            "displayed_as": "Wholesale",
+            "$path": "/product_sales_price_types/0f000752a8ca4b919cde3d95c1bd94fe"
+          }
+        }
+      ],
+      "source_guid": null,
+      "purchase_description": "",
+      "active": null,
+      "catalog_item_type": {
+        "id": "PRODUCT",
+        "displayed_as": "Non-stock",
+        "$path": "/catalog_item_types/PRODUCT"
+      }
+    },
+    {
+      "id": "4cca7f1b67bd458fbbbb23634a7bd13e",
+      "displayed_as": "Gold Embossed Metallic Frame",
+      "$path": "/products/4cca7f1b67bd458fbbbb23634a7bd13e",
+      "created_at": "2025-12-23T11:12:23Z",
+      "updated_at": "2025-12-23T11:12:23Z",
+      "links": [
+        {
+          "href": "https://accounts-extra.sageone.com/advanced_uk/products_services/20801146",
+          "rel": "alternate",
+          "type": "text/html"
+        }
+      ],
+      "deletable": true,
+      "deactivatable": true,
+      "used_on_recurring_invoice": false,
+      "item_code": "GEMF",
+      "description": "Gold Embossed Metallic Frame",
+      "notes": "",
+      "sales_ledger_account": {
+        "id": "c2346f67df3f11f0950f02d597097be3",
+        "displayed_as": "Sales - Products (4000)",
+        "$path": "/ledger_accounts/c2346f67df3f11f0950f02d597097be3"
+      },
+      "sales_tax_rate": {
+        "id": "GB_STANDARD",
+        "displayed_as": "Standard 20.00%",
+        "$path": "/tax_rates/GB_STANDARD"
+      },
+      "purchase_ledger_account": {
+        "id": "c2364816df3f11f0950f02d597097be3",
+        "displayed_as": "Cost of Sales - Goods (5000)",
+        "$path": "/ledger_accounts/c2364816df3f11f0950f02d597097be3"
+      },
+      "usual_supplier": null,
+      "purchase_tax_rate": {
+        "id": "GB_LOWER",
+        "displayed_as": "Lower Rate 5.00%",
+        "$path": "/tax_rates/GB_LOWER"
+      },
+      "cost_price": "10.0",
+      "sales_prices": [
+        {
+          "id": "c250268cb4ce4db59bbec15f29c7edbb",
+          "displayed_as": "Sales Price",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Sales Price",
+          "price": "20.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "548a4606054d41aa8252e630292950ec",
+            "displayed_as": "Sales Price",
+            "$path": "/product_sales_price_types/548a4606054d41aa8252e630292950ec"
+          }
+        },
+        {
+          "id": "28c4b70330f548bf8a9106ebffc9ea7a",
+          "displayed_as": "Trade",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Trade",
+          "price": "0.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "9c1edd84c1d5488892cdf49c10a7e6e1",
+            "displayed_as": "Trade",
+            "$path": "/product_sales_price_types/9c1edd84c1d5488892cdf49c10a7e6e1"
+          }
+        },
+        {
+          "id": "3f81cfb103da458f8bb65683640d4347",
+          "displayed_as": "Wholesale",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Wholesale",
+          "price": "0.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "0f000752a8ca4b919cde3d95c1bd94fe",
+            "displayed_as": "Wholesale",
+            "$path": "/product_sales_price_types/0f000752a8ca4b919cde3d95c1bd94fe"
+          }
+        }
+      ],
+      "source_guid": null,
+      "purchase_description": "",
+      "active": true,
+      "catalog_item_type": {
+        "id": "PRODUCT",
+        "displayed_as": "Non-stock",
+        "$path": "/catalog_item_types/PRODUCT"
+      }
+    },
+    {
+      "id": "63b3156da81a4b3cbece70471797827a",
+      "displayed_as": "Silver Rimmed Crystal Frame",
+      "$path": "/products/63b3156da81a4b3cbece70471797827a",
+      "created_at": "2025-12-23T11:12:23Z",
+      "updated_at": "2025-12-23T11:12:23Z",
+      "links": [
+        {
+          "href": "https://accounts-extra.sageone.com/advanced_uk/products_services/20801147",
+          "rel": "alternate",
+          "type": "text/html"
+        }
+      ],
+      "deletable": true,
+      "deactivatable": true,
+      "used_on_recurring_invoice": false,
+      "item_code": "SRCF",
+      "description": "Silver Rimmed Crystal Frame",
+      "notes": "",
+      "sales_ledger_account": {
+        "id": "c2346f67df3f11f0950f02d597097be3",
+        "displayed_as": "Sales - Products (4000)",
+        "$path": "/ledger_accounts/c2346f67df3f11f0950f02d597097be3"
+      },
+      "sales_tax_rate": {
+        "id": "GB_STANDARD",
+        "displayed_as": "Standard 20.00%",
+        "$path": "/tax_rates/GB_STANDARD"
+      },
+      "purchase_ledger_account": {
+        "id": "c2364816df3f11f0950f02d597097be3",
+        "displayed_as": "Cost of Sales - Goods (5000)",
+        "$path": "/ledger_accounts/c2364816df3f11f0950f02d597097be3"
+      },
+      "usual_supplier": null,
+      "purchase_tax_rate": {
+        "id": "GB_ZERO",
+        "displayed_as": "Zero Rated 0.00%",
+        "$path": "/tax_rates/GB_ZERO"
+      },
+      "cost_price": "10.0",
+      "sales_prices": [
+        {
+          "id": "bbc5db6da02144a99a52cd027cb44eb2",
+          "displayed_as": "Sales Price",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Sales Price",
+          "price": "40.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "548a4606054d41aa8252e630292950ec",
+            "displayed_as": "Sales Price",
+            "$path": "/product_sales_price_types/548a4606054d41aa8252e630292950ec"
+          }
+        },
+        {
+          "id": "d4945e900c1d4085a50fdb21620875e0",
+          "displayed_as": "Trade",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Trade",
+          "price": "0.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "9c1edd84c1d5488892cdf49c10a7e6e1",
+            "displayed_as": "Trade",
+            "$path": "/product_sales_price_types/9c1edd84c1d5488892cdf49c10a7e6e1"
+          }
+        },
+        {
+          "id": "28162e7330da4b989fc2efe678b5a50e",
+          "displayed_as": "Wholesale",
+          "created_at": "2025-12-23T11:12:23Z",
+          "updated_at": "2025-12-23T11:12:23Z",
+          "price_name": "Wholesale",
+          "price": "0.0",
+          "price_includes_tax": false,
+          "product_sales_price_type": {
+            "id": "0f000752a8ca4b919cde3d95c1bd94fe",
+            "displayed_as": "Wholesale",
+            "$path": "/product_sales_price_types/0f000752a8ca4b919cde3d95c1bd94fe"
+          }
+        }
+      ],
+      "source_guid": null,
+      "purchase_description": "",
+      "active": false,
+      "catalog_item_type": {
+        "id": "PRODUCT",
+        "displayed_as": "Non-stock",
+        "$path": "/catalog_item_types/PRODUCT"
+      }
+    }
+  ]
+}
