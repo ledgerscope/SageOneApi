@@ -286,9 +286,10 @@ namespace SageOneApi.Client
             throw new ArgumentException($"Working with entity '{type.Name}' is currently unsupported");
         }
 
-        private static readonly Dictionary<Type, string> targetEntityPathByType = new Dictionary<Type, string>()
+        private static readonly Dictionary<Type, string> targetEntityPathByType = new()
         {
             { typeof(Contact), "contacts" },
+            { typeof(ContactPerson), "contact_persons" },
             { typeof(LedgerAccount), "ledger_accounts" },
             { typeof(LedgerEntry), "ledger_entries" },
             { typeof(SalesInvoice) , "sales_invoices" },
