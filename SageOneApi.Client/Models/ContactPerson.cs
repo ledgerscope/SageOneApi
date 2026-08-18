@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace SageOneApi.Client.Models
 {
@@ -17,10 +16,10 @@ namespace SageOneApi.Client.Models
 		public string Email { get; set; }
 		[JsonPropertyName("fax")]
 		public string Fax { get; set; }
-		[JsonPropertyName("is_mail_contact")]
-		public bool IsMailContact { get; set; }
+		[JsonPropertyName("is_main_contact")]
+		public bool IsMainContact { get; set; }
 		[JsonPropertyName("is_preferred_contact")]
-		public bool IsPreferredContact { get; set; }
+		public bool? IsPreferredContact { get; set; }
 		[JsonPropertyName("address")]
 		public Address Address { get; set; }
 	}
